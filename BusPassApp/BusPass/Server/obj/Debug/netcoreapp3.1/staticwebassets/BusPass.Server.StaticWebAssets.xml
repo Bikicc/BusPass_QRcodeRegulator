@@ -1,0 +1,4 @@
+﻿<StaticWebAssets Version="1.0">
+  <ContentRoot BasePath="/" Path="X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\wwwroot\" />
+  <ContentRoot BasePath="/" Path="X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\bin\Debug\netstandard2.1\wwwroot\" />
+</StaticWebAssets>
