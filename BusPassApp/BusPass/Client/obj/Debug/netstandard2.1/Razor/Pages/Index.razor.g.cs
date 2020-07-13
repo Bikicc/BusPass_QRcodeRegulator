@@ -79,7 +79,7 @@ using BusPass.Client.Shared;
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
         {
             __builder.AddMarkupContent(0, "<h1>NEŠ TI NIGDI GLUPANE!</h1>\r\n\r\nI ONDA POPUŠI KAJI KURAC.\r\n\r\n");
-            __builder.OpenComponent<BusPass.Client.Pages.SurveyPrompt>(1);
+            __builder.OpenComponent<BusPass.Client.Shared.SurveyPrompt>(1);
             __builder.AddAttribute(2, "Title", "How is Blazor working for you?");
             __builder.CloseComponent();
         }

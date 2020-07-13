@@ -82,8 +82,6 @@ X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Server\bin\Debug\
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Server\obj\Debug\netcoreapp3.1\BusPass.Server.csprojAssemblyReference.cache
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Server\obj\Debug\netcoreapp3.1\BusPass.Server.AssemblyInfoInputs.cache
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Server\obj\Debug\netcoreapp3.1\BusPass.Server.AssemblyInfo.cs
-X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Server\obj\Debug\netcoreapp3.1\BusPass.Server.csproj.CoreCompileInputs.cache
-X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Server\obj\Debug\netcoreapp3.1\BusPass.Server.MvcApplicationPartsAssemblyInfo.cache
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Server\obj\Debug\netcoreapp3.1\BusPass.Server.RazorAssemblyInfo.cache
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Server\obj\Debug\netcoreapp3.1\BusPass.Server.RazorAssemblyInfo.cs
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Server\obj\Debug\netcoreapp3.1\BusPass.Server.TagHelpers.input.cache
