@@ -1,7 +1,33 @@
 ﻿@page "/"
+@inject IMonthRepository monthRepository
 
 <h1>NEŠ TI NIGDI GLUPANE!</h1>
 
 I ONDA POPUŠI KAJI KURAC.
 
+<button @onclick="createMonth">
+    create a new month
+</button>
+
 <SurveyPrompt Title="How is Blazor working for you?" />
+
+@code {
+    private Month month;
+
+    protected override void OnInitialized()
+    {
+        month = new Month("drkalj");
+    }
+
+    private async Task createMonth()
+    {
+        try
+        {
+            await monthRepository.CreateMonth(month);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+    }
+}

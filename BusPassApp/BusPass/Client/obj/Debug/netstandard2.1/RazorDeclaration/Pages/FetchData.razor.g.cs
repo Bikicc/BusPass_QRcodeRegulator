@@ -77,6 +77,27 @@ using BusPass.Client.Shared;
 #line hidden
 #nullable disable
 #nullable restore
+#line 10 "X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\_Imports.razor"
+using BusPass.Client.Helper;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 11 "X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\_Imports.razor"
+using BusPass.Client.Repository;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 12 "X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\_Imports.razor"
+using BusPass.Shared.Entities;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\Pages\FetchData.razor"
 using BusPass.Shared;
 

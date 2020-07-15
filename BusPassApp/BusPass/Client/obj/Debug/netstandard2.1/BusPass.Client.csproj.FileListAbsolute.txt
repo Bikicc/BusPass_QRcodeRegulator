@@ -364,8 +364,8 @@ X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\BusPass.Client.pdb
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\RazorDeclaration\Shared\SurveyPrompt.razor.g.cs
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\Razor\Shared\SurveyPrompt.razor.g.cs
-X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\Yc_uqfPQTRPms1MhAyhFiWLollCvYKeeNOKTBhN8Ef0=.hash
-X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\KxzHkGBOZPBrKlNpJPAQXNluw8teHj9u4tsmgtrtnWg=.hash
-X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\1Ehl2z7rEkhNZgXdaTeev9OIX7H1gttMi-041rc2Iyw=.hash
-X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\luXUc9eXbd9_9fGNYHbwV4hu53V4VB5unmwQnxrcSzs=.hash
-X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\K5otw1TgB8EovQFfDFnQnOuqaZhqUrQO2prkIAE5oL0=.hash
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\2zUYiGfVFhh7cPdLfs2MwYNRUqzFwyckRA_zyCVAT-w=.hash
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\hmxTGICp9srMJQznFHvhFhqWRh3eEDCHY3it6lq4aME=.hash
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\9QnwJEQB4L0tzBZHPQpvKcjZEzef1bwmen_ZzDBcm5s=.hash
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\Ybo-4XqXLZ7yeu0oiGiElAJbgWSNU-PJ1gFhUb5ZSU8=.hash
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\uaepe6d27TkIohnA_YEyvMgsR5f4hRjPvN8Wvci6UNQ=.hash

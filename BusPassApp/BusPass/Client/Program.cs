@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using BusPass.Client.Helper;
+using BusPass.Client.Repository;
 
 namespace BusPass.Client
 {
@@ -18,6 +20,8 @@ namespace BusPass.Client
             builder.RootComponents.Add<App>("app");
 
             builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+            builder.Services.AddScoped<IHttpService, HttpService>();
+            builder.Services.AddScoped<IMonthRepository, MonthRepository>();
 
             await builder.Build().RunAsync();
         }

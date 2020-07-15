@@ -11,5 +11,14 @@ namespace BusPass.Shared.Entities
 
         public ICollection<BusPassPayment> BusPassPayments { get; set; }
 
+        public Month(string monthName)
+        {
+            Name = monthName;
+        }
+
+        public Month()
+        {
+        }
+
     }
 }
