@@ -1,0 +1,9 @@
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Shared\bin\Debug\netcoreapp3.1\BusPass.Shared.deps.json
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Shared\bin\Debug\netcoreapp3.1\BusPass.Shared.dll
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Shared\bin\Debug\netcoreapp3.1\BusPass.Shared.pdb
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Shared\obj\Debug\netcoreapp3.1\BusPass.Shared.csprojAssemblyReference.cache
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Shared\obj\Debug\netcoreapp3.1\BusPass.Shared.AssemblyInfoInputs.cache
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Shared\obj\Debug\netcoreapp3.1\BusPass.Shared.AssemblyInfo.cs
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Shared\obj\Debug\netcoreapp3.1\BusPass.Shared.csproj.CoreCompileInputs.cache
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Shared\obj\Debug\netcoreapp3.1\BusPass.Shared.dll
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Shared\obj\Debug\netcoreapp3.1\BusPass.Shared.pdb

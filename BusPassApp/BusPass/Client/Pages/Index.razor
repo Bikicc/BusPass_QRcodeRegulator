@@ -16,18 +16,18 @@ I ONDA POPUŠI KAJI KURAC.
 
     protected override void OnInitialized()
     {
-        month = new Month("drkalj");
+        @* month = new Month("drkalj"); *@
     }
 
-    private async Task createMonth()
-    {
+      private async Task createMonth()
+     {
         try
-        {
-            await monthRepository.CreateMonth(month);
+        {           
+             await monthRepository.CreateMonth(month);
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
         }
-    }
+    }   
 }

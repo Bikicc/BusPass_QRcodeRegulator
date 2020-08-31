@@ -3,7 +3,6 @@ using System;
 using BusPass.Server;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BusPass.Server.Migrations
@@ -15,27 +14,24 @@ namespace BusPass.Server.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.5")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "3.1.5");
 
             modelBuilder.Entity("BusPass.Shared.Entities.Account", b =>
                 {
                     b.Property<int>("AccountId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER");
 
                     b.Property<double>("Balance")
-                        .HasColumnType("float");
+                        .HasColumnType("REAL");
 
                     b.Property<string>("IBAN")
                         .IsRequired()
-                        .HasColumnType("nvarchar(21)")
+                        .HasColumnType("TEXT")
                         .HasMaxLength(21);
 
                     b.Property<int>("UserId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("AccountId");
 
@@ -49,17 +45,19 @@ namespace BusPass.Server.Migrations
                 {
                     b.Property<int>("BusPassPaymentId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("BusPassportId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("DateOfPayment")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("MonthId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
+
+                    b.Property<double>("price")
+                        .HasColumnType("REAL");
 
                     b.HasKey("BusPassPaymentId");
 
@@ -74,40 +72,38 @@ namespace BusPass.Server.Migrations
                 {
                     b.Property<int>("BusPassportId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("DateOfIssue")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("PassTypeId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("UserId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<bool>("Valid")
-                        .HasColumnType("bit");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("BusPassportId");
 
                     b.HasIndex("PassTypeId");
 
-                    b.HasIndex("UserId")
-                        .IsUnique();
+                    b.HasIndex("UserId");
 
-                    b.ToTable("BusPasses");
+                    b.ToTable("BusPassports");
                 });
 
             modelBuilder.Entity("BusPass.Shared.Entities.Month", b =>
                 {
                     b.Property<int>("MonthId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.HasKey("MonthId");
 
@@ -118,14 +114,13 @@ namespace BusPass.Server.Migrations
                 {
                     b.Property<int>("PassTypeId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Name")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<double>("Price")
-                        .HasColumnType("float");
+                        .HasColumnType("REAL");
 
                     b.HasKey("PassTypeId");
 
@@ -136,37 +131,36 @@ namespace BusPass.Server.Migrations
                 {
                     b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("DOB")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("OIB")
                         .IsRequired()
-                        .HasColumnType("nvarchar(11)")
+                        .HasColumnType("TEXT")
                         .HasMaxLength(11);
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(20)")
-                        .HasMaxLength(20);
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(15);
 
                     b.Property<string>("Role")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Surname")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("UserId");
 
@@ -200,14 +194,14 @@ namespace BusPass.Server.Migrations
             modelBuilder.Entity("BusPass.Shared.Entities.BusPassport", b =>
                 {
                     b.HasOne("BusPass.Shared.Entities.PassType", "PassType")
-                        .WithMany("BusPasses")
+                        .WithMany("BusPassports")
                         .HasForeignKey("PassTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("BusPass.Shared.Entities.User", "User")
-                        .WithOne("BusPass")
-                        .HasForeignKey("BusPass.Shared.Entities.BusPassport", "UserId")
+                        .WithMany("BusPassports")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -187,7 +187,6 @@ X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\BaZPMj95_YNe3G4ckTGD6szZFwZeA2MOHn91zTGKDeU=.hash
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\TkH6yxFQlTfY8NfznePrCdYJiEVpM9Dqy4Uu4H9qk10=.hash
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\-cPXlNTX8GKF-lIn-2DIjtxTe0Wpy4ZDcyAj67b6JYk=.hash
-X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\pzCorxTCjbUODF5JuRgcHc8gVYEdSaKD9NWA6wZhTPE=.hash
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\kL-omZDwqByAi_lPdMeDmr3XjHcn4RVb_LmZ4mut1Yc=.hash
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\OBWh2or_2mU6elwqPfmL72FBZVKl2WzTJ4L-IrKeXM4=.hash
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\-zcPVM75OAY_joGVM8yIC1gO1SFYWP1CFERgQ8PJkfA=.hash
@@ -211,7 +210,6 @@ X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\eejp4oI3sQBq-tI6GsJNaPu3Dkdot5Vbn8_R3w2vYLE=.hash
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\dxfTuT6ffPMmvuUUTfv7_bpLtOZZZHQdz77hjhy9qHw=.hash
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\qAKfFnquY_7UC-MzLi04rjqEhLzTryCoLg-S6MxI19I=.hash
-X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\hbEA2pdvgll2bWeJXCtehEV3kl3WFnBgQj6ttcesEA4=.hash
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\ycn-UHLnjC77BNvsurP4mkuYP8oud1oVyfSSlZKMymc=.hash
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\v4LhihP26fP-dVajppSCZIrCVbkiALCJgAisyG2cmJQ=.hash
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\e0FY4g2Vt8TsXfafkXU2XnUgcYzjzPiFqb3KCylDb74=.hash
@@ -364,8 +362,10 @@ X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\BusPass.Client.pdb
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\RazorDeclaration\Shared\SurveyPrompt.razor.g.cs
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\Razor\Shared\SurveyPrompt.razor.g.cs
-X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\2zUYiGfVFhh7cPdLfs2MwYNRUqzFwyckRA_zyCVAT-w=.hash
-X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\hmxTGICp9srMJQznFHvhFhqWRh3eEDCHY3it6lq4aME=.hash
-X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\9QnwJEQB4L0tzBZHPQpvKcjZEzef1bwmen_ZzDBcm5s=.hash
-X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\Ybo-4XqXLZ7yeu0oiGiElAJbgWSNU-PJ1gFhUb5ZSU8=.hash
-X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\uaepe6d27TkIohnA_YEyvMgsR5f4hRjPvN8Wvci6UNQ=.hash
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\8HJZFW4yhEq8ptVsrLTxRMEzXv7tBZp1zCfYYawRec4=.hash
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\CO-ozvi7s8OiNyM7bTLAgN3hTu1DdkTcji5vKCPY6Ho=.hash
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\HQeN_ZfHAERO_uW0fP0J9J3WV1hQ3vUIOWbqGSYBPp8=.hash
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\Tqh1Da_iTRQJEZUGAsMNFuZ4hf1PMf13WApRZod_uw4=.hash
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\pLI72lybynnO0OprrVNkxvOrVzrtRcxoTwEgL0NMbM8=.hash
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\RwKmkOM70fvOMR6FN0kUYmifurwkL4TyEHmPDSn0DRc=.hash
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\rhoJPfXCneyTcyItfRnuOwN9yi4CvjbjblOmkdUMZWI=.hash

@@ -1,30 +1,50 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using BusPass.Server.Repository;
 using BusPass.Shared.Entities;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BusPass.Server.Controllers
-{
-    [Route("api/[controller]")]
+namespace BusPass.Server.Controllers {
+    [Route ("api/[controller]")]
     [ApiController]
-    public class AccountsController : ControllerBase
-    {
-        private readonly ApplicationDbContext context;
+    public class AccountsController : ControllerBase {
+        private readonly IAccountRepository _repo;
 
-        public AccountsController(ApplicationDbContext context)
-        {
-            this.context = context;
+        public AccountsController (IAccountRepository repo) {
+            this._repo = repo;
         }
 
         [HttpPost]
-        public async Task<ActionResult<int>> Post(Account account)
-        {
-            context.Add(account);
-            await context.SaveChangesAsync();
-            return account.AccountId;
+        public async Task<IActionResult> postAccount (Account account) {
+            if (!ModelState.IsValid) {
+                return BadRequest (ModelState);
+            }
+            if (await _repo.postAccount (account)) {
+                return Ok ();
+            } else {
+                return BadRequest ("Something went wrong!");
+            }
+        }
+
+        [HttpGet("{userId}")]
+        public async Task<IActionResult> getAccount (int userId) {
+            Account acc = await _repo.GetAccount (userId);
+
+            if (acc == null) {
+                return BadRequest ("Account doesn't exists!");
+            } else {
+                return Ok (acc);
+            }
+        }
+
+        [HttpPut("{userId}/{valueToSubstract}")]
+        public async Task<IActionResult> putAccount (int userId, int valueToSubstract) {
+
+            if (await _repo.substructFromBalance (userId, valueToSubstract)) {
+                var acc = await _repo.GetAccount (userId);
+                return Ok (acc);
+            } else {
+                return BadRequest ("Insufficient funds!");
+            }
         }
     }
 }

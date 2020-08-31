@@ -10,7 +10,7 @@ namespace BusPass.Shared.Entities
         public int Name { get; set; }
         public double Price { get; set; }
         
-        public ICollection<BusPassport> BusPasses { get; set; }
+        public ICollection<BusPassport> BusPassports { get; set; }
 
     }
 }
