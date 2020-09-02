@@ -44,7 +44,7 @@
       "System.ComponentModel.DataAnnotations.dll": "sha256-LIfCYwg+PHltTK4z3EnbSkA7m2cn8JS4jHVthdKrDF8=",
       "Microsoft.AspNetCore.Components.dll": "sha256-jqp6xS5jDFDsISGorhiYZQ2if3hAiols6d4C5BNnMQ4=",
       "Microsoft.Extensions.Logging.Abstractions.dll": "sha256-45ia6XmGIa5WI3cHUIE9KhVornlZleYW+B5FPpfD1wQ=",
-      "BusPass.Shared.dll": "sha256-pLI72lybynnO0OprrVNkxvOrVzrtRcxoTwEgL0NMbM8=",
+      "BusPass.Shared.dll": "sha256-5Zv9xV\/Fl6IdI7xHfKfRTJdvN7LQMKMz7We7xoMGVDk=",
       "Microsoft.AspNetCore.Components.WebAssembly.dll": "sha256-sifIvl02zqfSiv67ZRAsSa+NCvhMgTGrIUNuK8LmCNM=",
       "Microsoft.Extensions.DependencyInjection.dll": "sha256-8Y81cOKaNJHZZvHu0TROikruBOenBHdE5WwI2BOkNNE=",
       "Microsoft.Extensions.Primitives.dll": "sha256-DG1MjidH81NA50uWH63eWmXLCxt18sJzoF2oXVlyvlY=",
@@ -62,7 +62,7 @@
     },
     "pdb": {
       "BusPass.Client.pdb": "sha256-8HJZFW4yhEq8ptVsrLTxRMEzXv7tBZp1zCfYYawRec4=",
-      "BusPass.Shared.pdb": "sha256-RwKmkOM70fvOMR6FN0kUYmifurwkL4TyEHmPDSn0DRc="
+      "BusPass.Shared.pdb": "sha256-MAB\/fZJ+d66gle0ctCfQomBdRet9KySFHUWFrkuMvaU="
     },
     "runtime": {
       "dotnet.3.2.0.js": "sha256-mPoqx7XczFHBWk3gRNn0hc9ekG1OvkKY4XiKRY5Mj5U=",

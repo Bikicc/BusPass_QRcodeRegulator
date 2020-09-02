@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace BusPass.Shared.Entities
@@ -12,15 +10,6 @@ namespace BusPass.Shared.Entities
         public string Name { get; set; }
 
         public ICollection<BusPassPayment> BusPassPayments { get; set; }
-
-        // public Month(string monthName)
-        // {
-        //     Name = monthName;
-        // }
-
-        // public Month()
-        // {
-        // }
 
     }
 }

@@ -1,4 +1,5 @@
 using BusPass.Server.Repository;
+using BusPass.Server.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -20,13 +21,22 @@ namespace BusPass.Server {
 
             services.AddDbContext<ApplicationDbContext> (x => x.UseSqlite (Configuration.GetConnectionString ("DefaultConnection")));
 
+            //Repository injection
             services.AddScoped<IUserRepository, UserRepository> ();
             services.AddScoped<IAccountRepository, AccountRepository> ();
+            services.AddScoped<IPassTypeRepository, PassTypeRepository> ();
+            services.AddScoped<IBusPassportRepository, BusPassportRepository> ();
+
+            //Services injection
+            services.AddScoped<IUserService, UserService> ();
+            services.AddScoped<IAccountService, AccountService> ();
+            services.AddScoped<IPassTypeService, PassTypeService> ();
+            services.AddScoped<IBusPassportService, BusPassportService> ();
 
             services.AddControllersWithViews ();
-                // .AddNewtonsoftJson (options =>
-                //     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-                // );
+            // .AddNewtonsoftJson (options =>
+            //     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            // );
 
             services.AddRazorPages ();
         }

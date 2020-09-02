@@ -11,13 +11,16 @@ namespace BusPass.Shared.Entities {
         [Required]
         public int BusPassportId { get; set; }
         public BusPassport BusPass { get; set; }
-
-        [Required]
         public int MonthId { get; set; }
         public Month Month { get; set; }
+        public int YearId { get; set; }
+        public Year Year { get; set; }
 
         [Required]
-        public double price { get; set; }
+        public double Price { get; set; }
+
+        [Required]
+        public int PassTypeId { get; set; }
 
     }
 }

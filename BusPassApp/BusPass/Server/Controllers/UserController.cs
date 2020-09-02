@@ -1,18 +1,18 @@
 using System.Threading.Tasks;
-using BusPass.Server.Repository;
+using BusPass.Server.Services;
 using BusPass.Shared.Entities;
 using Microsoft.AspNetCore.Mvc;
-using BussPass.Server.HelperEntities;
+using BusPass.Shared.HelperEntities;
 
 namespace BusPass.Server.Controllers {
 
     [Route ("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase {
-        private readonly IUserRepository _repo;
+        private readonly IUserService _service;
 
-        public UserController (IUserRepository repo) {
-            this._repo = repo;
+        public UserController (IUserService service) {
+            _service = service;
         }
 
         [Route ("createUser")]
@@ -22,7 +22,7 @@ namespace BusPass.Server.Controllers {
                 return BadRequest (ModelState);
             }
 
-            if (await _repo.RegisterUser (user)) {
+            if (await _service.RegisterUser (user)) {
                 return Ok ();
             } else {
                 return BadRequest ("User already exists!");
@@ -32,7 +32,7 @@ namespace BusPass.Server.Controllers {
         [Route ("loginUser")]
         [HttpPost]
         public async Task<IActionResult> loginUser ([FromBody] LoginUser user) {
-            var us = await _repo.LoginUser (user);
+            var us = await _service.LoginUser (user);
 
             if (us != null) {
                 return Ok (us);

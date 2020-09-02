@@ -1,16 +1,20 @@
-﻿using System.Threading.Tasks;
-using BusPass.Server.Repository;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using BusPass.Server.Services;
 using BusPass.Shared.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BusPass.Server.Controllers {
     [Route ("api/[controller]")]
     [ApiController]
     public class AccountsController : ControllerBase {
-        private readonly IAccountRepository _repo;
+        private readonly IAccountService _service;
+        private readonly ApplicationDbContext _context;
 
-        public AccountsController (IAccountRepository repo) {
-            this._repo = repo;
+        public AccountsController (IAccountService service, ApplicationDbContext context) {
+            _service = service;
+            this._context = context;
         }
 
         [HttpPost]
@@ -18,16 +22,17 @@ namespace BusPass.Server.Controllers {
             if (!ModelState.IsValid) {
                 return BadRequest (ModelState);
             }
-            if (await _repo.postAccount (account)) {
+
+            if (await _service.postAccount (account)) {
                 return Ok ();
             } else {
                 return BadRequest ("Something went wrong!");
             }
         }
 
-        [HttpGet("{userId}")]
+        [HttpGet ("{userId}")]
         public async Task<IActionResult> getAccount (int userId) {
-            Account acc = await _repo.GetAccount (userId);
+            Account acc = await _service.GetAccount (userId);
 
             if (acc == null) {
                 return BadRequest ("Account doesn't exists!");
@@ -36,11 +41,11 @@ namespace BusPass.Server.Controllers {
             }
         }
 
-        [HttpPut("{userId}/{valueToSubstract}")]
+        [HttpPut ("{userId}/{valueToSubstract}")]
         public async Task<IActionResult> putAccount (int userId, int valueToSubstract) {
+            Account acc = await _service.substructFromBalance (userId, valueToSubstract);
 
-            if (await _repo.substructFromBalance (userId, valueToSubstract)) {
-                var acc = await _repo.GetAccount (userId);
+            if (acc != null) {
                 return Ok (acc);
             } else {
                 return BadRequest ("Insufficient funds!");

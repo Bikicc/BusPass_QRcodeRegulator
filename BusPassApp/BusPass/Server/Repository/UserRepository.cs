@@ -2,7 +2,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BusPass.Shared.Entities;
 using Microsoft.EntityFrameworkCore;
-using BussPass.Server.HelperEntities;
+using BusPass.Shared.HelperEntities;
 
 namespace BusPass.Server.Repository {
     public class UserRepository : IUserRepository {
@@ -12,12 +12,11 @@ namespace BusPass.Server.Repository {
             this._context = context;
         }
 
+        public async Task<bool> CheckIfUserExists(User user) {
+            return await _context.Users.Where (x => x.OIB == user.OIB || x.Email == user.Email).AnyAsync ();
+        }
+
         public async Task<bool> RegisterUser (User user) {
-
-            if (_context.Users.Where (x => x.OIB == user.OIB || x.Email == user.Email).Any ()) {
-                return false;
-            }
-
             try {
                 _context.Users.Add (user);
                 await _context.SaveChangesAsync ();

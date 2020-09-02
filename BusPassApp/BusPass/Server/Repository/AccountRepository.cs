@@ -28,17 +28,18 @@ namespace BusPass.Server.Repository {
 
         }
 
-        public async Task<bool> substructFromBalance (int accountId, int valueToSubstract) {
-            
-            Account acc = await _context.Accounts.FindAsync (accountId);
-            if (acc.Balance < valueToSubstract) {
-                return false;
-            }
-            
+        public async Task<Account> substructFromBalance (int accountId, int valueToSubstract) {
+
+            var acc = await _context.Accounts.FindAsync (accountId);
+
             acc.Balance = acc.Balance - valueToSubstract;
             await _context.SaveChangesAsync ();
-            return true;
+            return acc;
 
+        }
+
+        public async Task<bool> checkIfEnoughBalance (int accountId, int valueToSubstract) {
+            return (await _context.Accounts.FindAsync (accountId)).Balance >= valueToSubstract;
         }
     }
 }

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BusPass.Server.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initialCreateSecondDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,8 +12,8 @@ namespace BusPass.Server.Migrations
                 columns: table => new
                 {
                     MonthId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -25,8 +25,8 @@ namespace BusPass.Server.Migrations
                 columns: table => new
                 {
                     PassTypeId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<int>(nullable: false),
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(nullable: true),
                     Price = table.Column<double>(nullable: false)
                 },
                 constraints: table =>
@@ -39,14 +39,14 @@ namespace BusPass.Server.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(nullable: false),
                     Surname = table.Column<string>(nullable: false),
                     DOB = table.Column<DateTime>(nullable: false),
                     OIB = table.Column<string>(maxLength: 11, nullable: false),
                     Role = table.Column<string>(nullable: false),
                     Email = table.Column<string>(nullable: false),
-                    Password = table.Column<string>(maxLength: 20, nullable: false)
+                    Password = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -58,7 +58,7 @@ namespace BusPass.Server.Migrations
                 columns: table => new
                 {
                     AccountId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Sqlite:Autoincrement", true),
                     IBAN = table.Column<string>(maxLength: 21, nullable: false),
                     Balance = table.Column<double>(nullable: false),
                     UserId = table.Column<int>(nullable: false)
@@ -75,27 +75,27 @@ namespace BusPass.Server.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "BusPasses",
+                name: "BusPassports",
                 columns: table => new
                 {
                     BusPassportId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(nullable: false),
+                        .Annotation("Sqlite:Autoincrement", true),
                     Valid = table.Column<bool>(nullable: false),
                     DateOfIssue = table.Column<DateTime>(nullable: false),
+                    UserId = table.Column<int>(nullable: false),
                     PassTypeId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BusPasses", x => x.BusPassportId);
+                    table.PrimaryKey("PK_BusPassports", x => x.BusPassportId);
                     table.ForeignKey(
-                        name: "FK_BusPasses_PassTypes_PassTypeId",
+                        name: "FK_BusPassports_PassTypes_PassTypeId",
                         column: x => x.PassTypeId,
                         principalTable: "PassTypes",
                         principalColumn: "PassTypeId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_BusPasses_Users_UserId",
+                        name: "FK_BusPassports_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "UserId",
@@ -107,18 +107,20 @@ namespace BusPass.Server.Migrations
                 columns: table => new
                 {
                     BusPassPaymentId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Sqlite:Autoincrement", true),
                     DateOfPayment = table.Column<DateTime>(nullable: false),
                     BusPassportId = table.Column<int>(nullable: false),
-                    MonthId = table.Column<int>(nullable: false)
+                    MonthId = table.Column<int>(nullable: false),
+                    Price = table.Column<double>(nullable: false),
+                    PassTypeId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_BusPassPayments", x => x.BusPassPaymentId);
                     table.ForeignKey(
-                        name: "FK_BusPassPayments_BusPasses_BusPassportId",
+                        name: "FK_BusPassPayments_BusPassports_BusPassportId",
                         column: x => x.BusPassportId,
-                        principalTable: "BusPasses",
+                        principalTable: "BusPassports",
                         principalColumn: "BusPassportId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -136,17 +138,6 @@ namespace BusPass.Server.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_BusPasses_PassTypeId",
-                table: "BusPasses",
-                column: "PassTypeId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_BusPasses_UserId",
-                table: "BusPasses",
-                column: "UserId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_BusPassPayments_BusPassportId",
                 table: "BusPassPayments",
                 column: "BusPassportId");
@@ -155,6 +146,17 @@ namespace BusPass.Server.Migrations
                 name: "IX_BusPassPayments_MonthId",
                 table: "BusPassPayments",
                 column: "MonthId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BusPassports_PassTypeId",
+                table: "BusPassports",
+                column: "PassTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BusPassports_UserId",
+                table: "BusPassports",
+                column: "UserId",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -166,7 +168,7 @@ namespace BusPass.Server.Migrations
                 name: "BusPassPayments");
 
             migrationBuilder.DropTable(
-                name: "BusPasses");
+                name: "BusPassports");
 
             migrationBuilder.DropTable(
                 name: "Months");

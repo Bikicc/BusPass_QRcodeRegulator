@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BusPass.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200831132342_initialCreate")]
-    partial class initialCreate
+    [Migration("20200902154404_initialCreateSecondDb")]
+    partial class initialCreateSecondDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -58,7 +58,10 @@ namespace BusPass.Server.Migrations
                     b.Property<int>("MonthId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<double>("price")
+                    b.Property<int>("PassTypeId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<double>("Price")
                         .HasColumnType("REAL");
 
                     b.HasKey("BusPassPaymentId");
@@ -92,7 +95,8 @@ namespace BusPass.Server.Migrations
 
                     b.HasIndex("PassTypeId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("BusPassports");
                 });
@@ -118,8 +122,8 @@ namespace BusPass.Server.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Name")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
 
                     b.Property<double>("Price")
                         .HasColumnType("REAL");
@@ -152,9 +156,7 @@ namespace BusPass.Server.Migrations
                         .HasMaxLength(11);
 
                     b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasMaxLength(15);
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Role")
                         .IsRequired()
@@ -202,8 +204,8 @@ namespace BusPass.Server.Migrations
                         .IsRequired();
 
                     b.HasOne("BusPass.Shared.Entities.User", "User")
-                        .WithMany("BusPassports")
-                        .HasForeignKey("UserId")
+                        .WithOne("BusPassports")
+                        .HasForeignKey("BusPass.Shared.Entities.BusPassport", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
