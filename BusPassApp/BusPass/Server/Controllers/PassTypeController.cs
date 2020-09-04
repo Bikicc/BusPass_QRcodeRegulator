@@ -1,9 +1,9 @@
 using System.Threading.Tasks;
 using BusPass.Server.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
 namespace BusPass.Server.Controllers {
-
+    [Authorize]
     [Route ("api/[controller]")]
     [ApiController]
     public class PassTypeController : ControllerBase {
@@ -29,6 +29,7 @@ namespace BusPass.Server.Controllers {
             }
         }
 
+        [Authorize (Roles = "Admin")]
         [HttpPut ("{passTypeId}/{price}")]
         public async Task<IActionResult> getPassType (int passTypeId, double price) {
             var passType = await _service.updatePassTypePrice (passTypeId, price);

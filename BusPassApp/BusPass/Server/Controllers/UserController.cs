@@ -1,11 +1,11 @@
 using System.Threading.Tasks;
 using BusPass.Server.Services;
 using BusPass.Shared.Entities;
-using Microsoft.AspNetCore.Mvc;
 using BusPass.Shared.HelperEntities;
-
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 namespace BusPass.Server.Controllers {
-
+    [Authorize]
     [Route ("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase {
@@ -15,6 +15,7 @@ namespace BusPass.Server.Controllers {
             _service = service;
         }
 
+        [Authorize (Roles = "Admin")]
         [Route ("createUser")]
         [HttpPost]
         public async Task<IActionResult> createUser ([FromBody] User user) {
@@ -29,16 +30,17 @@ namespace BusPass.Server.Controllers {
             }
         }
 
+        [AllowAnonymous]
         [Route ("loginUser")]
         [HttpPost]
         public async Task<IActionResult> loginUser ([FromBody] LoginUser user) {
-            var us = await _service.LoginUser (user);
+            User us = await _service.LoginUser (user);
 
-            if (us != null) {
-                return Ok (us);
-            } else {
-                return BadRequest ("Wrong credentials");
+            if (us == null) {
+                return NotFound ("Wrong credentials!");
             }
+
+            return Ok (us);
         }
     }
 }

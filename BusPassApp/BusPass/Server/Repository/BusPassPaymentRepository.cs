@@ -24,8 +24,18 @@ namespace BusPass.Server.Repository {
             }
         }
 
-        public async Task<ICollection<BusPassPayment>> getPaymentsForBusPass (int busPassId, int yearId) {
-            var payments = await (from p in _context.BusPassPayments where p.BusPassportId == busPassId && p.YearId == yearId select p)
+        public async Task<ICollection<Payment>> getPaymentsForBusPass (int busPassId, int yearId) {
+            ICollection<Payment> payments = await _context.BusPassPayments
+                .Where (p => p.BusPassportId == busPassId && p.YearId == yearId)
+                .Join (_context.BusPassports,
+                    payment => payment.BusPassportId,
+                    busPass => busPass.BusPassportId,
+                    (payment, busPass) => new { p = payment, bp = busPass })
+                .Join (_context.Users,
+                    pbp => pbp.bp.UserId,
+                    user => user.UserId,
+                    (pbp, u) =>
+                    new Payment (pbp.p, pbp.bp, u, pbp.p.Month.Name, _context.PassTypes.SingleOrDefault (pt => pt.PassTypeId == pbp.p.PassTypeId).Name))
                 .ToListAsync ();
 
             return payments;
@@ -38,22 +48,44 @@ namespace BusPass.Server.Repository {
             return payments;
         }
 
-        public async Task<ICollection<BusPassPayment>> getPaymentsForMonth (int yearId, int monthId) {
-            var payments = await (from p in _context.BusPassPayments where p.YearId == yearId && p.MonthId == monthId select p)
+        public async Task<ICollection<Payment>> getPaymentsForMonth (int yearId, int monthId) {
+            ICollection<Payment> payments = await _context.BusPassPayments
+                .Where (p => p.YearId == yearId && p.MonthId == monthId)
+                .Join (_context.BusPassports,
+                    payment => payment.BusPassportId,
+                    busPass => busPass.BusPassportId,
+                    (payment, busPass) => new { p = payment, bp = busPass })
+                .Join (_context.Users,
+                    pbp => pbp.bp.UserId,
+                    user => user.UserId,
+                    (pbp, u) =>
+                    new Payment (pbp.p, pbp.bp, u, pbp.p.Month.Name, _context.PassTypes.SingleOrDefault (pt => pt.PassTypeId == pbp.p.PassTypeId).Name))
                 .ToListAsync ();
 
             return payments;
         }
 
-        public async Task<ICollection<BusPassPayment>> getPaymentsByPassType (int passTypeId, int yearId) {
-            var payments = await (from p in _context.BusPassPayments where p.YearId == yearId && p.PassTypeId == passTypeId select p)
+        public async Task<ICollection<Payment>> getPaymentsByPassType (int passTypeId, int yearId, int monthId) {
+            ICollection<Payment> payments = await _context.BusPassPayments
+                .Where (p => p.YearId == yearId && p.PassTypeId == passTypeId && p.MonthId == monthId)
+                .Join (_context.BusPassports,
+                    payment => payment.BusPassportId,
+                    busPass => busPass.BusPassportId,
+                    (payment, busPass) => new { p = payment, bp = busPass })
+                .Join (_context.Users,
+                    pbp => pbp.bp.UserId,
+                    user => user.UserId,
+                    (pbp, u) =>
+                    new Payment (pbp.p, pbp.bp, u, pbp.p.Month.Name, _context.PassTypes.SingleOrDefault (pt => pt.PassTypeId == pbp.p.PassTypeId).Name))
                 .ToListAsync ();
 
             return payments;
+
         }
 
-        public async Task<Year> getCurrentYear() {
-            return await _context.Years.LastOrDefaultAsync();
+        public async Task<Year> getCurrentYear () {
+            var allYears = await _context.Years.ToListAsync ();
+            return allYears.LastOrDefault ();
         }
 
     }

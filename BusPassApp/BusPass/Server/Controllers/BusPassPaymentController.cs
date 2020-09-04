@@ -1,19 +1,25 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using BusPass.Server.Services;
 using BusPass.Shared.Entities;
+using BusPass.Shared.HelperEntities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
 namespace BusPass.Server.Controllers {
-
+    [Authorize]
     [Route ("api/[controller]")]
     [ApiController]
     public class BusPassPaymentController : ControllerBase {
         private readonly IBusPassPaymentService _service;
+        private readonly ApplicationDbContext _context;
 
-        public BusPassPaymentController (IBusPassPaymentService service) {
+        public BusPassPaymentController (IBusPassPaymentService service, ApplicationDbContext context) {
             _service = service;
+            _context = context;
+
         }
 
+        [Authorize (Roles = "User")]
         [HttpPost]
         public async Task<IActionResult> postPayment (BusPassPayment payment) {
             if (!ModelState.IsValid) {
@@ -29,20 +35,31 @@ namespace BusPass.Server.Controllers {
 
         [HttpGet ("forBusPass/{busPassId}/{yearId}")]
         public async Task<IActionResult> getPaymentsForBusPass (int busPassId, int yearId) {
-            var payments = await _service.getPaymentsForBusPass (busPassId, yearId);
-            return Ok (payments);
+            ICollection<Payment> payments = await _service.getPaymentsForBusPass (busPassId, yearId);
+            double totalAmount = await _service.getTotalAmountOfPayments (payments);
+
+            var paymentsWithAmount = new { payments = payments, totalAmount = totalAmount };
+            return Ok (paymentsWithAmount);
         }
 
+        [Authorize (Roles = "Admin")]
         [HttpGet ("forMonth/{yearId}/{monthId}")]
         public async Task<IActionResult> getPaymentsForMonth (int yearId, int monthId) {
-            var payments = await _service.getPaymentsForMonth (yearId, monthId);
-            return Ok (payments);
+            ICollection<Payment> payments = await _service.getPaymentsForMonth (yearId, monthId);
+            double totalAmount = await _service.getTotalAmountOfPayments (payments);
+
+            var paymentsWithAmount = new { payments = payments, totalAmount = totalAmount };
+            return Ok (paymentsWithAmount);
         }
 
-        [HttpGet ("forPassType/{passTypeId}/{yearId}")]
-        public async Task<IActionResult> getPaymentsByPassType (int passTypeId, int yearId) {
-            var payments = await _service.getPaymentsByPassType (passTypeId, yearId);
-            return Ok (payments);
+        [Authorize (Roles = "Admin")]
+        [HttpGet ("forPassType/{passTypeId}/{yearId}/{monthId}")]
+        public async Task<IActionResult> getPaymentsByPassType (int passTypeId, int yearId, int monthId) {
+            ICollection<Payment> payments = await _service.getPaymentsByPassType (passTypeId, yearId, monthId);
+            double totalAmount = await _service.getTotalAmountOfPayments (payments);
+
+            var paymentsWithAmount = new { payments = payments, totalAmount = totalAmount };
+            return Ok (paymentsWithAmount);
         }
 
         [HttpGet ("check/{busPassId}/{monthId}/{yearId}")]

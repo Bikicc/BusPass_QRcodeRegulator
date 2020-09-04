@@ -6,5 +6,7 @@ namespace BusPass.Server.Services {
     public interface IUserService {
         Task<User> LoginUser (LoginUser user);
         Task<bool> RegisterUser (User user);
+        // string generateJwtToken (User user);
+        // Task<User> getUserById (int userId);
     }
 }

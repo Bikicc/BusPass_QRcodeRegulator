@@ -28,12 +28,15 @@ namespace BusPass.Shared.Entities {
         public string Email { get; set; }
 
         [JsonIgnore]
-         public string Password { get; set; }
+        public string Password { get; set; }
 
         [Required (ErrorMessage = "This field is required")]
         [StringLength (15, ErrorMessage = "Password must be between {2} and {1}", MinimumLength = 4)]
         [NotMapped]
         public string PasswordPlain { get; set; }
+
+        [NotMapped]
+        public string Token { get; set; }
         public BusPassport BusPassports { get; set; }
         public Account Account { get; set; }
 

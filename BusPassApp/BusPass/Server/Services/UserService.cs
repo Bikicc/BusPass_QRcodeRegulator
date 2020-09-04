@@ -1,33 +1,61 @@
+using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.IO;
+using System.Security.Claims;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
-using BusPass.Shared.HelperEntities;
+using BusPass.Server.HelperClasses;
 using BusPass.Server.Repository;
 using BusPass.Shared.Entities;
-using System.Security.Cryptography;
-using System.IO;
-using System.Text;
-using System;
+using BusPass.Shared.HelperEntities;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 
 namespace BusPass.Server.Services {
     public class UserService : IUserService {
         private readonly IUserRepository _repo;
+        private readonly AppSettings _appSettings;
 
-        public UserService (IUserRepository repo) {
+        public UserService (IOptions<AppSettings> appSettings, IUserRepository repo) {
+            _appSettings = appSettings.Value;
             _repo = repo;
         }
-        public Task<User> LoginUser (LoginUser user) {
-            user.Password = Encrypt(user.PasswordPlain);
-            return _repo.LoginUser (user);
+        public async Task<User> LoginUser (LoginUser user) {
+            user.Password = Encrypt (user.PasswordPlain);
+            var us = await _repo.LoginUser (user);
+
+            if (us == null) {
+                return null;
+            }
+            
+            us.Token = generateJwtToken(us);
+            return us;
         }
 
         public async Task<bool> RegisterUser (User user) {
             if (await _repo.CheckIfUserExists (user)) {
                 return false;
             } else {
-                user.Password = Encrypt(user.PasswordPlain);
+                user.Password = Encrypt (user.PasswordPlain);
                 return await _repo.RegisterUser (user);
             }
         }
 
+        private string generateJwtToken (User us) {
+            var tokenHandler = new JwtSecurityTokenHandler ();
+            var key = Encoding.ASCII.GetBytes (_appSettings.Secret);
+            var tokenDescriptor = new SecurityTokenDescriptor {
+                Subject = new ClaimsIdentity (new Claim[] {
+                new Claim (ClaimTypes.Name, us.UserId.ToString ()),
+                new Claim (ClaimTypes.Role, us.Role)
+                }),
+                Expires = DateTime.UtcNow.AddDays (7),
+                SigningCredentials = new SigningCredentials (new SymmetricSecurityKey (key), SecurityAlgorithms.HmacSha256Signature)
+            };
+            var token = tokenHandler.CreateToken (tokenDescriptor);
+            return tokenHandler.WriteToken (token);
+        }
         private string Encrypt (string passwordPlain) {
             string EncryptionKey = "MAKV2SPBNI99212";
             byte[] clearBytes = Encoding.Unicode.GetBytes (passwordPlain);

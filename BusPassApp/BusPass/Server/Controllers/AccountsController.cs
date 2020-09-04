@@ -1,22 +1,20 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using BusPass.Server.HelperClasses;
 using BusPass.Server.Services;
 using BusPass.Shared.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-
 namespace BusPass.Server.Controllers {
+    [Authorize]
     [Route ("api/[controller]")]
     [ApiController]
     public class AccountsController : ControllerBase {
         private readonly IAccountService _service;
-        private readonly ApplicationDbContext _context;
-
-        public AccountsController (IAccountService service, ApplicationDbContext context) {
+        public AccountsController (IAccountService service) {
             _service = service;
-            this._context = context;
         }
 
+        [Authorize (Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> postAccount (Account account) {
             if (!ModelState.IsValid) {
@@ -30,6 +28,7 @@ namespace BusPass.Server.Controllers {
             }
         }
 
+        [Authorize (Roles = "User")]
         [HttpGet ("{userId}")]
         public async Task<IActionResult> getAccount (int userId) {
             Account acc = await _service.GetAccount (userId);
@@ -41,6 +40,7 @@ namespace BusPass.Server.Controllers {
             }
         }
 
+        [Authorize (Roles = "User")]
         [HttpPut ("{userId}/{valueToSubstract}")]
         public async Task<IActionResult> putAccount (int userId, int valueToSubstract) {
             Account acc = await _service.substructFromBalance (userId, valueToSubstract);

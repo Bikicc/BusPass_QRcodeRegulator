@@ -33,5 +33,10 @@ namespace BusPass.Server.Repository {
             return us;
         }
 
+        public async Task<User> getUserById(int userdId) {
+            var us = await _context.Users.FirstOrDefaultAsync(u => u.UserId == userdId);
+            return us;
+        }
+
     }
 }

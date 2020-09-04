@@ -36,7 +36,7 @@ namespace BusPass.Server.Repository {
         }
 
         public async Task<ICollection<BusPassport>> getBusPassports (bool valid) {
-            return await _context.BusPassports.Where(p => p.Valid == valid).ToListAsync ();
+            return await _context.BusPassports.Where (p => p.Valid == valid).ToListAsync ();
         }
 
         public async Task<ICollection<UserBusPassport>> getBusPassportByType (int passTypeId, bool valid) {

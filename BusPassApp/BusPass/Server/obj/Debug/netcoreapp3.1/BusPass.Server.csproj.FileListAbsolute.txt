@@ -148,3 +148,10 @@ X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Server\bin\Debug\
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Server\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Server\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Server\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Server\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Server\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Server\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Server\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Server\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Server\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Server\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
