@@ -57,6 +57,7 @@ namespace BusPass.Server {
             services.AddScoped<IPassTypeService, PassTypeService> ();
             services.AddScoped<IBusPassportService, BusPassportService> ();
             services.AddScoped<IBusPassPaymentService, BusPassPaymentService> ();
+            services.AddHostedService<CronService> ();
 
             services.AddControllersWithViews ();
             // .AddNewtonsoftJson (options =>
@@ -64,6 +65,7 @@ namespace BusPass.Server {
             // );
 
             services.AddRazorPages ();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
