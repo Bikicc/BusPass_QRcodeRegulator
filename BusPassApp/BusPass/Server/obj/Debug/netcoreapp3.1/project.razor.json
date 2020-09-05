@@ -14701,7 +14701,7 @@
         }
       }
     ],
-    "CSharpLanguageVersion": 800
+    "CSharpLanguageVersion": 900
   },
   "RootNamespace": "BusPass.Server",
   "Documents": [

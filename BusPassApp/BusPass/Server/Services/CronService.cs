@@ -1,7 +1,6 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using BusPass.Server.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NCrontab;
@@ -36,9 +35,8 @@ namespace BusPass.Server.Services {
                 while (!stoppingToken.IsCancellationRequested);
             }
         }
-        private async void Process (IBusPassportService bpService) {
-            await bpService.makeValid (1);
-            Console.WriteLine ("hello world" + DateTime.Now.ToString ("F"));
+        private void Process (IBusPassportService bpService) {
+            bpService.changePasswordValidityIfExpired ();
         }
     }
 }
