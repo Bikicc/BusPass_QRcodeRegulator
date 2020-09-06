@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace BusPass.Shared.Entities {
     public class Year {
@@ -7,7 +8,6 @@ namespace BusPass.Shared.Entities {
 
         [Required]
         public string Name { get; set; }
-
         public ICollection<BusPassPayment> BusPassPayments { get; set; }
     }
 }

@@ -14,13 +14,13 @@ namespace BusPass.Server.Repository {
             this._context = context;
         }
 
-        public async Task<bool> createPayment (BusPassPayment payment) {
+        public async Task<BusPassPayment> createPayment (BusPassPayment payment) {
             try {
                 _context.Add (payment);
                 await _context.SaveChangesAsync ();
-                return true;
+                return payment;
             } catch {
-                return false;
+                return null;
             }
         }
 
@@ -83,9 +83,10 @@ namespace BusPass.Server.Repository {
 
         }
 
-        public async Task<Year> getCurrentYear () {
+        public async Task<int> getCurrentYearId () {
             var allYears = await _context.Years.ToListAsync ();
-            return allYears.LastOrDefault ();
+            var year = allYears.LastOrDefault ();
+            return year.YearId;
         }
 
     }

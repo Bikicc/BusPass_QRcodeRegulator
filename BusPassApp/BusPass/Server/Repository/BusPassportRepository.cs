@@ -23,10 +23,10 @@ namespace BusPass.Server.Repository {
             }
         }
 
-        public async Task<BusPassport> getBusPassport (int busPassId) {
-            var pass = await (from p in _context.BusPassports where p.BusPassportId == busPassId select p)
+        public async Task<BusPassport> getBusPassport (int userId) {
+            var pass = await (from p in _context.BusPassports where p.UserId == userId select p)
                 .SingleOrDefaultAsync ();
-
+            
             return pass;
         }
 
@@ -49,5 +49,6 @@ namespace BusPass.Server.Repository {
 
             return pass;
         }
+
     }
 }

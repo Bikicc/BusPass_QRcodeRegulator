@@ -1,4 +1,4 @@
-﻿using BusPass.Client.Helper;
+﻿using BusPass.Client.Helpers;
 using BusPass.Shared.Entities;
 using System;
 using System.Collections.Generic;
@@ -19,10 +19,10 @@ namespace BusPass.Client.Repository
         public async Task CreateAccount (Account account)
         {
             var response = await httpService.Post(url, account);
-            if (!response.Success)
-            {
-                throw new ApplicationException(await response.GetBody());
-            }
+            // if (!response.Success)
+            // {
+            //     throw new ApplicationException(await response.GetBody());
+            // }
         }
     }
 }

@@ -8,9 +8,9 @@ using BusPass.Shared.HelperEntities;
 namespace BusPass.Server.Services {
     public class BusPassportService : IBusPassportService {
         private readonly IBusPassportRepository _repo;
-
-        public BusPassportService (IBusPassportRepository repo) {
+        public BusPassportService (IBusPassportRepository repo, IPassTypeRepository typeRepo) {
             _repo = repo;
+
         }
 
         public async Task<bool> createBussPassport (BusPassport pass) {
@@ -19,9 +19,9 @@ namespace BusPass.Server.Services {
             return await _repo.createBussPassport (pass);
         }
 
-        public async Task<BusPassport> getBusPassport (int busPassId) {
-            return await _repo.getBusPassport (busPassId);
-        }
+        public async Task<BusPassport> getBusPassport (int userId) {
+            return await _repo.getBusPassport (userId);
+         }
         public async Task<ICollection<BusPassport>> getBusPassports (bool valid) {
             return await _repo.getBusPassports (valid);
         }

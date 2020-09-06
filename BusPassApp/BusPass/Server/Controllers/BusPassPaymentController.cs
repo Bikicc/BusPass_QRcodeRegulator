@@ -13,9 +13,8 @@ namespace BusPass.Server.Controllers {
         private readonly IBusPassPaymentService _service;
         private readonly ApplicationDbContext _context;
 
-        public BusPassPaymentController (IBusPassPaymentService service, ApplicationDbContext context) {
+        public BusPassPaymentController (IBusPassPaymentService service) {
             _service = service;
-            _context = context;
 
         }
 
@@ -26,11 +25,8 @@ namespace BusPass.Server.Controllers {
                 return BadRequest (ModelState);
             }
 
-            if (await _service.createPayment (payment)) {
-                return Ok ();
-            } else {
-                return BadRequest ("Something went wrong!");
-            }
+            var pay = await _service.createPayment (payment);
+            return Ok(pay);
         }
 
         [HttpGet ("forBusPass/{busPassId}/{yearId}")]
@@ -62,10 +58,10 @@ namespace BusPass.Server.Controllers {
             return Ok (paymentsWithAmount);
         }
 
-        [HttpGet ("check/{busPassId}/{monthId}/{yearId}")]
-        public async Task<IActionResult> checkPassportForCurrentMonth (int busPassId, int monthId, int yearId) {
-            bool exists = await _service.checkPassportForCurrentMonth (busPassId, monthId, yearId);
-            return Ok (exists);
+        [HttpGet ("check/{busPassId}")]
+        public async Task<IActionResult> checkPassportForCurrentMonth (int busPassId) {
+            bool exists = await _service.checkPassportForCurrentMonth (busPassId);
+            return Ok(exists);
         }
     }
 }

@@ -35,9 +35,9 @@ namespace BusPass.Server.Controllers {
             }
         }
 
-        [HttpGet ("{busPassId}")]
-        public async Task<IActionResult> getBusPass (int busPassId) {
-            var busPass = await _service.getBusPassport (busPassId);
+        [HttpGet ("{userId}")]
+        public async Task<IActionResult> getBusPass (int userId) {
+            var busPass = await _service.getBusPassport (userId);
             if (busPass == null) {
                 return BadRequest ("Required passport doesn't exists!");
             } else {

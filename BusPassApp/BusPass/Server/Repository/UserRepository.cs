@@ -29,7 +29,7 @@ namespace BusPass.Server.Repository {
         public async Task<User> LoginUser (LoginUser user) {
             var us = await (from u in this._context.Users where u.Email == user.Email && u.Password == user.Password select u) 
                 .FirstOrDefaultAsync ();
-
+ 
             return us;
         }
 

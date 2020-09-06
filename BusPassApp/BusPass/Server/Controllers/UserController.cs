@@ -34,7 +34,7 @@ namespace BusPass.Server.Controllers {
         [Route ("loginUser")]
         [HttpPost]
         public async Task<IActionResult> loginUser ([FromBody] LoginUser user) {
-            User us = await _service.LoginUser (user);
+            LoginUser us = await _service.LoginUser (user);
 
             if (us == null) {
                 return NotFound ("Wrong credentials!");

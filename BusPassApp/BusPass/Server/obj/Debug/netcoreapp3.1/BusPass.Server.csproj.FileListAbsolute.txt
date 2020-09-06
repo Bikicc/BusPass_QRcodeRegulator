@@ -156,3 +156,4 @@ X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Server\bin\Debug\
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Server\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Server\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Server\bin\Debug\netcoreapp3.1\NCrontab.dll
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Server\bin\Debug\netcoreapp3.1\Blazored.LocalStorage.dll

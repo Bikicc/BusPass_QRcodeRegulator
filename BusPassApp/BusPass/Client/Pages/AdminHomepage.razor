@@ -1,0 +1,19 @@
+@page "/adminHome"
+@attribute [Authorize]
+@inject IAuthenticationService AuthenticationService
+
+<div>
+    admin
+</div>
+
+@code {
+    protected override async void OnInitialized()
+    {
+        if(AuthenticationService.checkIfAdmin()) {
+            Console.WriteLine("Do ya thing!");
+        } else {
+            await AuthenticationService.Logout();
+        }
+    }
+}
+

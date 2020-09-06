@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System;
 using System.Collections.Generic;
 
 namespace BusPass.Shared.Entities {
@@ -9,8 +10,9 @@ namespace BusPass.Shared.Entities {
         public int UserId { get; set; }
         public User User { get; set; }
         public int PassTypeId { get; set; }
-        public PassType PassType { get; set; }
-
+        [NotMapped]
+        public string typeName { get; set; }
+        // public PassType PassType { get; set; }
         public ICollection<BusPassPayment> BusPassPayments { get; set; }
 
     }

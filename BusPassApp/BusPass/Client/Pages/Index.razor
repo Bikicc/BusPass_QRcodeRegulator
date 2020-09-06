@@ -1,33 +1,126 @@
 ﻿@page "/"
-@inject IMonthRepository monthRepository
+@attribute [Authorize]
+@inject IBusPassportRepository busPassRepository
+@inject IAuthenticationService AuthenticationService
+@inject IPassportTypeRepository passTypeRepository
+@inject IBusPassPaymentRepository busPassPaymentRepository
 
-<h1>NEŠ TI NIGDI GLUPANE!</h1>
+@if (user == null || busPass == null || passType == null)
+{
+    <p><em>Loading...</em></p>
+} else {
+<html>
+    <head>
+        <link href="css/BusPass.css" rel="stylesheet" />
+    </head>
+    <body>
+        <h1 class="header">WELCOME @user.Name @user.Surname</h1>
+        <h4 class="subHeader">Bus passport serial number: #@busPass.BusPassportId</h4> 
+            <div class="qrCodeContainer">
+                <h3 style="margin-bottom: 30px;">QR code for your passport</h3>
+                @if (payedForMonth) {
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?data=userId:@user.UserId&valid:@busPass.Valid&amp;size=100x100" alt="" title="" />
 
-I ONDA POPUŠI KAJI KURAC.
-
-<button @onclick="createMonth">
-    create a new month
-</button>
-
-<SurveyPrompt Title="How is Blazor working for you?" />
+                } else {
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?data=userId:@user.UserId&valid:@busPass.Valid&color=FF0000&amp;size=100x100" alt="" title="" />
+                    <button class="myButton btn btn-primary" @onclick="renewBusPass">
+                    @if (loading) {
+                        <span class="spinner-border spinner-border-sm mr-1"></span>
+                    }
+                    RENEW
+                </button>
+                @if (error) {
+                    <div class="alert alert-danger mt-3 mb-0">Something went wrong!</div>
+                    }
+                }
+            </div>
+            <div class="userInfoContainer">
+                <h3>User information</h3>
+                <div class="infoWrapper">
+                <div class="infoContainer">
+                    <span class="dataHeader">Email:</span>
+                    <span>@user.Email</span>
+                </div>
+                <div class="infoContainer">
+                    <span class="dataHeader">OIB:</span>
+                    <span>@user.OIB</span>
+                </div>
+                <div class="infoContainer">
+                    <span class="dataHeader">Type:</span>
+                    <span>@passType.Name</span>
+                </div>
+                <div class="infoContainer">
+                    <span class="dataHeader">Price:</span>
+                    <span>@passType.Price kn</span>
+                </div>
+                </div>
+            </div>
+    </body>
+</html>
+}
 
 @code {
-    private Month month;
-
-    protected override void OnInitialized()
+    private BusPassport busPass;
+    private LoginUser user;
+    private PassType passType;
+    private bool payedForMonth;
+    private bool loading;
+    private bool error = false;
+    protected override async Task OnInitializedAsync()
     {
-        @* month = new Month("drkalj"); *@
+        if (!AuthenticationService.checkIfAdmin())
+        {
+            this.user = AuthenticationService.user;
+            try
+            {
+                this.busPass = await busPassRepository.getBusPassForUser(this.user.UserId);
+                this.payedForMonth = await busPassPaymentRepository.getBusPassForUser(this.busPass.BusPassportId);
+                this.passType = await passTypeRepository.getPassType(this.busPass.PassTypeId);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
+        }
+        else
+        {
+            await AuthenticationService.Logout();
+        }
     }
 
-      private async Task createMonth()
-     {
+    private async void renewBusPass()
+    {
         try
-        {           
-             await monthRepository.CreateMonth(month);
+        {
+            this.loading = true;
+            BusPassPayment payment = new BusPassPayment();
+            payment.BusPassportId = this.busPass.BusPassportId;
+            payment.Price = passType.Price;
+            payment.PassTypeId = passType.PassTypeId;
+            @* payment = await busPassPaymentRepository.renewBusPass(payment); *@
+
+            if(await busPassPaymentRepository.renewBusPass(payment)) {
+                this.loading = false;
+                this.payedForMonth = true;
+            } else {
+                this.loading = false;
+                this.error = true;
+            }
+            @* if (payment == null)
+            {
+                this.loading = false;
+                this.error = true;
+            }
+            else
+            {
+                this.loading = false;
+                this.payedForMonth = true;
+            } *@
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
         }
-    }   
+    }
 }

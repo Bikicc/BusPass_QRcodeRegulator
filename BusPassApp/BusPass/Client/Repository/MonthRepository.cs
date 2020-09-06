@@ -1,8 +1,5 @@
-﻿using BusPass.Client.Helper;
+﻿using BusPass.Client.Helpers;
 using BusPass.Shared.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace BusPass.Client.Repository
@@ -19,10 +16,10 @@ namespace BusPass.Client.Repository
         public async Task CreateMonth(Month month)
         {
             var response = await httpService.Post(url, month);
-            if (!response.Success)
-            {
-                throw new ApplicationException(await response.GetBody());
-            } 
+            //if (!response.Success)
+            // {
+            //     throw new ApplicationException(await response.GetBody());
+            // } 
         }
     }
 }

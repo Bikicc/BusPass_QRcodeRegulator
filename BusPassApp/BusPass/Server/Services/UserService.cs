@@ -21,16 +21,22 @@ namespace BusPass.Server.Services {
             _appSettings = appSettings.Value;
             _repo = repo;
         }
-        public async Task<User> LoginUser (LoginUser user) {
+        public async Task<LoginUser> LoginUser (LoginUser user) {
             user.Password = Encrypt (user.PasswordPlain);
             var us = await _repo.LoginUser (user);
 
             if (us == null) {
                 return null;
             }
-            
-            us.Token = generateJwtToken(us);
-            return us;
+            LoginUser lus = new LoginUser ();
+            lus.Email = us.Email;
+            lus.Name = us.Name;
+            lus.Surname = us.Surname;
+            lus.UserId = us.UserId;
+            lus.Role = us.Role;
+            lus.OIB = us.OIB;
+            lus.Token = generateJwtToken (lus);
+            return lus;
         }
 
         public async Task<bool> RegisterUser (User user) {
@@ -42,7 +48,7 @@ namespace BusPass.Server.Services {
             }
         }
 
-        private string generateJwtToken (User us) {
+        private string generateJwtToken (LoginUser us) {
             var tokenHandler = new JwtSecurityTokenHandler ();
             var key = Encoding.ASCII.GetBytes (_appSettings.Secret);
             var tokenDescriptor = new SecurityTokenDescriptor {

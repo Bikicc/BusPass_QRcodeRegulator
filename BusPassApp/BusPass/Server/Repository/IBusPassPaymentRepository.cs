@@ -6,11 +6,11 @@ namespace BusPass.Server.Repository
 {
     public interface IBusPassPaymentRepository
     {
-        Task<bool> createPayment(BusPassPayment payment);
+        Task<BusPassPayment> createPayment(BusPassPayment payment);
         Task<ICollection<Payment>> getPaymentsForBusPass(int busPassId, int yearId); 
         Task<BusPassPayment> checkPassportForCurrentMonth(int busPassId, int monthId, int yearId);
         Task<ICollection<Payment>> getPaymentsForMonth(int yearId, int monthId);
         Task<ICollection<Payment>> getPaymentsByPassType(int passTypeId, int yearId, int monthId);
-        Task<Year> getCurrentYear();
+        Task<int> getCurrentYearId();
     }
 }

@@ -14,28 +14,26 @@ namespace BusPass.Server.Services {
             _repo = repo;
         }
 
-        public async Task<bool> createPayment (BusPassPayment payment) {
-            Year currYear = await _repo.getCurrentYear ();
-            if (currYear == null) {
-                return false;
+        public async Task<BusPassPayment> createPayment (BusPassPayment payment) {
+            payment.YearId  = await _repo.getCurrentYearId ();
+            payment.DateOfPayment = DateTime.Now;
+            payment.MonthId = await getCurrMonthId ();
+            if (await _repo.checkPassportForCurrentMonth (payment.BusPassportId, payment.MonthId, payment.YearId) == null) {
+                return await _repo.createPayment (payment);
             } else {
-                payment.DateOfPayment = DateTime.Now;
-                payment.YearId = currYear.YearId;
-                payment.MonthId = await getCurrMonthId ();
-                if (await _repo.checkPassportForCurrentMonth (payment.BusPassportId, payment.MonthId, payment.YearId) == null) {
-                    return await _repo.createPayment (payment);
-
-                } else {
-                    return false;
-                }
+                return null;
             }
+
         }
 
         public async Task<ICollection<Payment>> getPaymentsForBusPass (int busPassId, int yearId) {
             return await _repo.getPaymentsForBusPass (busPassId, yearId);
         }
 
-        public async Task<bool> checkPassportForCurrentMonth (int busPassId, int monthId, int yearId) {
+        public async Task<bool> checkPassportForCurrentMonth (int busPassId) {
+            int yearId = await _repo.getCurrentYearId ();
+            int monthId = await getCurrMonthId ();
+
             BusPassPayment payment = await _repo.checkPassportForCurrentMonth (busPassId, monthId, yearId);
             if (payment == null) {
                 return false;
@@ -57,12 +55,12 @@ namespace BusPass.Server.Services {
             return Task.FromResult (DateTime.ParseExact (monthName, "MMMM", CultureInfo.CurrentCulture).Month);
         }
 
-        public Task<double> getTotalAmountOfPayments(ICollection<Payment> payments) {
+        public Task<double> getTotalAmountOfPayments (ICollection<Payment> payments) {
             double totalAmount = 0;
-             foreach (Payment payment in payments) {
-                totalAmount+= payment.price;
+            foreach (Payment payment in payments) {
+                totalAmount += payment.price;
             }
-            return Task.FromResult(totalAmount);
+            return Task.FromResult (totalAmount);
         }
     }
 }

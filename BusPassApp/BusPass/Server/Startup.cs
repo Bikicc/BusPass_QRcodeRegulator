@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 namespace BusPass.Server {
     public class Startup {
         public Startup (IConfiguration configuration) {
@@ -59,10 +60,10 @@ namespace BusPass.Server {
             services.AddScoped<IBusPassPaymentService, BusPassPaymentService> ();
             services.AddHostedService<CronService> ();
 
-            services.AddControllersWithViews ();
-            // .AddNewtonsoftJson (options =>
-            //     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-            // );
+            services.AddControllersWithViews ()
+            .AddNewtonsoftJson (options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
 
             services.AddRazorPages ();
 

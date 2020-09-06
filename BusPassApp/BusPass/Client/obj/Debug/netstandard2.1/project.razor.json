@@ -8,6 +8,79 @@
   "ProjectWorkspaceState": {
     "TagHelpers": [
       {
+        "HashCode": 1287743035,
+        "Kind": "Components.Component",
+        "Name": "BusPass.Client.Helpers.AppRouteView",
+        "AssemblyName": "BusPass.Client",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "AppRouteView"
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.Component",
+            "Name": "RouteData",
+            "TypeName": "Microsoft.AspNetCore.Components.RouteData",
+            "Documentation": "\n            <summary>\n            Gets or sets the route data. This determines the page that will be\n            displayed and the parameter values that will be supplied to the page.\n            </summary>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "RouteData"
+            }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "DefaultLayout",
+            "TypeName": "System.Type",
+            "Documentation": "\n            <summary>\n            Gets or sets the type of a layout to be used if the page does not\n            declare any layout. If specified, the type must implement <see cref=\"T:Microsoft.AspNetCore.Components.IComponent\" />\n            and accept a parameter named <see cref=\"P:Microsoft.AspNetCore.Components.LayoutComponentBase.Body\" />.\n            </summary>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "DefaultLayout"
+            }
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "BusPass.Client.Helpers.AppRouteView"
+        }
+      },
+      {
+        "HashCode": 1336172222,
+        "Kind": "Components.Component",
+        "Name": "BusPass.Client.Helpers.AppRouteView",
+        "AssemblyName": "BusPass.Client",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "BusPass.Client.Helpers.AppRouteView"
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.Component",
+            "Name": "RouteData",
+            "TypeName": "Microsoft.AspNetCore.Components.RouteData",
+            "Documentation": "\n            <summary>\n            Gets or sets the route data. This determines the page that will be\n            displayed and the parameter values that will be supplied to the page.\n            </summary>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "RouteData"
+            }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "DefaultLayout",
+            "TypeName": "System.Type",
+            "Documentation": "\n            <summary>\n            Gets or sets the type of a layout to be used if the page does not\n            declare any layout. If specified, the type must implement <see cref=\"T:Microsoft.AspNetCore.Components.IComponent\" />\n            and accept a parameter named <see cref=\"P:Microsoft.AspNetCore.Components.LayoutComponentBase.Body\" />.\n            </summary>\n        ",
+            "Metadata": {
+              "Common.PropertyName": "DefaultLayout"
+            }
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "BusPass.Client.Helpers.AppRouteView",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
         "HashCode": -509691173,
         "Kind": "Components.Component",
         "Name": "BusPass.Client.App",
@@ -41,35 +114,68 @@
         }
       },
       {
-        "HashCode": 1062641248,
+        "HashCode": -2049345122,
         "Kind": "Components.Component",
-        "Name": "BusPass.Client.Pages.Counter",
+        "Name": "BusPass.Client.Pages.AdminHomepage",
         "AssemblyName": "BusPass.Client",
         "CaseSensitive": true,
         "TagMatchingRules": [
           {
-            "TagName": "Counter"
+            "TagName": "AdminHomepage"
           }
         ],
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "BusPass.Client.Pages.Counter"
+          "Common.TypeName": "BusPass.Client.Pages.AdminHomepage"
         }
       },
       {
-        "HashCode": -1248600176,
+        "HashCode": -724955352,
         "Kind": "Components.Component",
-        "Name": "BusPass.Client.Pages.Counter",
+        "Name": "BusPass.Client.Pages.AdminHomepage",
         "AssemblyName": "BusPass.Client",
         "CaseSensitive": true,
         "TagMatchingRules": [
           {
-            "TagName": "BusPass.Client.Pages.Counter"
+            "TagName": "BusPass.Client.Pages.AdminHomepage"
           }
         ],
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "BusPass.Client.Pages.Counter",
+          "Common.TypeName": "BusPass.Client.Pages.AdminHomepage",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": -1614921721,
+        "Kind": "Components.Component",
+        "Name": "BusPass.Client.Pages.Logout",
+        "AssemblyName": "BusPass.Client",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "Logout"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "BusPass.Client.Pages.Logout"
+        }
+      },
+      {
+        "HashCode": 1615493830,
+        "Kind": "Components.Component",
+        "Name": "BusPass.Client.Pages.Logout",
+        "AssemblyName": "BusPass.Client",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "BusPass.Client.Pages.Logout"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "BusPass.Client.Pages.Logout",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },
@@ -103,6 +209,39 @@
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
           "Common.TypeName": "BusPass.Client.Pages.FetchData",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": 1000278823,
+        "Kind": "Components.Component",
+        "Name": "BusPass.Client.Pages.Login",
+        "AssemblyName": "BusPass.Client",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "Login"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "BusPass.Client.Pages.Login"
+        }
+      },
+      {
+        "HashCode": -901396599,
+        "Kind": "Components.Component",
+        "Name": "BusPass.Client.Pages.Login",
+        "AssemblyName": "BusPass.Client",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "BusPass.Client.Pages.Login"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "BusPass.Client.Pages.Login",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },
@@ -11792,18 +11931,28 @@
       "FileKind": "component"
     },
     {
+      "FilePath": "x:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\Pages\\AdminHomepage.razor",
+      "TargetPath": "Pages\\AdminHomepage.razor",
+      "FileKind": "component"
+    },
+    {
       "FilePath": "x:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\_Imports.razor",
       "TargetPath": "_Imports.razor",
       "FileKind": "componentImport"
     },
     {
-      "FilePath": "x:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\Shared\\MainLayout.razor",
-      "TargetPath": "Shared\\MainLayout.razor",
+      "FilePath": "x:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\Pages\\Login.razor",
+      "TargetPath": "Pages\\Login.razor",
       "FileKind": "component"
     },
     {
-      "FilePath": "x:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\Pages\\Counter.razor",
-      "TargetPath": "Pages\\Counter.razor",
+      "FilePath": "x:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\Pages\\Logout.razor",
+      "TargetPath": "Pages\\Logout.razor",
+      "FileKind": "component"
+    },
+    {
+      "FilePath": "x:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\Shared\\MainLayout.razor",
+      "TargetPath": "Shared\\MainLayout.razor",
       "FileKind": "component"
     },
     {
