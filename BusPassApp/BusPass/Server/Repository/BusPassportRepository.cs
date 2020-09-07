@@ -26,7 +26,7 @@ namespace BusPass.Server.Repository {
         public async Task<BusPassport> getBusPassport (int userId) {
             var pass = await (from p in _context.BusPassports where p.UserId == userId select p)
                 .SingleOrDefaultAsync ();
-            
+
             return pass;
         }
 
@@ -35,8 +35,21 @@ namespace BusPass.Server.Repository {
             return pass;
         }
 
-        public async Task<ICollection<BusPassport>> getBusPassports (bool valid) {
-            return await _context.BusPassports.Where (p => p.Valid == valid).ToListAsync ();
+        public async Task<ICollection<UserBusPassport>> getBusPassportsByValidity (bool valid) {
+            ICollection<UserBusPassport> pass = await _context.BusPassports
+                .Where (p => p.Valid == valid)
+                .Join (_context.Users,
+                    pass => pass.User.UserId,
+                    us => us.UserId,
+                    (pass, us) =>
+                    new UserBusPassport (pass, us, _context.PassTypes.SingleOrDefault (pt => pt.PassTypeId == pass.PassTypeId).Name))
+                .ToListAsync ();
+
+            return pass;
+        }
+
+        public async Task<ICollection<BusPassport>> getValidBusPassports () {
+            return await _context.BusPassports.Where (p => p.Valid == true).ToListAsync ();
         }
 
         public async Task<ICollection<UserBusPassport>> getBusPassportByType (int passTypeId, bool valid) {
@@ -45,15 +58,23 @@ namespace BusPass.Server.Repository {
                 .Join (_context.Users,
                     pass => pass.User.UserId,
                     us => us.UserId,
-                    (pass, us) => new UserBusPassport (pass, us)).ToListAsync ();
+                    (pass, us) => new UserBusPassport (pass, us, _context.PassTypes.SingleOrDefault (pt => pt.PassTypeId == pass.PassTypeId).Name)).ToListAsync ();
 
             return pass;
         }
 
-        public async Task<int> getUserIdFromPassport(int passportId) {
+        public async Task<int> getUserIdFromPassport (int passportId) {
             var pass = await (from p in _context.BusPassports where p.BusPassportId == passportId select p)
                 .SingleOrDefaultAsync ();
             return pass.UserId;
+        }
+
+        public async Task<BusPassport> updateBusPass (int passportId, int passTypeId) {
+            var pass = await (from p in _context.BusPassports where p.BusPassportId == passportId select p)
+                .SingleOrDefaultAsync ();
+            pass.PassTypeId = passTypeId;
+            await _context.SaveChangesAsync ();
+            return pass;
         }
 
     }

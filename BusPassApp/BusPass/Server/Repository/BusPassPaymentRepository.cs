@@ -24,9 +24,28 @@ namespace BusPass.Server.Repository {
             }
         }
 
-        public async Task<ICollection<Payment>> getPaymentsForBusPass (int busPassId, int yearId) {
+        public async Task<ICollection<Payment>> getPaymentsForBusPassForYear (int busPassId, int yearId) {
             ICollection<Payment> payments = await _context.BusPassPayments
                 .Where (p => p.BusPassportId == busPassId && p.YearId == yearId)
+                .OrderByDescending (p => p.DateOfPayment)
+                .Join (_context.BusPassports,
+                    payment => payment.BusPassportId,
+                    busPass => busPass.BusPassportId,
+                    (payment, busPass) => new { p = payment, bp = busPass })
+                .Join (_context.Users,
+                    pbp => pbp.bp.UserId,
+                    user => user.UserId,
+                    (pbp, u) =>
+                    new Payment (pbp.p, pbp.bp, u, pbp.p.Month.Name, _context.PassTypes.SingleOrDefault (pt => pt.PassTypeId == pbp.p.PassTypeId).Name))
+                .ToListAsync ();
+
+            return payments;
+        }
+
+        public async Task<ICollection<Payment>> getPaymentsForBusPass (int busPassId) {
+            ICollection<Payment> payments = await _context.BusPassPayments
+                .Where (p => p.BusPassportId == busPassId)
+                .OrderByDescending (p => p.DateOfPayment)
                 .Join (_context.BusPassports,
                     payment => payment.BusPassportId,
                     busPass => busPass.BusPassportId,

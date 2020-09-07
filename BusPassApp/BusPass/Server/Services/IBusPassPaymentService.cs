@@ -6,10 +6,11 @@ using BusPass.Shared.HelperEntities;
 namespace BusPass.Server.Services {
     public interface IBusPassPaymentService {
         Task<BusPassPayment> createPayment (BusPassPayment payment);
-        Task<ICollection<Payment>> getPaymentsForBusPass (int busPassId, int yearId);
+        Task<ICollection<Payment>> getPaymentsForBusPassForYear (int busPassId, int yearId);
         Task<bool> checkPassportForCurrentMonth (int busPassId);
         Task<ICollection<Payment>> getPaymentsForMonth (int yearId, int monthId);
         Task<ICollection<Payment>> getPaymentsByPassType (int passTypeId, int yearId, int monthId);
-        Task<double> getTotalAmountOfPayments(ICollection<Payment> payments);
+        Task<PaymentWithRecap> getRecap (ICollection<Payment> payments);
+        Task<ICollection<Payment>> getPaymentsForBusPass (int busPassId);
     }
 }

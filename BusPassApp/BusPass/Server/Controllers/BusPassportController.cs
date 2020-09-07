@@ -16,8 +16,8 @@ namespace BusPass.Server.Controllers {
 
         [Authorize (Roles = "Admin")]
         [HttpGet ("byValidity/{valid}")]
-        public async Task<IActionResult> getAllBusPassports (bool valid) {
-            var busPasses = await _service.getBusPassports (valid);
+        public async Task<IActionResult> getAllBusPassportsByValidity (bool valid) {
+            var busPasses = await _service.getBusPassportsByValidity (valid);
             return Ok (busPasses);
         }
 
@@ -50,6 +50,18 @@ namespace BusPass.Server.Controllers {
         public async Task<IActionResult> makePassValid (int passId) {
             BusPassport pass = await _service.makeValid (passId);
 
+            if (pass != null) {
+                return Ok (pass);
+            } else {
+                return BadRequest ("Something went wrong!");
+            }
+        }
+
+        [Authorize (Roles = "Admin")]
+        [HttpPut ("{passId}/{passTypeId}")]
+        public async Task<IActionResult> updatePassType (int passId, int passTypeId) {
+            BusPassport pass = await _service.updatePassType (passId, passTypeId);
+            
             if (pass != null) {
                 return Ok (pass);
             } else {

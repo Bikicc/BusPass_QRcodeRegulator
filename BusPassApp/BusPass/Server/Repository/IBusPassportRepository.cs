@@ -8,8 +8,10 @@ namespace BusPass.Server.Repository {
         Task<bool> createBussPassport (BusPassport pass);
         Task<BusPassport> getBusPassport (int busPassId);
         Task<BusPassport> changeValidity (BusPassport pass);
-        Task<ICollection<BusPassport>> getBusPassports (bool valid);
+        Task<ICollection<UserBusPassport>> getBusPassportsByValidity (bool valid);
         Task<ICollection<UserBusPassport>> getBusPassportByType (int passTypeId, bool valid);
         Task<int> getUserIdFromPassport(int passportId);
+        Task<ICollection<BusPassport>> getValidBusPassports ();
+        Task<BusPassport> updateBusPass (int passportId, int passTypeId);
     }
 }

@@ -1,7 +1,7 @@
 {
   "FilesToCompress": [
     {
-      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\Cdy1GjF-UhvPpxK_y7CNqf5MxK_VtOIBOJklO4eoKoE=.hash",
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\4CTF1FoAzeNCYZcST2fjsk9ZqIcnh8wu-4j-FO7DCms=.hash",
       "Source": "X:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\BusPass.Client.dll",
       "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/BusPass.Client.dll.gz"
     },
@@ -161,9 +161,39 @@
       "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.Extensions.DependencyInjection.Abstractions.dll.gz"
     },
     {
-      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\bSgsT2x5xMvs8mara5wU_EJwcyHa9GVMU85HwhWcdWM=.hash",
-      "Source": "X:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\Microsoft.AspNetCore.Components.Web.dll",
-      "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.AspNetCore.Components.Web.dll.gz"
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\D5akJeBd7NNITuzAXxlX7zl2jfsc4uTKyeEKwwNhqoo=.hash",
+      "Source": "X:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\Microsoft.AspNetCore.WebUtilities.dll",
+      "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.AspNetCore.WebUtilities.dll.gz"
+    },
+    {
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\y-FyJQOcW2TOcTp7Iuv8brGBzL5ZP0oJdG7ysK_gtKc=.hash",
+      "Source": "X:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\Microsoft.Extensions.Primitives.dll",
+      "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.Extensions.Primitives.dll.gz"
+    },
+    {
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\P66ftDrXwc6ayND8uYzIk0CPQy1GjNZAPHx9RMhi3V4=.hash",
+      "Source": "X:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\Microsoft.Net.Http.Headers.dll",
+      "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.Net.Http.Headers.dll.gz"
+    },
+    {
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\D1gbYUWxCdwEKvWRcGQoVikKs0zgWMUenGMDEaDRxrc=.hash",
+      "Source": "X:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\Microsoft.Extensions.Configuration.Abstractions.dll",
+      "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.Extensions.Configuration.Abstractions.dll.gz"
+    },
+    {
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\7_FtaZd2xSysaMLC59XhYdtkNMZ15ha0lk73dxPdT5w=.hash",
+      "Source": "X:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\Blazored.LocalStorage.dll",
+      "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/Blazored.LocalStorage.dll.gz"
+    },
+    {
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\rvTW0d54uLW0iDMAX30lpmr9f8uHoS3YYkEU5zNGhyc=.hash",
+      "Source": "X:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\Microsoft.Extensions.Options.dll",
+      "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.Extensions.Options.dll.gz"
+    },
+    {
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\LqwA2Rpm96Ualk0IhLZar87kfRCyKHzHTeTt2jYhm7M=.hash",
+      "Source": "X:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\Microsoft.JSInterop.dll",
+      "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.JSInterop.dll.gz"
     },
     {
       "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\m7Q_cF5-ji3OMfdGlCuE8pQ-iM_kxNHLq-IEWVvIaOg=.hash",
@@ -191,32 +221,87 @@
       "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.Extensions.Logging.Abstractions.dll.gz"
     },
     {
-      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\D1gbYUWxCdwEKvWRcGQoVikKs0zgWMUenGMDEaDRxrc=.hash",
-      "Source": "X:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\Microsoft.Extensions.Configuration.Abstractions.dll",
-      "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.Extensions.Configuration.Abstractions.dll.gz"
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\bSgsT2x5xMvs8mara5wU_EJwcyHa9GVMU85HwhWcdWM=.hash",
+      "Source": "X:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\Microsoft.AspNetCore.Components.Web.dll",
+      "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.AspNetCore.Components.Web.dll.gz"
     },
     {
-      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\y-FyJQOcW2TOcTp7Iuv8brGBzL5ZP0oJdG7ysK_gtKc=.hash",
-      "Source": "X:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\Microsoft.Extensions.Primitives.dll",
-      "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.Extensions.Primitives.dll.gz"
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\PtFKI-wuGmoD6wYnwtcLCoXx82vlm-b_TqcTMuoQhUo=.hash",
+      "Source": "X:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\Syncfusion.Blazor.dll",
+      "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/Syncfusion.Blazor.dll.gz"
     },
     {
-      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\7_FtaZd2xSysaMLC59XhYdtkNMZ15ha0lk73dxPdT5w=.hash",
-      "Source": "X:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\Blazored.LocalStorage.dll",
-      "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/Blazored.LocalStorage.dll.gz"
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\Io6PlI_EgvO00_D0ZsSpBAT-R40jHpRisLS5kJgLDMQ=.hash",
+      "Source": "X:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\Syncfusion.Licensing.dll",
+      "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/Syncfusion.Licensing.dll.gz"
     },
     {
-      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\rvTW0d54uLW0iDMAX30lpmr9f8uHoS3YYkEU5zNGhyc=.hash",
-      "Source": "X:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\Microsoft.Extensions.Options.dll",
-      "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.Extensions.Options.dll.gz"
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\wDPt-zh9xGop_Vp7dKTGGcT9bZIAatqQ-eQLhtASLgw=.hash",
+      "Source": "X:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\System.Text.Encoding.dll",
+      "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/System.Text.Encoding.dll.gz"
     },
     {
-      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\LqwA2Rpm96Ualk0IhLZar87kfRCyKHzHTeTt2jYhm7M=.hash",
-      "Source": "X:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\Microsoft.JSInterop.dll",
-      "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.JSInterop.dll.gz"
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\fFIyhWRt3TsR3191q2WtKgMNr3s-jNNnO4P5rrUojjA=.hash",
+      "Source": "X:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\System.Reflection.Extensions.dll",
+      "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/System.Reflection.Extensions.dll.gz"
     },
     {
-      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\pbpD5fkHbbl_IaCDacILzbAZmxyqHXZoHxqbukpH6Wk=.hash",
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\egPOud7Mcxx-20iAZiekEmazNYxAwi8HO1Z5_a4Ikww=.hash",
+      "Source": "X:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\System.Linq.dll",
+      "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/System.Linq.dll.gz"
+    },
+    {
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\1FBfAreOfbXDp0WA294BCrk0EIa5ZqlghOuvDlqFtk8=.hash",
+      "Source": "X:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\System.Runtime.Extensions.dll",
+      "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/System.Runtime.Extensions.dll.gz"
+    },
+    {
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\YsVP1MH7elMIe4iUnDj_hJHfSvMWW8X4hzNlc2bvJ4k=.hash",
+      "Source": "X:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\System.Text.RegularExpressions.dll",
+      "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/System.Text.RegularExpressions.dll.gz"
+    },
+    {
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\zWDzFtXZzC_KLMGVRm7c4nLj3X7VnzT9SMdxCVqb3dE=.hash",
+      "Source": "X:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\System.Collections.dll",
+      "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/System.Collections.dll.gz"
+    },
+    {
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\8Q_uKcqkDjFjcXfcYU073dQlKb5IRta-UHFtV3Tjz9s=.hash",
+      "Source": "X:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\System.Reflection.dll",
+      "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/System.Reflection.dll.gz"
+    },
+    {
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\U4q43ZeuBEBaCygKJwr18fjDYwnFv22MHuvMVqnpNzI=.hash",
+      "Source": "X:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\System.Resources.ResourceManager.dll",
+      "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/System.Resources.ResourceManager.dll.gz"
+    },
+    {
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\6CpyRQAYrVPJfNYBKH0K9lWX_rNPO15lwNhGHPmvxtk=.hash",
+      "Source": "X:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\System.Runtime.dll",
+      "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/System.Runtime.dll.gz"
+    },
+    {
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\ubyINHXDmWOAugBDEb8CCz_uV68eordXiYDxpUeRBvg=.hash",
+      "Source": "X:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\Microsoft.CSharp.dll",
+      "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.CSharp.dll.gz"
+    },
+    {
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\1Bw3Mui1bi9gxu7AwHD4G0F57gKyGFsfvVrnwz_P0bI=.hash",
+      "Source": "X:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\Syncfusion.PdfExport.Net.dll",
+      "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/Syncfusion.PdfExport.Net.dll.gz"
+    },
+    {
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\3r6m2TKCtMzrQttKwCtcO-2Y_MIPcdXkOpRQVxJ1y4Y=.hash",
+      "Source": "X:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\Syncfusion.ExcelExport.Net.dll",
+      "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/Syncfusion.ExcelExport.Net.dll.gz"
+    },
+    {
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\BPeXAMTZKR8pJ7LpQA8_w4soJFGV1TLt2PPpnmpBUeE=.hash",
+      "Source": "X:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\Newtonsoft.Json.dll",
+      "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/Newtonsoft.Json.dll.gz"
+    },
+    {
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\pE0Xh9mrwDjYYln844Bky2qBl27ZKo5L72VXb_kUHKI=.hash",
       "Source": "X:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\BusPass.Shared.dll",
       "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/BusPass.Shared.dll.gz"
     },
@@ -281,12 +366,17 @@
       "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.JSInterop.WebAssembly.dll.gz"
     },
     {
-      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\xoOyJ2A0ehuzLz3YTrO2DtKJf6137K7oYuR3n9FUp1w=.hash",
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\joDioR3Qt10A7ozqwsqZaGUuj3RDZTBKN9-MPFMIpT0=.hash",
       "Source": "X:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\BusPass.Client.pdb",
       "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/BusPass.Client.pdb.gz"
     },
     {
-      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\kejwlVct2xP1PCHs9kt6g_0UgJecNUMFkn2mpXB7ItI=.hash",
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\itUtKKCpo2e5yuxPqn6PXeJEYMNdygaA3vFsiDaQ85Y=.hash",
+      "Source": "X:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\Newtonsoft.Json.pdb",
+      "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/Newtonsoft.Json.pdb.gz"
+    },
+    {
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\p9quksBNACThar9hlKzgPXwvPxDdnPOJFeaPiYaVjsA=.hash",
       "Source": "X:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\BusPass.Shared.pdb",
       "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/BusPass.Shared.pdb.gz"
     },
@@ -311,7 +401,7 @@
       "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/blazor.webassembly.js.gz"
     },
     {
-      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\p66v3mNZS11DGyoL-7TmsTAyXXjT6YWVJLsA9RV3ljE=.hash",
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\AAxf6iW9B9PT94NFxoLo9r9pMJRkUGfvajqce2GOIC0=.hash",
       "Source": "X:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\obj\\Debug\\netstandard2.1\\blazor\\blazor.boot.json",
       "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/blazor.boot.json.gz"
     }

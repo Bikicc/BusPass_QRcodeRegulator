@@ -42,5 +42,11 @@ namespace BusPass.Server.Controllers {
 
             return Ok (us);
         }
+
+        [HttpGet("{userId}")]
+        public async Task<IActionResult> getUserById (int userId) {
+            var user = await _service.getUserById(userId);
+            return Ok(user);
+        }
     }
 }

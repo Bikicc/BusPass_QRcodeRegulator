@@ -6,10 +6,11 @@ namespace BusPass.Server.Services {
     public interface IBusPassportService {
         Task<bool> createBussPassport (BusPassport pass);
         Task<BusPassport> getBusPassport (int busPassId);
-        Task<ICollection<BusPassport>> getBusPassports (bool valid);
+        Task<ICollection<UserBusPassport>> getBusPassportsByValidity (bool valid);
         Task<ICollection<UserBusPassport>> getBusPassportByType (int passTypeId, bool valid);
         Task<BusPassport> makeInvalid (int passId);
         Task<BusPassport> makeValid (int passId);
         void changePasswordValidityIfExpired ();
+        Task<BusPassport> updatePassType(int passId, int passTypeId);
     }
 }

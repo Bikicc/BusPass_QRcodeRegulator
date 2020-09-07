@@ -114,6 +114,13 @@ using Blazored.LocalStorage;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 16 "X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\_Imports.razor"
+using Syncfusion.Blazor.DropDowns;
+
+#line default
+#line hidden
+#nullable disable
     public partial class SurveyPrompt : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998

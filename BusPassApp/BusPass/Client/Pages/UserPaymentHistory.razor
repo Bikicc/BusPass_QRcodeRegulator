@@ -1,0 +1,214 @@
+@page "/userHistory"
+@attribute [Authorize]
+@inject IBusPassPaymentRepository busPassPaymentRepository
+@inject IAuthenticationService AuthenticationService
+@inject IBusPassportRepository busPassRepository
+@inject IUserRepository userRepository
+@inject IYearRepository yearRepository
+@using System.Collections.ObjectModel
+@using Microsoft.AspNetCore.WebUtilities
+@inject NavigationManager nav
+@inject IPassportTypeRepository passportTypeRepository
+
+@if (paymentsWithRecap == null || years == null)
+{
+    <p><em>Loading...</em></p>
+} else { 
+    <html>
+        <head>
+            <link href="css/UserPaymentHistory.css" rel="stylesheet" />
+        </head>
+        
+        <body>
+            <div class="allUsersView">
+                <div class="headerContainer">
+                    <h1>Payments for @user.Name @user.Surname</h1>
+                </div>
+                <div class="dropDownContainer">
+                    <div class="dropdownItem">
+                        <SfDropDownList TValue="string" TItem="Year" Value="@selectedYear" Placeholder="Select a year" DataSource="@yearsForComboBox">
+                            <DropDownListEvents TValue="string" ValueChange="onChange"></DropDownListEvents>
+                            <DropDownListFieldSettings Value="YearId" Text="Name"></DropDownListFieldSettings>
+                        </SfDropDownList>
+                    </div>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Serial number</th>
+                            <th scope="col">Month</th>
+                            <th scope="col">Date of payment</th>
+                            <th scope="col">Passport type</th>
+                            <th scope="col">Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var payment in paymentsWithRecap.payments)
+                            {
+                                <tr @ondblclick="@(e => doubleClick(e, payment.paymentId))">
+                                    <th scope="row">#@payment.paymentId</th>
+                                    <td>@payment.month</td>
+                                    <td>@payment.dateOfPayment</td>
+                                    <td>@payment.busPassType</td>
+                                    <td>@payment.price kn</td>
+                                </tr>
+                            }       
+                    </tbody>
+                </table>
+                <div class="recap">
+                    <div class="recapItems">Number of renewals: @paymentsWithRecap.numberOfPayments</div>
+                    <div class="recapItems">total: @paymentsWithRecap.totalAmountPaid kn</div>
+                </div>
+            </div>
+            @if(logedUser.Role == "Admin") {
+                <div class="AdminView">
+                    <div class="UserInfoContainer">
+                        <div class="userInfoHeader">
+                            User info
+                        </div>
+                        <div class="infoContainer">
+                            <div class="infoItem">
+                                <span class="dataHeader">Email:</span>
+                                <span>@user.Email</span>
+                            </div>
+                            <div class="infoItem">
+                                <span class="dataHeader">OIB:</span>
+                                <span>@user.OIB</span>
+                            </div>
+                            <div class="infoItem">
+                                <span class="dataHeader">Passport type:</span>
+                                <div class="updateTypeWrapper">
+                                    <span style="display: flex; padding-right: 5px">
+                                        <SfDropDownList TValue="string" TItem="PassType" Value="@selectedType" Placeholder="Select type" DataSource="@types">
+                                            <DropDownListEvents TValue="string" ValueChange="onChangeType"></DropDownListEvents>
+                                            <DropDownListFieldSettings Value="PassTypeId" Text="Name"></DropDownListFieldSettings>
+                                        </SfDropDownList>
+                                    </span>
+                                    <span>
+                                        <button class="btn btn-primary" @onclick="updatePassType">
+                                        @if (loading) {
+                                            <span class="spinner-border spinner-border-sm mr-1"></span>
+                                        }
+                                        Change
+                                        </button>
+                                    </span>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+            }
+        </body>
+    </html>
+}
+
+@code {
+    private PaymentWithRecap paymentsWithRecap;
+    private BusPassport busPass;
+    int userId;
+    private ICollection<Year> yearsForComboBox;
+    private ICollection<Year> years;
+    private System.Uri uri;
+    private LoginUser logedUser;
+    private User user;
+    private ICollection<PassType> types;
+    private string selectedType;
+    private string selectedYear;
+    private bool loading;
+    protected override async Task OnInitializedAsync()
+    {
+        this.setUserIdFromQuery();
+        this.logedUser = AuthenticationService.user;
+        try
+        {
+            if (this.logedUser.Role == "Admin")
+            {
+                this.types = await passportTypeRepository.getPassTypes();
+            }
+            this.user = await userRepository.getUserById(this.userId);
+            this.busPass = await busPassRepository.getBusPassForUser(this.userId);
+            this.selectedType = this.busPass.PassTypeId.ToString();
+            this.years = await yearRepository.getYears();
+            this.selectedYear = this.years.LastOrDefault().YearId.ToString();
+            this.createAllYear();
+            this.paymentsWithRecap = await busPassPaymentRepository.getPaymentsForUserByYear(this.busPass.BusPassportId, this.selectedYear);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+    }
+
+    private async void onChange(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string> args)
+    {
+        selectedYear = args.Value;
+        if (selectedYear == "0")
+        {
+            this.paymentsWithRecap = await busPassPaymentRepository.getAllPaymentsForUser(this.busPass.BusPassportId);
+        }
+        else
+        {
+            this.paymentsWithRecap = await busPassPaymentRepository.getPaymentsForUserByYear(this.busPass.BusPassportId, this.selectedYear);
+        }
+        StateHasChanged();
+    }
+
+    private void doubleClick(MouseEventArgs e, int buttonNumber)
+    {
+        Console.WriteLine(buttonNumber);
+    }
+
+    private void createAllYear()
+    {
+        yearsForComboBox = new Collection<Year>();
+
+        Year allYear = new Year
+        {
+            YearId = 0,
+            Name = "All",
+            BusPassPayments = null
+        };
+
+        this.yearsForComboBox.Add(allYear);
+
+        foreach (var year in this.years)
+        {
+            this.yearsForComboBox.Add(year);
+        }
+
+    }
+
+    private void setUserIdFromQuery()
+    {
+        this.uri = nav.ToAbsoluteUri(nav.Uri);
+
+        if (QueryHelpers.ParseQuery(this.uri.Query).TryGetValue("user", out var aVal))
+        {
+            this.userId = int.Parse(aVal);
+        }
+    }
+
+    private void onChangeType(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string> args)
+    {
+        this.selectedType = args.Value;
+        StateHasChanged();
+    }
+
+    private async void updatePassType()
+    {
+        if (busPass.PassTypeId != int.Parse(this.selectedType))
+        {
+            this.loading = true;
+            try
+            {
+                this.busPass = await busPassRepository.updatePassType(this.busPass.BusPassportId, int.Parse(this.selectedType));
+                this.loading = false;
+                StateHasChanged();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+    }
+}

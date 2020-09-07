@@ -37,8 +37,12 @@ namespace BusPass.Server.Services {
             }
         }
 
-        public async Task<ICollection<Payment>> getPaymentsForBusPass (int busPassId, int yearId) {
-            return await _repo.getPaymentsForBusPass (busPassId, yearId);
+        public async Task<ICollection<Payment>> getPaymentsForBusPassForYear (int busPassId, int yearId) {
+            return await _repo.getPaymentsForBusPassForYear (busPassId, yearId);
+        }
+
+        public async Task<ICollection<Payment>> getPaymentsForBusPass (int busPassId) {
+            return await _repo.getPaymentsForBusPass(busPassId);
         }
 
         public async Task<bool> checkPassportForCurrentMonth (int busPassId) {
@@ -66,12 +70,17 @@ namespace BusPass.Server.Services {
             return Task.FromResult (DateTime.ParseExact (monthName, "MMMM", CultureInfo.CurrentCulture).Month);
         }
 
-        public Task<double> getTotalAmountOfPayments (ICollection<Payment> payments) {
+        public Task<PaymentWithRecap> getRecap (ICollection<Payment> payments) {
             double totalAmount = 0;
+            int numberOfPayments = 0;
+
             foreach (Payment payment in payments) {
                 totalAmount += payment.price;
+                numberOfPayments++;
             }
-            return Task.FromResult (totalAmount);
+
+            PaymentWithRecap paymentsWithRecap = new PaymentWithRecap (payments, totalAmount, numberOfPayments);
+            return Task.FromResult (paymentsWithRecap);
         }
     }
 }

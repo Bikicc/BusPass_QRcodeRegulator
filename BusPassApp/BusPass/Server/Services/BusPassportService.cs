@@ -22,8 +22,8 @@ namespace BusPass.Server.Services {
         public async Task<BusPassport> getBusPassport (int userId) {
             return await _repo.getBusPassport (userId);
          }
-        public async Task<ICollection<BusPassport>> getBusPassports (bool valid) {
-            return await _repo.getBusPassports (valid);
+        public async Task<ICollection<UserBusPassport>> getBusPassportsByValidity (bool valid) {
+            return await _repo.getBusPassportsByValidity (valid);
         }
 
         public async Task<ICollection<UserBusPassport>> getBusPassportByType (int passTypeId, bool valid) {
@@ -31,7 +31,7 @@ namespace BusPass.Server.Services {
         }
 
         public async void changePasswordValidityIfExpired () {
-            ICollection<BusPassport> busPasses = await _repo.getBusPassports (true);
+            ICollection<BusPassport> busPasses = await _repo.getValidBusPassports ();
 
             foreach (BusPassport pass in busPasses) {
                 if (checkIfYearPassed (pass)) {
@@ -63,6 +63,10 @@ namespace BusPass.Server.Services {
                 busPass.DateOfIssue = DateTime.Today;
                 return await _repo.changeValidity (busPass);
             }
+        }
+
+        public async Task<BusPassport> updatePassType(int passId, int passTypeId) {
+            return await _repo.updateBusPass(passId, passTypeId);
         }
     }
 }

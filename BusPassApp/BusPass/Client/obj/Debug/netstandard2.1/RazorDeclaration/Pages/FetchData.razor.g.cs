@@ -119,6 +119,13 @@ using Blazored.LocalStorage;
 #line hidden
 #nullable disable
 #nullable restore
+#line 16 "X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\_Imports.razor"
+using Syncfusion.Blazor.DropDowns;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\Pages\FetchData.razor"
 using BusPass.Shared;
 

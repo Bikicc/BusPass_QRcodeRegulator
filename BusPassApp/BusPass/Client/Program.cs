@@ -7,10 +7,8 @@ using Blazored.LocalStorage;
 using BusPass.Client.Helpers;
 using BusPass.Client.Repository;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-
+using Syncfusion.Blazor;
 namespace BusPass.Client {
     public class Program {
         public static async Task Main (string[] args) {
@@ -26,6 +24,9 @@ namespace BusPass.Client {
                 .AddScoped<IBusPassportRepository, BusPassportRepository> ()
                 .AddScoped<IPassportTypeRepository, PassportTypeRepository> ()
                 .AddScoped<IBusPassPaymentRepository, BusPassPaymentRepository> ()
+                .AddScoped<IYearRepository, YearRepository> ()
+                .AddScoped<IUserRepository, UserRepository> ()
+                .AddSyncfusionBlazor ()
                 .AddBlazoredLocalStorage ();
 
             var host = builder.Build ();

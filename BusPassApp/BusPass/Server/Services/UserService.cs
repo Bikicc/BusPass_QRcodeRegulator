@@ -39,6 +39,10 @@ namespace BusPass.Server.Services {
             return lus;
         }
 
+        public async Task<User> getUserById(int userId) {
+            return await _repo.getUserById(userId);
+        }
+
         public async Task<bool> RegisterUser (User user) {
             if (await _repo.CheckIfUserExists (user)) {
                 return false;

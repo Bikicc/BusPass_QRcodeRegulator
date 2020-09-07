@@ -1,4 +1,3 @@
-using System;
 using BusPass.Shared.Entities;
 
 namespace BusPass.Shared.HelperEntities {
@@ -9,7 +8,7 @@ namespace BusPass.Shared.HelperEntities {
         public double price { get; set; }
         public string busPassType { get; set; }
         public string month { get; set; }
-        public DateTime dateOfPayment { get; set; }
+        public string dateOfPayment { get; set; }
         public Payment (BusPassPayment bpp, BusPassport bp, User u, string monthName, string busPassTypeName) {
             paymentId = bpp.BusPassPaymentId;
             bussPassId = bp.BusPassportId;
@@ -17,8 +16,10 @@ namespace BusPass.Shared.HelperEntities {
             price = bpp.Price;
             busPassType = busPassTypeName;
             month = monthName;
-            dateOfPayment = bpp.DateOfPayment.Date;
+            dateOfPayment = bpp.DateOfPayment.Date.ToShortDateString();
         }
+
+        public Payment () {}
     }
 
 }

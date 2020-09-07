@@ -1,0 +1,80 @@
+.headerContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+h1 {
+    text-transform: uppercase;
+    font-family: fantasy;
+    font-weight: bold;
+}
+
+.recap {
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 1.4em;
+    text-transform: uppercase;
+    background-color: #a9a9a91a;
+}
+
+.dropDownContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.dropdownItem {
+    width: 20%;
+    padding: 0 20px;
+}
+
+.totalUsersWrapper {
+    display: flex;
+    justify-content: center;
+    background: #a9a9a91a;
+    font-size: 1.3em;
+    margin-top: 50px;
+}
+
+.AdminView {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.infoContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.UserInfoContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.3em;
+}
+
+.userInfoHeader {
+    font-size: 1.5em;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.infoItem {
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.dataHeader {
+    font-weight: bold;
+}
+
+.updateTypeWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}

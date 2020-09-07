@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Text.Json;
 using System.Threading.Tasks;
 using BusPass.Client.Helpers;
 using BusPass.Shared.Entities;
+using BusPass.Shared.HelperEntities;
 
 namespace BusPass.Client.Repository {
     public class BusPassPaymentRepository : IBusPassPaymentRepository {
@@ -22,8 +22,14 @@ namespace BusPass.Client.Repository {
             await _httpService.Post ("/api/BusPassPayment", payment);
         }
 
-        public async Task<ICollection<BusPassPayment>> getPaymentsForUser (int busPassId, int yearId) {
-            return await _httpService.Get<ICollection<BusPassPayment>> ("/api/BusPassPayment/forBusPass/" + busPassId.ToString () + "/" + yearId.ToString ());
+        public async Task<PaymentWithRecap> getPaymentsForUserByYear (int busPassId, string yearId) {
+            var p = await _httpService.Get<PaymentWithRecap> ("/api/BusPassPayment/forBusPass/" + busPassId.ToString () + "/" + yearId);
+            return p;
+        }
+
+        public async Task<PaymentWithRecap> getAllPaymentsForUser (int busPassId) {
+            var p = await _httpService.Get<PaymentWithRecap> ("/api/BusPassPayment/forBusPass/" + busPassId.ToString ());
+            return p;
         }
     }
 }

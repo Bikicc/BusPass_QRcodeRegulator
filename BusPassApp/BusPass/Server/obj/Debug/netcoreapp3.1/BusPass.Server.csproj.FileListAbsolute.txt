@@ -157,3 +157,9 @@ X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Server\bin\Debug\
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Server\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Server\bin\Debug\netcoreapp3.1\NCrontab.dll
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Server\bin\Debug\netcoreapp3.1\Blazored.LocalStorage.dll
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Server\bin\Debug\netcoreapp3.1\Syncfusion.Blazor.dll
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Server\bin\Debug\netcoreapp3.1\Syncfusion.ExcelExport.Net.dll
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Server\bin\Debug\netcoreapp3.1\Syncfusion.Licensing.dll
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Server\bin\Debug\netcoreapp3.1\Syncfusion.PdfExport.Net.dll
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Server\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Server.Kestrel.Https.dll
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Server\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Server.Kestrel.Transport.Abstractions.dll

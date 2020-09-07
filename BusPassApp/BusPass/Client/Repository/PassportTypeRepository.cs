@@ -18,5 +18,6 @@ namespace BusPass.Client.Repository {
         public async Task<PassType> getPassType(int passTypeId) {
             return await _httpService.Get<PassType>("/api/PassType/" + passTypeId.ToString());
         }
+
     }
 }
