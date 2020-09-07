@@ -3018,6 +3018,39 @@
         }
       },
       {
+        "HashCode": 956791828,
+        "Kind": "Components.Component",
+        "Name": "BusPass.Client.Pages.Index",
+        "AssemblyName": "BusPass.Client",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "Index"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "BusPass.Client.Pages.Index"
+        }
+      },
+      {
+        "HashCode": 1930508675,
+        "Kind": "Components.Component",
+        "Name": "BusPass.Client.Pages.Index",
+        "AssemblyName": "BusPass.Client",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "BusPass.Client.Pages.Index"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "BusPass.Client.Pages.Index",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
         "HashCode": 1000278823,
         "Kind": "Components.Component",
         "Name": "BusPass.Client.Pages.Login",

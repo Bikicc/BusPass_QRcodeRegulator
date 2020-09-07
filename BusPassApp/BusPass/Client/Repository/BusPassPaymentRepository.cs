@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
+using System.Text.Json;
 using System.Threading.Tasks;
 using BusPass.Client.Helpers;
 using BusPass.Shared.Entities;
-using System;
-using System.Text.Json;
 
 namespace BusPass.Client.Repository {
     public class BusPassPaymentRepository : IBusPassPaymentRepository {
@@ -18,20 +18,12 @@ namespace BusPass.Client.Repository {
             return await _httpService.Get<bool> ("/api/BusPassPayment/check/" + userId.ToString ());
         }
 
-        public async Task<bool> renewBusPass (BusPassPayment payment) {
-            BusPassPayment p = await _httpService.Post("/api/BusPassPayment", payment);
-            Console.WriteLine(JsonSerializer.Serialize(p));
-            if (p == null) {
-                return false;
-            } else {
-                return true;
-            }
-            // return p;
-            // return await _httpService.Post("/api/BusPassPayment", payment);
+        public async Task renewBusPass (BusPassPayment payment) {
+            await _httpService.Post ("/api/BusPassPayment", payment);
         }
 
         public async Task<ICollection<BusPassPayment>> getPaymentsForUser (int busPassId, int yearId) {
-            return await _httpService.Get<ICollection<BusPassPayment>>("/api/BusPassPayment/forBusPass/" + busPassId.ToString() + "/" + yearId.ToString());
+            return await _httpService.Get<ICollection<BusPassPayment>> ("/api/BusPassPayment/forBusPass/" + busPassId.ToString () + "/" + yearId.ToString ());
         }
     }
 }

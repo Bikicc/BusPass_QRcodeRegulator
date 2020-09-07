@@ -147,39 +147,6 @@
         }
       },
       {
-        "HashCode": -1614921721,
-        "Kind": "Components.Component",
-        "Name": "BusPass.Client.Pages.Logout",
-        "AssemblyName": "BusPass.Client",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "Logout"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "BusPass.Client.Pages.Logout"
-        }
-      },
-      {
-        "HashCode": 1615493830,
-        "Kind": "Components.Component",
-        "Name": "BusPass.Client.Pages.Logout",
-        "AssemblyName": "BusPass.Client",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "BusPass.Client.Pages.Logout"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "BusPass.Client.Pages.Logout",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
-        }
-      },
-      {
         "HashCode": 851524305,
         "Kind": "Components.Component",
         "Name": "BusPass.Client.Pages.FetchData",
@@ -209,6 +176,39 @@
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
           "Common.TypeName": "BusPass.Client.Pages.FetchData",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": -1614921721,
+        "Kind": "Components.Component",
+        "Name": "BusPass.Client.Pages.Logout",
+        "AssemblyName": "BusPass.Client",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "Logout"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "BusPass.Client.Pages.Logout"
+        }
+      },
+      {
+        "HashCode": 1615493830,
+        "Kind": "Components.Component",
+        "Name": "BusPass.Client.Pages.Logout",
+        "AssemblyName": "BusPass.Client",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "BusPass.Client.Pages.Logout"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "BusPass.Client.Pages.Logout",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },

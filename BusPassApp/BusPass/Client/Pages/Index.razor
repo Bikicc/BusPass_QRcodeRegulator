@@ -18,19 +18,29 @@
         <h4 class="subHeader">Bus passport serial number: #@busPass.BusPassportId</h4> 
             <div class="qrCodeContainer">
                 <h3 style="margin-bottom: 30px;">QR code for your passport</h3>
-                @if (payedForMonth) {
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?data=userId:@user.UserId&valid:@busPass.Valid&amp;size=100x100" alt="" title="" />
-
-                } else {
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?data=userId:@user.UserId&valid:@busPass.Valid&color=FF0000&amp;size=100x100" alt="" title="" />
-                    <button class="myButton btn btn-primary" @onclick="renewBusPass">
-                    @if (loading) {
-                        <span class="spinner-border spinner-border-sm mr-1"></span>
+                @if (!busPass.Valid) {
+                    @if (payedForMonth) {
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?data=userId:@user.UserId&valid:@busPass.Valid&amp;size=100x100" alt="" title="" />
+                        <div class="alert alert-danger mt-3 mb-0">Passport invalid! Reneweal won't be possiblle next month. Please contact Admin</div>
+                    } else {
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?data=userId:@user.UserId&valid:@busPass.Valid&color=FF0000&amp;size=100x100" alt="" title="" />
+                        <div class="alert alert-danger mt-3 mb-0">Passport invalid! Please contact admin!</div>
                     }
-                    RENEW
-                </button>
-                @if (error) {
-                    <div class="alert alert-danger mt-3 mb-0">Something went wrong!</div>
+                } else {
+                    @if (payedForMonth) {
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?data=userId:@user.UserId&valid:@busPass.Valid&amp;size=100x100" alt="" title="" />
+
+                    } else {
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?data=userId:@user.UserId&valid:@busPass.Valid&color=FF0000&amp;size=100x100" alt="" title="" />
+                        <button class="myButton btn btn-primary" @onclick="renewBusPass">
+                        @if (loading) {
+                            <span class="spinner-border spinner-border-sm mr-1"></span>
+                        }
+                        RENEW
+                    </button>
+                    @if (!string.IsNullOrEmpty(error)) {
+                        <div class="alert alert-danger mt-3 mb-0">@error</div>
+                        }
                     }
                 }
             </div>
@@ -65,7 +75,7 @@
     private PassType passType;
     private bool payedForMonth;
     private bool loading;
-    private bool error = false;
+    private string error;
     protected override async Task OnInitializedAsync()
     {
         if (!AuthenticationService.checkIfAdmin())
@@ -98,29 +108,18 @@
             payment.BusPassportId = this.busPass.BusPassportId;
             payment.Price = passType.Price;
             payment.PassTypeId = passType.PassTypeId;
-            @* payment = await busPassPaymentRepository.renewBusPass(payment); *@
 
-            if(await busPassPaymentRepository.renewBusPass(payment)) {
-                this.loading = false;
-                this.payedForMonth = true;
-            } else {
-                this.loading = false;
-                this.error = true;
-            }
-            @* if (payment == null)
-            {
-                this.loading = false;
-                this.error = true;
-            }
-            else
-            {
-                this.loading = false;
-                this.payedForMonth = true;
-            } *@
+            await busPassPaymentRepository.renewBusPass(payment);
+
+            this.loading = false;
+            this.payedForMonth = true;
+            StateHasChanged();
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
+            this.error = e.Message;
+            this.loading = false;
+            StateHasChanged();
         }
     }
 }

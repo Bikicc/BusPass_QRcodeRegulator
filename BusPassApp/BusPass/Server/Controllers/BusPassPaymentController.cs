@@ -26,7 +26,11 @@ namespace BusPass.Server.Controllers {
             }
 
             var pay = await _service.createPayment (payment);
-            return Ok(pay);
+            if (pay == null) {
+                return BadRequest ("Passport already renewed or Insuficient funds!");
+            } else {
+                return Ok (pay);
+            }
         }
 
         [HttpGet ("forBusPass/{busPassId}/{yearId}")]
@@ -61,7 +65,7 @@ namespace BusPass.Server.Controllers {
         [HttpGet ("check/{busPassId}")]
         public async Task<IActionResult> checkPassportForCurrentMonth (int busPassId) {
             bool exists = await _service.checkPassportForCurrentMonth (busPassId);
-            return Ok(exists);
+            return Ok (exists);
         }
     }
 }

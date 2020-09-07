@@ -28,7 +28,7 @@ namespace BusPass.Server.Repository {
 
         }
 
-        public async Task<Account> substructFromBalance (int accountId, int valueToSubstract) {
+        public async Task<Account> substructFromBalance (int accountId, double valueToSubstract) {
 
             var acc = await _context.Accounts.FindAsync (accountId);
 
@@ -38,7 +38,7 @@ namespace BusPass.Server.Repository {
 
         }
 
-        public async Task<bool> checkIfEnoughBalance (int accountId, int valueToSubstract) {
+        public async Task<bool> checkIfEnoughBalance (int accountId, double valueToSubstract) {
             return (await _context.Accounts.FindAsync (accountId)).Balance >= valueToSubstract;
         }
     }
