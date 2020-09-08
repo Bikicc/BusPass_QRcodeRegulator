@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using BusPass.Shared.Entities;
 using BusPass.Client.Helpers;

@@ -1,10 +1,8 @@
 using System.Threading.Tasks;
-using BusPass.Shared.Entities;
 using BusPass.Shared.HelperEntities;
 using Microsoft.AspNetCore.Components;
 using Blazored.LocalStorage;
-using System.Text.Json;
-using System;
+
 
 namespace BusPass.Client.Helpers {
     public class AuthenticationService : IAuthenticationService {

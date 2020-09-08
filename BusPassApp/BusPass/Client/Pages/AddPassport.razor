@@ -87,15 +87,13 @@
 
     protected override async Task OnInitializedAsync()
     {
-        if (AuthenticationService.user.Role == "User")
-        {
-            NavigationManager.NavigateTo("logout");
-        }
-        else
+        if (AuthenticationService.checkIfAdmin())
         {
             this.types = await passportTypeRepository.getPassTypes();
             this.selectedType = this.types.FirstOrDefault().PassTypeId;
-
+        }
+        else {
+            await AuthenticationService.Logout();
         }
     }
 

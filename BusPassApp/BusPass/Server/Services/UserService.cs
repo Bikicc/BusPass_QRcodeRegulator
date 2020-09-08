@@ -36,14 +36,12 @@ namespace BusPass.Server.Services {
             lus.UserId = us.UserId;
             lus.Role = us.Role;
             lus.OIB = us.OIB;
-            // lus.DOBstring = us.DOB.Date.ToShortDateString();
             lus.Token = generateJwtToken (lus);
             return lus;
         }
 
         public async Task<User> getUserById(int userId) {
             var user = await _repo.getUserById(userId);
-            // user.DOBstring = user.DOB.Date.ToShortDateString();
             return user;
         }
 
@@ -53,6 +51,21 @@ namespace BusPass.Server.Services {
             } else {
                 user.Password = Encrypt (user.PasswordPlain);
                 return await _repo.RegisterUser (user);
+            }
+        }
+
+        public async Task<User> updateUser(User user) {
+            User userToUpdate = await _repo.getUserById(user.UserId);
+            if (userToUpdate == null) {
+                return null;
+            } else {
+                userToUpdate.Name = user.Name;
+                userToUpdate.Surname = user.Surname;
+                userToUpdate.Email = user.Email;
+                userToUpdate.Password = this.Encrypt(user.PasswordPlain);
+                User updatedUser = await _repo.updateUser(userToUpdate);
+                updatedUser.Password = null;
+                return updatedUser;
             }
         }
 

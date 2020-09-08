@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -41,13 +40,19 @@ namespace BusPass.Client.Helpers {
             return await sendRequest<T> (request);
         }
 
-        public async Task<T> Put<T> (string uri) {
-            var request = new HttpRequestMessage (HttpMethod.Put, uri);
-            return await sendRequest<T> (request);
+        public async Task<T> Put<T> (string uri, T data) {
+            if (data == null) {
+                var request = new HttpRequestMessage (HttpMethod.Put, uri);
+                return await sendRequest<T> (request);
+            } else {
+                var request = new HttpRequestMessage (HttpMethod.Put, uri);
+                request.Content = new StringContent (JsonSerializer.Serialize (data), Encoding.UTF8, "application/json");
+                return await sendRequest<T> (request);
+            }
 
         }
         private async Task<T> sendRequest<T> (HttpRequestMessage request) {
-            // add jwt auth header if user is logged in and request is to the api url
+            // dodaj jwt u header ako je user logiran 
             var user = await _localStorageService.GetItemAsync<LoginUser> ("user");
             var isApiUrl = !request.RequestUri.IsAbsoluteUri;
             if (user != null && isApiUrl)
@@ -55,13 +60,12 @@ namespace BusPass.Client.Helpers {
 
             var response = await _httpClient.SendAsync (request);
 
-            // auto logout on 401 response
+            // logout ako je neautoriziran
             if (response.StatusCode == HttpStatusCode.Unauthorized) {
                 _navigationManager.NavigateTo ("logout");
                 return default;
             }
 
-            //throw exception on error response
             if (!response.IsSuccessStatusCode) {
                 var error = await response.Content.ReadAsStringAsync ().ConfigureAwait (continueOnCapturedContext: false);
                 throw new Exception (error);

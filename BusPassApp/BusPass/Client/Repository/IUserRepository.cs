@@ -5,5 +5,6 @@ namespace BusPass.Client.Repository {
     public interface IUserRepository {
         Task<User> getUserById (int userId);
         Task<User> registerUser (User user);
+        Task<User> updateUser (User user);
     }
 }

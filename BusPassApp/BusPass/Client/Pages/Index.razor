@@ -4,7 +4,7 @@
 @inject IAuthenticationService AuthenticationService
 @inject IPassportTypeRepository passTypeRepository
 @inject IBusPassPaymentRepository busPassPaymentRepository
-
+@inject IUserRepository userRepository
 @if (user == null || busPass == null || passType == null)
 {
     <p><em>Loading...</em></p>
@@ -55,10 +55,6 @@
                         <span class="dataHeader">OIB:</span>
                         <span>@user.OIB</span>
                     </div>
-                    @* <div class="infoItem">
-                        <span class="dataHeader">Date of birth:</span>
-                        <span>@user.DOBstring</span>
-                    </div> *@
                     <div class="infoContainer">
                         <span class="dataHeader">Type:</span>
                         <span>@passType.Name</span>
@@ -75,14 +71,14 @@
 
 @code {
     private BusPassport busPass;
-    private LoginUser user;
+    private User user;
     private PassType passType;
     private bool payedForMonth;
     private bool loading;
     private string error;
     protected override async Task OnInitializedAsync () {
         if (!AuthenticationService.checkIfAdmin ()) {
-            this.user = AuthenticationService.user;
+            this.user = await userRepository.getUserById(AuthenticationService.user.UserId);
             try {
                 this.busPass = await busPassRepository.getBusPassForUser (this.user.UserId);
                 this.payedForMonth = await busPassPaymentRepository.getBusPassForUser (this.busPass.BusPassportId);

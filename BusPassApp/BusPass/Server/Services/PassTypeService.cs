@@ -19,10 +19,15 @@ namespace BusPass.Server.Services {
             return await _repo.GetPassType (passTypeId);
         }
 
-        public async Task<PassType> updatePassTypePrice (int passTypeId, double newPrice) {
-            PassType pass = await _repo.GetPassType (passTypeId);
-            pass.Price = newPrice;
+        public async Task<PassType> updatePassType (PassType type) {
+            PassType pass = await _repo.GetPassType (type.PassTypeId);
+            pass.Name = type.Name;
+            pass.Price = type.Price;
             return await _repo.updatePassTypePrice (pass);
+        }
+
+        public async Task<PassType> addPassType (PassType type) {
+            return await _repo.addPassType(type);
         }
     }
 }

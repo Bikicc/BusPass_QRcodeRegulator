@@ -10,7 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
+using Microsoft.OpenApi.Models;
 namespace BusPass.Server {
     public class Startup {
         public Startup (IConfiguration configuration) {
@@ -51,8 +51,8 @@ namespace BusPass.Server {
             services.AddScoped<IPassTypeRepository, PassTypeRepository> ();
             services.AddScoped<IBusPassportRepository, BusPassportRepository> ();
             services.AddScoped<IBusPassPaymentRepository, BusPassPaymentRepository> ();
-            services.AddScoped<IYearRepository, YearRepository>();
-            services.AddScoped<IMonthRepository, MonthRepository>();
+            services.AddScoped<IYearRepository, YearRepository> ();
+            services.AddScoped<IMonthRepository, MonthRepository> ();
 
             //Services injection
             services.AddScoped<IUserService, UserService> ();
@@ -62,10 +62,14 @@ namespace BusPass.Server {
             services.AddScoped<IBusPassPaymentService, BusPassPaymentService> ();
             services.AddHostedService<CronService> ();
 
+            services.AddSwaggerGen (c => {
+                c.SwaggerDoc ("v1", new OpenApiInfo { Title = "Bus passport system API", Version = "v1" });
+            });
+
             services.AddControllersWithViews ()
-            .AddNewtonsoftJson (options =>
-                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-            );
+                .AddNewtonsoftJson (options =>
+                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                );
 
             services.AddRazorPages ();
 
@@ -94,6 +98,12 @@ namespace BusPass.Server {
             app.UseHttpsRedirection ();
             app.UseBlazorFrameworkFiles ();
             app.UseStaticFiles ();
+
+            app.UseSwagger ();
+
+            app.UseSwaggerUI (c => {
+                c.SwaggerEndpoint ("/swagger/v1/swagger.json", "Bus passport system API");
+            });
 
             app.UseRouting ();
 

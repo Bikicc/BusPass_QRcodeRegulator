@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using BusPass.Server.Services;
+using BusPass.Shared.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 namespace BusPass.Server.Controllers {
@@ -30,14 +31,24 @@ namespace BusPass.Server.Controllers {
         }
 
         [Authorize (Roles = "Admin")]
-        [HttpPut ("{passTypeId}/{price}")]
-        public async Task<IActionResult> getPassType (int passTypeId, double price) {
-            var passType = await _service.updatePassTypePrice (passTypeId, price);
+        [HttpPut ()]
+        public async Task<IActionResult> updatePassType ([FromBody] PassType type) {
+            var passType = await _service.updatePassType (type);
             if (passType != null) {
                 return Ok (passType);
             } else {
                 return BadRequest ("Something went wrong!");
             }
+        }
+
+        [Authorize (Roles = "Admin")]
+        [HttpPost]
+        public async Task<IActionResult> getPassType ([FromBody] PassType type) {
+            if (!ModelState.IsValid) {
+                return BadRequest (ModelState);
+            }
+            var passType = await _service.addPassType (type);
+            return Ok (passType);
         }
     }
 }

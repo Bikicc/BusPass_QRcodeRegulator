@@ -163,3 +163,8 @@ X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Server\bin\Debug\
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Server\bin\Debug\netcoreapp3.1\Syncfusion.PdfExport.Net.dll
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Server\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Server.Kestrel.Https.dll
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Server\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Server.Kestrel.Transport.Abstractions.dll
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Server\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Server\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Server\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Server\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Server\obj\Debug\netcoreapp3.1\BusPass.Server.MvcApplicationPartsAssemblyInfo.cs

@@ -1,0 +1,153 @@
+@page "/passportTypes"
+@attribute [Authorize]
+@inject IPassportTypeRepository passportTypeRepository
+@inject IAuthenticationService AuthenticationService
+
+@if(types == null) {
+    <p><em>Loading...</em></p>
+} else { 
+<html>
+        <head>
+            <link href="css/UserPaymentHistory.css" rel="stylesheet" />
+        </head>
+        <body>
+            <h1 class="header" style="margin-bottom: 30px; text-align: center;">PASSPORT TYPES</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var type in types)
+                    {
+                        <tr style="cursor: pointer;" @onclick="@(e => setTypeToEdit(type))">
+                            <td>@type.Name</td>
+                            <td>@type.Price kn</td>
+                        </tr>
+                    }       
+                </tbody>
+            </table>
+            <div class="col-md-6 offset-md-3 mt-5">
+                <div class="card">
+                    <h4 class="card-header">Add or Edit passport type</h4>
+                    <div class="card-body">
+                        <EditForm Model="@typeToUpdate" OnValidSubmit="HandleValidSubmit">
+                            <DataAnnotationsValidator />
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <InputText @bind-Value="typeToUpdate.Name" class="form-control" />
+                                    <ValidationMessage For="@(() => typeToUpdate.Name)" />
+                                </div>
+                            
+                                <div class="form-group">
+                                    <label>Price</label>
+                                    <InputNumber @bind-Value="typeToUpdate.Price"  class="form-control" />
+                                    <ValidationMessage For="@(() => typeToUpdate.Price)" />
+                                </div>
+                            @if(typeToUpdate.PassTypeId == 0){
+                                <div class="buttonWrapper">
+                                    <button class="btn btn-success" style="width: 50%; display: flex; justify-content: center;">
+                                        @if (loading) {
+                                            <span class="spinner-border spinner-border-sm mr-1"></span>
+                                        }
+                                        Add new passport
+                                    </button>
+                                </div>
+                            } else {
+                                <div class="buttonWrapper">
+                                    <button class="btn btn-primary" style="width: 50%; display: flex; justify-content: center;">
+                                        @if (loading) {
+                                            <span class="spinner-border spinner-border-sm mr-1"></span>
+                                        }
+                                        Update passport
+                                    </button>
+                                </div>
+                            }
+                            @if (!string.IsNullOrEmpty(error)) {
+                                <div class="alert alert-danger mt-3 mb-0">@error</div>
+                            }
+                        </EditForm>
+                    </div>
+                </div>
+            </div>
+            
+        </body>
+</html>
+}
+
+@code {
+    private ICollection<PassType> types;
+    private PassType typeToUpdate = new PassType();
+    private bool loading;
+    private string error;
+    protected override async Task OnInitializedAsync()
+    {
+        if (AuthenticationService.checkIfAdmin())
+        {
+            try
+            {
+                this.types = await passportTypeRepository.getPassTypes();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+        else
+        {
+            await AuthenticationService.Logout();
+        }
+
+    }
+
+    private void setTypeToEdit(PassType type)
+    {
+        if (typeToUpdate.PassTypeId == type.PassTypeId)
+        {
+            this.typeToUpdate = new PassType();
+            
+            StateHasChanged();
+        }
+        else
+        {
+            this.typeToUpdate = (PassType)type.Shallowcopy();
+            StateHasChanged();
+        }
+
+    }
+
+    private async void HandleValidSubmit()
+    {
+        loading = true;
+        try
+        {
+            if (this.typeToUpdate.PassTypeId == 0)
+            {
+                await passportTypeRepository.addPassType(this.typeToUpdate);
+                this.typeToUpdate = new PassType();
+                this.types = await passportTypeRepository.getPassTypes();
+                this.loading = false;
+                StateHasChanged();
+            }
+            else
+            {
+                await passportTypeRepository.updatePassType(this.typeToUpdate);
+                this.typeToUpdate = new PassType();
+                this.types = await passportTypeRepository.getPassTypes();
+                loading = false;
+                StateHasChanged();
+
+            }
+
+        }
+        catch (Exception ex)
+        {
+            error = ex.Message;
+            loading = false;
+            StateHasChanged();
+        }
+    }
+
+}

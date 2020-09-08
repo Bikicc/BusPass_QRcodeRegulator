@@ -162,7 +162,6 @@ X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\BusPass.Client.csproj.CoreCompileInputs.cache
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\BusPass.Client.RazorComponent.input.cache
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\RazorDeclaration\App.razor.g.cs
-X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\RazorDeclaration\Pages\FetchData.razor.g.cs
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\RazorDeclaration\Pages\Index.razor.g.cs
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\RazorDeclaration\Shared\MainLayout.razor.g.cs
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\RazorDeclaration\Shared\NavMenu.razor.g.cs
@@ -172,7 +171,6 @@ X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\BusPass.Client.TagHelpers.output.cache
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\BusPass.Client.RazorCoreGenerate.cache
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\Razor\App.razor.g.cs
-X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\Razor\Pages\FetchData.razor.g.cs
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\Razor\Pages\Index.razor.g.cs
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\Razor\Shared\MainLayout.razor.g.cs
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\Razor\Shared\NavMenu.razor.g.cs
@@ -528,8 +526,12 @@ X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\Razor\Pages\PaymentsHistory.razor.g.cs
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\RazorDeclaration\Pages\AddPassport.razor.g.cs
 X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\Razor\Pages\AddPassport.razor.g.cs
-X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\sOm7dKg-7x7WSWJJKjdGR8RENgJyPus92wG0VSA08bo=.hash
-X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\Iq3NDthMX1B6Q67pbBnkUto9JqW7v1df1-dqpsBbfnc=.hash
-X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\ckUEyecNmLw7cJmaH7jooz3o7H8SF-suS_KqYoCyY0I=.hash
-X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\NGepuSMURW07LQlciUtsvtOn-zGA7oMrAyH5zXIEJF8=.hash
-X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\4TbGPhIHcD3boboCdg_D58WtzNTjoBM_HZjF14wEMO4=.hash
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\RazorDeclaration\Pages\PassportTypes.razor.g.cs
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\Razor\Pages\PassportTypes.razor.g.cs
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\RazorDeclaration\Pages\UserSettings.razor.g.cs
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\Razor\Pages\UserSettings.razor.g.cs
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\jMzQ3TR229Vf9UylbxH2ay2mLjM3vP6CyYsNLkVmuTw=.hash
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\LXhlEOL6fB4axskr0bCRKFjPipeTA9YxVEi5ikzGrok=.hash
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\MtYXz69YRSQKFw5zMDpswjU_L6KHq3mzQG7pWEYmW0U=.hash
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\3LzN-xskAwtin0q1Ur4R0WMVyPluWZ1fLJU3J6_czPg=.hash
+X:\Documents\GitHub\BusPass_QRcodeRegulator\BusPassApp\BusPass\Client\obj\Debug\netstandard2.1\integrity\FwERtjfJwN4DcKKZHcDZFP5N8YlEJd82gVHHyQ-A384=.hash

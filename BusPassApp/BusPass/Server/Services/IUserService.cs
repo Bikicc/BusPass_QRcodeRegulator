@@ -7,6 +7,6 @@ namespace BusPass.Server.Services {
         Task<LoginUser> LoginUser (LoginUser user);
         Task<User> RegisterUser (User user);
         Task<User> getUserById (int userId);
-
+        Task<User> updateUser(User user);
     }
 }

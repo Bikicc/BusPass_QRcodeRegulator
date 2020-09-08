@@ -44,10 +44,22 @@ namespace BusPass.Server.Controllers {
             return Ok (us);
         }
 
-        [HttpGet("{userId}")]
+        [Authorize (Roles = "User")]
+        [HttpPut]
+        public async Task<IActionResult> updateUser ([FromBody] User user) {
+            User us = await _service.updateUser (user);
+            if (us == null) {
+                return BadRequest("Something went wrong!");
+            } else {
+
+                return Ok (us);
+            }
+        }
+
+        [HttpGet ("{userId}")]
         public async Task<IActionResult> getUserById (int userId) {
-            var user = await _service.getUserById(userId);
-            return Ok(user);
+            var user = await _service.getUserById (userId);
+            return Ok (user);
         }
     }
 }

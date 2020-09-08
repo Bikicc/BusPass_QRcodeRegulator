@@ -8,18 +8,20 @@
   "linkerEnabled": false,
   "resources": {
     "assembly": {
-      "BusPass.Client.dll": "sha256-ckUEyecNmLw7cJmaH7jooz3o7H8SF\/suS+KqYoCyY0I=",
+      "BusPass.Client.dll": "sha256-jMzQ3TR229Vf9UylbxH2ay2mLjM3vP6CyYsNLkVmuTw=",
+      "System.Net.Http.Json.dll": "sha256-99dseBOagY3mzu5Y8Eqm8gRI+o8QbbCp7R2Ew9bQ+5E=",
+      "System.Buffers.dll": "sha256-ZxXy75PYbzJxNfAc\/SAP1nUYm4gt1jSaOpFnBb9m85M=",
+      "mscorlib.dll": "sha256-BaZPMj95+YNe3G4ckTGD6szZFwZeA2MOHn91zTGKDeU=",
+      "System.Threading.Tasks.Extensions.dll": "sha256-TkH6yxFQlTfY8NfznePrCdYJiEVpM9Dqy4Uu4H9qk10=",
+      "System.Memory.dll": "sha256-\/cPXlNTX8GKF\/lIn\/2DIjtxTe0Wpy4ZDcyAj67b6JYk=",
       "System.Text.Json.dll": "sha256-HQeN+ZfHAERO+uW0fP0J9J3WV1hQ3vUIOWbqGSYBPp8=",
       "System.Runtime.CompilerServices.Unsafe.dll": "sha256-kL\/omZDwqByAi+lPdMeDmr3XjHcn4RVb+LmZ4mut1Yc=",
-      "mscorlib.dll": "sha256-BaZPMj95+YNe3G4ckTGD6szZFwZeA2MOHn91zTGKDeU=",
-      "System.Buffers.dll": "sha256-ZxXy75PYbzJxNfAc\/SAP1nUYm4gt1jSaOpFnBb9m85M=",
       "Microsoft.Bcl.AsyncInterfaces.dll": "sha256-OBWh2or+2mU6elwqPfmL72FBZVKl2WzTJ4L\/IrKeXM4=",
       "netstandard.dll": "sha256-\/zcPVM75OAY+joGVM8yIC1gO1SFYWP1CFERgQ8PJkfA=",
       "System.Xml.Linq.dll": "sha256-IPbQMdJxZXdk8HTlaPyXdQ6Zb82iZLphnM74yO4EURQ=",
       "System.Core.dll": "sha256-Zw2\/5aDWjgMedporhjigwhi\/UCLcfl0tfa0LXUyD9HE=",
       "System.dll": "sha256-r6QdEXq0KfB8oZDzhnV4xskSbzJA0yBVi6XFpa3TGHM=",
       "WebAssembly.Net.WebSockets.dll": "sha256-ob5gN\/szfb1CwWnyQWvWvuid3u4df593KvZeoJQEaKc=",
-      "System.Memory.dll": "sha256-\/cPXlNTX8GKF\/lIn\/2DIjtxTe0Wpy4ZDcyAj67b6JYk=",
       "WebAssembly.Bindings.dll": "sha256-6XMT1eT3svGdg6hFzAHJscYdTQjakoYccYTdHmKSr7Y=",
       "System.Numerics.dll": "sha256-8g0neeYVmPrxWgbMI0ZTVO6257qMisUTPZ78egAnIMw=",
       "System.Xml.dll": "sha256-RMOYBniHZkD8OZrBV3ONIMTZqsBhSAcBFm4pVuY9dv4=",
@@ -35,10 +37,8 @@
       "System.Drawing.Common.dll": "sha256-vcCLMX4xAsUqKuQjjIkzu1O9pHGO\/tdvysgSmEjL6oo=",
       "System.Data.DataSetExtensions.dll": "sha256-eejp4oI3sQBq\/tI6GsJNaPu3Dkdot5Vbn8+R3w2vYLE=",
       "System.Data.dll": "sha256-dxfTuT6ffPMmvuUUTfv7+bpLtOZZZHQdz77hjhy9qHw=",
-      "System.Threading.Tasks.Extensions.dll": "sha256-TkH6yxFQlTfY8NfznePrCdYJiEVpM9Dqy4Uu4H9qk10=",
       "System.Numerics.Vectors.dll": "sha256-qAKfFnquY+7UC\/MzLi04rjqEhLzTryCoLg\/S6MxI19I=",
       "System.Text.Encodings.Web.dll": "sha256-Tqh1Da+iTRQJEZUGAsMNFuZ4hf1PMf13WApRZod+uw4=",
-      "System.Net.Http.Json.dll": "sha256-99dseBOagY3mzu5Y8Eqm8gRI+o8QbbCp7R2Ew9bQ+5E=",
       "Microsoft.Extensions.DependencyInjection.Abstractions.dll": "sha256-Bs1Wrmh4ex9dTEIT0yCRF52N\/wOmsBDt457BHr0\/ssM=",
       "Microsoft.AspNetCore.WebUtilities.dll": "sha256-D5akJeBd7NNITuzAXxlX7zl2jfsc4uTKyeEKwwNhqoo=",
       "Microsoft.Extensions.Primitives.dll": "sha256-y\/FyJQOcW2TOcTp7Iuv8brGBzL5ZP0oJdG7ysK+gtKc=",
@@ -68,7 +68,7 @@
       "Syncfusion.PdfExport.Net.dll": "sha256-1Bw3Mui1bi9gxu7AwHD4G0F57gKyGFsfvVrnwz+P0bI=",
       "Syncfusion.ExcelExport.Net.dll": "sha256-3r6m2TKCtMzrQttKwCtcO\/2Y+MIPcdXkOpRQVxJ1y4Y=",
       "Newtonsoft.Json.dll": "sha256-BPeXAMTZKR8pJ7LpQA8+w4soJFGV1TLt2PPpnmpBUeE=",
-      "BusPass.Shared.dll": "sha256-sOm7dKg\/7x7WSWJJKjdGR8RENgJyPus92wG0VSA08bo=",
+      "BusPass.Shared.dll": "sha256-LXhlEOL6fB4axskr0bCRKFjPipeTA9YxVEi5ikzGrok=",
       "Microsoft.AspNetCore.Authorization.dll": "sha256-4NUQ26HmvXRi8smc0jz9940OUECDLQnoMWQLrMLe0ok=",
       "Microsoft.AspNetCore.Metadata.dll": "sha256-825GQI5nG1C1WqLD1SNKSpjzLCNbH2\/KChgjBL0SSXI=",
       "Microsoft.AspNetCore.Components.WebAssembly.dll": "sha256-sifIvl02zqfSiv67ZRAsSa+NCvhMgTGrIUNuK8LmCNM=",
@@ -83,9 +83,9 @@
       "Microsoft.JSInterop.WebAssembly.dll": "sha256-dwm+rKImjhxtOmHHVpSxOgl2oh2R26xOWihLaZSv7Vs="
     },
     "pdb": {
-      "BusPass.Client.pdb": "sha256-NGepuSMURW07LQlciUtsvtOn\/zGA7oMrAyH5zXIEJF8=",
+      "BusPass.Client.pdb": "sha256-MtYXz69YRSQKFw5zMDpswjU+L6KHq3mzQG7pWEYmW0U=",
       "Newtonsoft.Json.pdb": "sha256-itUtKKCpo2e5yuxPqn6PXeJEYMNdygaA3vFsiDaQ85Y=",
-      "BusPass.Shared.pdb": "sha256-Iq3NDthMX1B6Q67pbBnkUto9JqW7v1df1\/dqpsBbfnc="
+      "BusPass.Shared.pdb": "sha256-3LzN\/xskAwtin0q1Ur4R0WMVyPluWZ1fLJU3J6+czPg="
     },
     "runtime": {
       "dotnet.3.2.0.js": "sha256-mPoqx7XczFHBWk3gRNn0hc9ekG1OvkKY4XiKRY5Mj5U=",

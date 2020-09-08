@@ -1,6 +1,5 @@
 using System.Threading.Tasks;
 using BusPass.Shared.Entities;
-using System.Collections.Generic;
 using BusPass.Shared.HelperEntities;
 
 namespace BusPass.Client.Repository {

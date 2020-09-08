@@ -17,5 +17,9 @@ namespace BusPass.Client.Repository {
         public async Task<User> registerUser (User user) {
             return await _httpService.Post("api/user/createUser", user);
         }
+
+        public async Task<User> updateUser (User user) {
+            return await _httpService.Put("api/user", user);
+        }
     }
 }

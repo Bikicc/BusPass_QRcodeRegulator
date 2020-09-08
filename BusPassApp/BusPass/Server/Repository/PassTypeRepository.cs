@@ -23,5 +23,11 @@ namespace BusPass.Server.Repository {
             await _context.SaveChangesAsync ();
             return passTypeToUpdate;
         }
+
+        public async Task<PassType> addPassType(PassType type) {
+            _context.PassTypes.Add(type);
+            await _context.SaveChangesAsync();
+            return type;
+        }
     }
 }

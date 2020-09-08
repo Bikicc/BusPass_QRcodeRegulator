@@ -34,5 +34,10 @@ namespace BusPass.Server.Repository {
             return us;
         }
 
+        public async Task<User> updateUser (User user) {
+            await _context.SaveChangesAsync ();
+            return user;
+        }
+
     }
 }

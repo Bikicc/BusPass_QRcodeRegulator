@@ -8,6 +8,7 @@ namespace BusPass.Server.Repository {
         Task<User> RegisterUser (User user);
         Task<bool> CheckIfUserExists(User user);
         Task<User> getUserById(int userdId);
+        Task<User> updateUser(User user);
     }
 
 }

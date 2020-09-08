@@ -9,5 +9,6 @@ namespace BusPass.Server.Repository
          Task<ICollection<PassType>> GetPassTypes();
          Task<PassType> GetPassType(int passTypeId);
          Task<PassType> updatePassTypePrice(PassType passTypeToUpdate);
+         Task<PassType> addPassType(PassType type);
     }
 }

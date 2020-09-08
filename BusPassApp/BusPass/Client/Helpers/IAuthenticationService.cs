@@ -1,5 +1,4 @@
 using System.Threading.Tasks;
-using BusPass.Shared.Entities;
 using BusPass.Shared.HelperEntities;
 
 namespace BusPass.Client.Helpers {
