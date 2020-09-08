@@ -4,7 +4,7 @@ using BusPass.Shared.Entities;
 using BusPass.Shared.HelperEntities;
 namespace BusPass.Server.Services {
     public interface IBusPassportService {
-        Task<bool> createBussPassport (BusPassport pass);
+        Task<BusPassport> createBussPassport (BusPassport pass);
         Task<BusPassport> getBusPassport (int busPassId);
         Task<ICollection<UserBusPassport>> getBusPassportsByValidity (bool valid);
         Task<ICollection<UserBusPassport>> getBusPassportByType (int passTypeId, bool valid);

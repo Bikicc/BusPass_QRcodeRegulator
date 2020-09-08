@@ -5,7 +5,7 @@ using BusPass.Shared.HelperEntities;
 namespace BusPass.Server.Services {
     public interface IUserService {
         Task<LoginUser> LoginUser (LoginUser user);
-        Task<bool> RegisterUser (User user);
+        Task<User> RegisterUser (User user);
         Task<User> getUserById (int userId);
 
     }

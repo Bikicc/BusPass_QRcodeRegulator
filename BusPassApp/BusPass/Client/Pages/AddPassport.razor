@@ -1,0 +1,132 @@
+@page "/addPassport"
+@attribute [Authorize]
+@inject IAuthenticationService AuthenticationService
+@inject IBusPassportRepository busPassportRepository
+@inject IPassportTypeRepository passportTypeRepository
+@inject IAccountRepository accountRepository
+@inject IUserRepository userRepository
+@inject NavigationManager NavigationManager
+
+@if(types == null) {
+    <p><em>Loading...</em></p>
+} else {
+    <div class="col-md-6 offset-md-3 mt-5">
+        <div class="card">
+            <h4 class="card-header">Add new passport</h4>
+            <div class="card-body">
+                <EditForm Model="@pass" OnValidSubmit="HandleValidSubmit">
+                    <DataAnnotationsValidator />
+                    <div class="form-group">
+                        <label>Name</label>
+                        <InputText @bind-Value="pass.Name" class="form-control" />
+                        <ValidationMessage For="@(() => pass.Name)" />
+                    </div>
+                    <div class="form-group">
+                        <label>Surname</label>
+                        <InputText @bind-Value="pass.Surname" class="form-control" />
+                        <ValidationMessage For="@(() => pass.Surname)" />
+                    </div>
+                    <div class="form-group">
+                        <label>OIB</label>
+                        <InputText @bind-Value="pass.OIB" class="form-control" />
+                        <ValidationMessage For="@(() => pass.OIB)" />
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <InputText @bind-Value="pass.Email" class="form-control" />
+                        <ValidationMessage For="@(() => pass.Email)" />
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <InputText @bind-Value="pass.PasswordPlain" type="password" class="form-control" />
+                        <ValidationMessage For="@(() => pass.PasswordPlain)" />
+                    </div>
+                    <div class="form-group">
+                        <label>Passport type</label>
+                        <SfDropDownList TValue="int" TItem="PassType" Value="@selectedType" Placeholder="Select type" DataSource="@types">
+                            <DropDownListEvents TValue="int" ValueChange="onChangeType"></DropDownListEvents>
+                            <DropDownListFieldSettings Value="PassTypeId" Text="Name"></DropDownListFieldSettings>
+                        </SfDropDownList>
+                    </div>
+                    <div class="form-group">
+                        <label>IBAN</label>
+                        <InputText @bind-Value="pass.IBAN" class="form-control" />
+                        <ValidationMessage For="@(() => pass.IBAN)" />
+                    </div>
+                    <div class="form-group">
+                        <label>Balance</label>
+                        <InputNumber @bind-Value="pass.Balance" class="form-control" />
+                        <ValidationMessage For="@(() => pass.Balance)" />
+                    </div>
+                    <button class="btn btn-success" style="width: 100%;">
+                        @if (loading) {
+                            <span class="spinner-border spinner-border-sm mr-1"></span>
+                        }
+                        Add 
+                    </button>
+                    @if (!string.IsNullOrEmpty(error)) {
+                        <div class="alert alert-danger mt-3 mb-0">@error</div>
+                    }
+                </EditForm>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    private PassportToAdd pass = new PassportToAdd();
+    private bool loading;
+    private string error;
+
+    private int selectedType;
+    private ICollection<PassType> types;
+    private User userToAdd;
+    private BusPassport passToAdd;
+    private Account accountToAdd;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (AuthenticationService.user.Role == "User")
+        {
+            NavigationManager.NavigateTo("logout");
+        }
+        else
+        {
+            this.types = await passportTypeRepository.getPassTypes();
+            this.selectedType = this.types.FirstOrDefault().PassTypeId;
+
+        }
+    }
+
+    private async void HandleValidSubmit()
+    {
+        this.loading = true;
+        this.userToAdd = new User(pass);
+        try
+        {
+            User userAdded = await userRepository.registerUser(userToAdd);
+            passToAdd = new BusPassport(userAdded.UserId, this.selectedType);
+            accountToAdd = new Account(pass, userAdded.UserId);
+            await busPassportRepository.addPassport(passToAdd);
+            await accountRepository.CreateAccount(accountToAdd);
+            this.pass = new PassportToAdd();
+            this.selectedType = this.types.FirstOrDefault().PassTypeId;
+            this.loading = false;
+            StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            error = ex.Message;
+            this.loading = false;
+            StateHasChanged();
+        }
+    }
+
+    private void onChangeType(Syncfusion.Blazor.DropDowns.ChangeEventArgs<int> args)
+    {
+        this.selectedType = args.Value;
+        StateHasChanged();
+    }
+}
+

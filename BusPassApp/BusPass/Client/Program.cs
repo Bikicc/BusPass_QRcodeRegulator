@@ -27,6 +27,7 @@ namespace BusPass.Client {
                 .AddScoped<IYearRepository, YearRepository> ()
                 .AddScoped<IUserRepository, UserRepository> ()
                 .AddScoped<IMonthRepository, MonthRepository> ()
+                .AddScoped<IAccountRepository, AccountRepository> ()
                 .AddSyncfusionBlazor ()
                 .AddBlazoredLocalStorage ();
 

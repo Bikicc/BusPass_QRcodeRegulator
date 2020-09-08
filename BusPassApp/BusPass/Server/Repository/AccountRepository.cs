@@ -17,13 +17,13 @@ namespace BusPass.Server.Repository {
             return acc;
         }
 
-        public async Task<bool> postAccount (Account account) {
+        public async Task<Account> postAccount (Account account) {
             try {
                 _context.Add (account);
                 await _context.SaveChangesAsync ();
-                return true;
+                return account;
             } catch {
-                return false;
+                return null;
             }
 
         }

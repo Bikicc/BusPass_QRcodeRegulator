@@ -37,5 +37,9 @@ namespace BusPass.Client.Repository {
         public async Task<BusPassport> makePassInvalid (int passId) {
             return await _httpService.Put<BusPassport> ("/api/BusPassport/invalid/" + passId.ToString ());
         }
+
+        public async Task<BusPassport> addPassport (BusPassport pass) {
+            return await _httpService.Post("/api/BusPassport", pass);
+        }
     }
 }

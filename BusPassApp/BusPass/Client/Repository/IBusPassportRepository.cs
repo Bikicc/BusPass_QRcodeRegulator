@@ -10,5 +10,6 @@ namespace BusPass.Client.Repository {
         Task<BusPassport> updatePassType (int passId, int passTypeId);
         Task<BusPassport> makePassValid (int passId);
         Task<BusPassport> makePassInvalid (int passId);
+        Task<BusPassport> addPassport (BusPassport pass);
     }
 }

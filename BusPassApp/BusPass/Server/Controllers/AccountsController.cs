@@ -21,11 +21,8 @@ namespace BusPass.Server.Controllers {
                 return BadRequest (ModelState);
             }
 
-            if (await _service.postAccount (account)) {
-                return Ok ();
-            } else {
-                return BadRequest ("Something went wrong!");
-            }
+            var acc = await _service.postAccount (account);
+            return Ok(acc);
         }
 
         [Authorize (Roles = "User")]

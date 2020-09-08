@@ -15,5 +15,13 @@ namespace BusPass.Shared.Entities {
         // public PassType PassType { get; set; }
         public ICollection<BusPassPayment> BusPassPayments { get; set; }
 
+        public BusPassport(int userId, int typeId) {
+            UserId = userId;
+            PassTypeId = typeId;
+
+        }
+
+        public BusPassport() {}
+
     }
 }

@@ -21,6 +21,7 @@ namespace BusPass.Server.Services {
             _appSettings = appSettings.Value;
             _repo = repo;
         }
+        
         public async Task<LoginUser> LoginUser (LoginUser user) {
             user.Password = Encrypt (user.PasswordPlain);
             var us = await _repo.LoginUser (user);
@@ -35,20 +36,20 @@ namespace BusPass.Server.Services {
             lus.UserId = us.UserId;
             lus.Role = us.Role;
             lus.OIB = us.OIB;
-            lus.DOBstring = us.DOB.Date.ToShortDateString();
+            // lus.DOBstring = us.DOB.Date.ToShortDateString();
             lus.Token = generateJwtToken (lus);
             return lus;
         }
 
         public async Task<User> getUserById(int userId) {
             var user = await _repo.getUserById(userId);
-            user.DOBstring = user.DOB.Date.ToShortDateString();
+            // user.DOBstring = user.DOB.Date.ToShortDateString();
             return user;
         }
 
-        public async Task<bool> RegisterUser (User user) {
+        public async Task<User> RegisterUser (User user) {
             if (await _repo.CheckIfUserExists (user)) {
-                return false;
+                return null;
             } else {
                 user.Password = Encrypt (user.PasswordPlain);
                 return await _repo.RegisterUser (user);

@@ -13,7 +13,7 @@ namespace BusPass.Server.Services {
 
         }
 
-        public async Task<bool> createBussPassport (BusPassport pass) {
+        public async Task<BusPassport> createBussPassport (BusPassport pass) {
             pass.DateOfIssue = DateTime.Today;
             pass.Valid = true;
             return await _repo.createBussPassport (pass);

@@ -13,14 +13,10 @@ namespace BusPass.Server.Repository {
             this._context = context;
         }
 
-        public async Task<bool> createBussPassport (BusPassport pass) {
-            try {
-                _context.Add (pass);
-                await _context.SaveChangesAsync ();
-                return true;
-            } catch {
-                return false;
-            }
+        public async Task<BusPassport> createBussPassport (BusPassport pass) {
+            _context.Add (pass);
+            await _context.SaveChangesAsync ();
+            return pass;
         }
 
         public async Task<BusPassport> getBusPassport (int userId) {

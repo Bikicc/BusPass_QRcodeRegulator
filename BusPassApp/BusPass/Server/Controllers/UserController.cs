@@ -22,9 +22,10 @@ namespace BusPass.Server.Controllers {
             if (!ModelState.IsValid) {
                 return BadRequest (ModelState);
             }
+            var registeredUser = await _service.RegisterUser (user);
 
-            if (await _service.RegisterUser (user)) {
-                return Ok ();
+            if (registeredUser != null) {
+                return Ok (registeredUser);
             } else {
                 return BadRequest ("User already exists!");
             }

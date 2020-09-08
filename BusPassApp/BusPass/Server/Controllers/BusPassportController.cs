@@ -28,11 +28,8 @@ namespace BusPass.Server.Controllers {
                 return BadRequest (ModelState);
             }
 
-            if (await _service.createBussPassport (busPass)) {
-                return Ok ();
-            } else {
-                return BadRequest ("Something went wrong!");
-            }
+            var pass = await _service.createBussPassport (busPass); 
+            return Ok (pass);
         }
 
         [HttpGet ("{userId}")]

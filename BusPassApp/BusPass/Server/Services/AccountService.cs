@@ -16,7 +16,7 @@ namespace BusPass.Server.Services
             return await _repo.GetAccount(userId);
         }
 
-        public async Task<bool> postAccount (Account acc) {
+        public async Task<Account> postAccount (Account acc) {
             return await _repo.postAccount(acc);
         }
 

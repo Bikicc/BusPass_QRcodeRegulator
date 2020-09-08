@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using BusPass.Shared.Entities;
 
 namespace BusPass.Client.Repository
 {
-    interface IAccountRepository
-    {
+    public interface IAccountRepository {
+        Task<Account> CreateAccount (Account account);
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
+using BusPass.Shared.HelperEntities;
 namespace BusPass.Shared.Entities
 {
     public class Account
@@ -14,6 +14,14 @@ namespace BusPass.Shared.Entities
         
         [ForeignKey("User")]
         public int UserId { get; set; }
+
+        public Account(PassportToAdd passport, int userId) {
+            IBAN = passport.IBAN;
+            Balance = passport.Balance;
+            UserId = userId;
+        }
+
+        public Account() {}
 
     }
 }

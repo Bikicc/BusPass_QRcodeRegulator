@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
+using BusPass.Shared.HelperEntities;
 namespace BusPass.Shared.Entities {
     public class User {
         public int UserId { get; set; }
@@ -11,16 +12,12 @@ namespace BusPass.Shared.Entities {
 
         [Required (ErrorMessage = "This field is required")]
         public string Surname { get; set; }
-
-        [Required (ErrorMessage = "This field is required")]
-        public DateTime DOB { get; set; }
+        // public DateTime DOB { get; set; }
 
         [Required (ErrorMessage = "This field is required")]
         [StringLength (maximumLength: 11, MinimumLength = 11, ErrorMessage = "OIB length must be 11 characters")]
         [RegularExpression (@"^[0-9]*$")]
         public string OIB { get; set; }
-
-        [Required (ErrorMessage = "This field is required")]
         public string Role { get; set; }
 
         [Required]
@@ -35,14 +32,24 @@ namespace BusPass.Shared.Entities {
         [NotMapped]
         public string PasswordPlain { get; set; }
 
-        [NotMapped]
-        public string DOBstring { get; set; }
+        // [NotMapped]
+        // public string DOBstring { get; set; }
 
         // [NotMapped]
         // public string Token { get; set; }
         public BusPassport BusPassports { get; set; }
         public Account Account { get; set; }
 
+        public User(PassportToAdd pass) {
+            Name = pass.Name;
+            Surname = pass.Surname;
+            OIB = pass.OIB;
+            Email = pass.Email;
+            PasswordPlain = pass.PasswordPlain;
+            Role = "User";
+        }
+
+        public User() {}
         // private string Decrypt (string cipherText) {
         //     string EncryptionKey = "MAKV2SPBNI99212";
         //     byte[] cipherBytes = Convert.FromBase64String (cipherText);
