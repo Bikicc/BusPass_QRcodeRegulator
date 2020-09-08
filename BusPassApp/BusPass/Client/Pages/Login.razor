@@ -42,7 +42,11 @@
         // redirect to home if already logged in
         if (AuthenticationService.user != null)
         {
-            NavigationManager.NavigateTo("/");
+            if(AuthenticationService.user.Role == "User") {
+                NavigationManager.NavigateTo("/");
+            } else {
+                 NavigationManager.NavigateTo("adminHome");
+            }
         }
     }
 

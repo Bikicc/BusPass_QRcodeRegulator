@@ -8,6 +8,7 @@ namespace BusPass.Shared.HelperEntities {
         public string Role { get; set; }
         public string Token { get; set; }
         public string OIB { get; set; }
+        public string DOBstring { get; set; }
 
         [Required]
         [RegularExpression (@"^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$", ErrorMessage = "Invalid Email!")]

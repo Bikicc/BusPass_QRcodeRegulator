@@ -55,6 +55,10 @@
                         <span class="dataHeader">OIB:</span>
                         <span>@user.OIB</span>
                     </div>
+                    <div class="infoItem">
+                        <span class="dataHeader">Date of birth:</span>
+                        <span>@user.DOBstring</span>
+                    </div>
                     <div class="infoContainer">
                         <span class="dataHeader">Type:</span>
                         <span>@passType.Name</span>
@@ -76,50 +80,39 @@
     private bool payedForMonth;
     private bool loading;
     private string error;
-    protected override async Task OnInitializedAsync()
-    {
-        if (!AuthenticationService.checkIfAdmin())
-        {
+    protected override async Task OnInitializedAsync () {
+        if (!AuthenticationService.checkIfAdmin ()) {
             this.user = AuthenticationService.user;
-            try
-            {
-                this.busPass = await busPassRepository.getBusPassForUser(this.user.UserId);
-                this.payedForMonth = await busPassPaymentRepository.getBusPassForUser(this.busPass.BusPassportId);
-                this.passType = await passTypeRepository.getPassType(this.busPass.PassTypeId);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
+            try {
+                this.busPass = await busPassRepository.getBusPassForUser (this.user.UserId);
+                this.payedForMonth = await busPassPaymentRepository.getBusPassForUser (this.busPass.BusPassportId);
+                this.passType = await passTypeRepository.getPassType (this.busPass.PassTypeId);
+            } catch (Exception e) {
+                Console.WriteLine (e);
             }
 
-        }
-        else
-        {
-            await AuthenticationService.Logout();
+        } else {
+            await AuthenticationService.Logout ();
         }
     }
 
-    private async void renewBusPass()
-    {
-        try
-        {
+    private async void renewBusPass () {
+        try {
             this.loading = true;
-            BusPassPayment payment = new BusPassPayment();
+            BusPassPayment payment = new BusPassPayment ();
             payment.BusPassportId = this.busPass.BusPassportId;
             payment.Price = passType.Price;
             payment.PassTypeId = passType.PassTypeId;
 
-            await busPassPaymentRepository.renewBusPass(payment);
+            await busPassPaymentRepository.renewBusPass (payment);
 
             this.loading = false;
             this.payedForMonth = true;
-            StateHasChanged();
-        }
-        catch (Exception e)
-        {
+            StateHasChanged ();
+        } catch (Exception e) {
             this.error = e.Message;
             this.loading = false;
-            StateHasChanged();
+            StateHasChanged ();
         }
     }
 }

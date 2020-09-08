@@ -35,6 +35,9 @@ namespace BusPass.Shared.Entities {
         [NotMapped]
         public string PasswordPlain { get; set; }
 
+        [NotMapped]
+        public string DOBstring { get; set; }
+
         // [NotMapped]
         // public string Token { get; set; }
         public BusPassport BusPassports { get; set; }

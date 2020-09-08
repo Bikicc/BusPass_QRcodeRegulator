@@ -13,5 +13,6 @@ namespace BusPass.Server.Repository {
         Task<int> getUserIdFromPassport(int passportId);
         Task<ICollection<BusPassport>> getValidBusPassports ();
         Task<BusPassport> updateBusPass (int passportId, int passTypeId);
+        Task<BusPassport> getBusPassportById (int passId);
     }
 }

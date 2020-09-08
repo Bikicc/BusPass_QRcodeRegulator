@@ -35,12 +35,15 @@ namespace BusPass.Server.Services {
             lus.UserId = us.UserId;
             lus.Role = us.Role;
             lus.OIB = us.OIB;
+            lus.DOBstring = us.DOB.Date.ToShortDateString();
             lus.Token = generateJwtToken (lus);
             return lus;
         }
 
         public async Task<User> getUserById(int userId) {
-            return await _repo.getUserById(userId);
+            var user = await _repo.getUserById(userId);
+            user.DOBstring = user.DOB.Date.ToShortDateString();
+            return user;
         }
 
         public async Task<bool> RegisterUser (User user) {

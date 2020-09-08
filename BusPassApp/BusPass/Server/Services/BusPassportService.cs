@@ -45,7 +45,7 @@ namespace BusPass.Server.Services {
         }
 
         public async Task<BusPassport> makeInvalid (int passId) {
-            BusPassport busPass = await _repo.getBusPassport (passId);
+            BusPassport busPass = await _repo.getBusPassportById (passId);
             if (busPass == null || busPass.Valid == false) {
                 return null;
             } else {
@@ -55,7 +55,7 @@ namespace BusPass.Server.Services {
         }
 
         public async Task<BusPassport> makeValid (int passId) {
-            BusPassport busPass = await _repo.getBusPassport (passId);
+            BusPassport busPass = await _repo.getBusPassportById (passId);
             if (busPass == null || busPass.Valid == true) {
                 return null;
             } else {

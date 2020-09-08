@@ -76,6 +76,10 @@
                                 <span>@user.OIB</span>
                             </div>
                             <div class="infoItem">
+                                <span class="dataHeader">Date of birth:</span>
+                                <span>@user.DOBstring</span>
+                            </div>
+                            <div class="infoItem">
                                 <span class="dataHeader">Passport type:</span>
                                 <div class="updateTypeWrapper">
                                     <span style="display: flex; padding-right: 5px">
@@ -92,6 +96,23 @@
                                         Change
                                         </button>
                                     </span>
+                                </div>
+                                <div class="changeValidStateButtonWrapper">
+                                    @if (busPass.Valid == true) {
+                                        <button class="btn btn-success" @onclick="changeToInvalid" style="width: 100%;">
+                                            @if (loadingValid) {
+                                                <span class="spinner-border spinner-border-sm mr-1"></span>
+                                            }
+                                            Valid
+                                        </button>
+                                    } else {
+                                        <button class="btn btn-danger" @onclick="changeToValid" style="width: 100%;">
+                                            @if (loadingValid) {
+                                                <span class="spinner-border spinner-border-sm mr-1"></span>
+                                            }
+                                            Invalid
+                                        </button>
+                                    }
                                 </div>
                             </div> 
                         </div>
@@ -115,100 +136,106 @@
     private string selectedType;
     private string selectedYear;
     private bool loading;
-    protected override async Task OnInitializedAsync()
-    {
-        this.setUserIdFromQuery();
+    private bool loadingValid;
+    protected override async Task OnInitializedAsync () {
+        this.setUserIdFromQuery ();
         this.logedUser = AuthenticationService.user;
-        try
-        {
-            if (this.logedUser.Role == "Admin")
-            {
-                this.types = await passportTypeRepository.getPassTypes();
+        try {
+            if (this.logedUser.Role == "Admin") {
+                this.types = await passportTypeRepository.getPassTypes ();
             }
-            this.user = await userRepository.getUserById(this.userId);
-            this.busPass = await busPassRepository.getBusPassForUser(this.userId);
-            this.selectedType = this.busPass.PassTypeId.ToString();
-            this.years = await yearRepository.getYears();
-            this.selectedYear = this.years.LastOrDefault().YearId.ToString();
-            this.createAllYear();
-            this.paymentsWithRecap = await busPassPaymentRepository.getPaymentsForUserByYear(this.busPass.BusPassportId, this.selectedYear);
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
+            this.user = await userRepository.getUserById (this.userId);
+            this.busPass = await busPassRepository.getBusPassForUser (this.userId);
+            this.selectedType = this.busPass.PassTypeId.ToString ();
+            this.years = await yearRepository.getYears ();
+            this.selectedYear = this.years.LastOrDefault ().YearId.ToString ();
+            this.createAllYear ();
+            this.paymentsWithRecap = await busPassPaymentRepository.getPaymentsForUserByYear (this.busPass.BusPassportId, this.selectedYear);
+        } catch (Exception e) {
+            Console.WriteLine (e);
         }
     }
 
-    private async void onChange(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string> args)
-    {
+    private async void onChange (Syncfusion.Blazor.DropDowns.ChangeEventArgs<string> args) {
         selectedYear = args.Value;
-        if (selectedYear == "0")
-        {
-            this.paymentsWithRecap = await busPassPaymentRepository.getAllPaymentsForUser(this.busPass.BusPassportId);
+        if (selectedYear == "0") {
+            this.paymentsWithRecap = await busPassPaymentRepository.getAllPaymentsForUser (this.busPass.BusPassportId);
+        } else {
+            this.paymentsWithRecap = await busPassPaymentRepository.getPaymentsForUserByYear (this.busPass.BusPassportId, this.selectedYear);
         }
-        else
-        {
-            this.paymentsWithRecap = await busPassPaymentRepository.getPaymentsForUserByYear(this.busPass.BusPassportId, this.selectedYear);
-        }
-        StateHasChanged();
+        StateHasChanged ();
     }
 
-    private void doubleClick(MouseEventArgs e, int buttonNumber)
-    {
-        Console.WriteLine(buttonNumber);
+    private void doubleClick (MouseEventArgs e, int buttonNumber) {
+        Console.WriteLine (buttonNumber);
     }
 
-    private void createAllYear()
-    {
-        yearsForComboBox = new Collection<Year>();
+    private void createAllYear () {
+        yearsForComboBox = new Collection<Year> ();
 
-        Year allYear = new Year
-        {
+        Year allYear = new Year {
             YearId = 0,
             Name = "All",
             BusPassPayments = null
         };
 
-        this.yearsForComboBox.Add(allYear);
+        this.yearsForComboBox.Add (allYear);
 
-        foreach (var year in this.years)
-        {
-            this.yearsForComboBox.Add(year);
+        foreach (var year in this.years) {
+            this.yearsForComboBox.Add (year);
         }
 
     }
 
-    private void setUserIdFromQuery()
-    {
-        this.uri = nav.ToAbsoluteUri(nav.Uri);
+    private void setUserIdFromQuery () {
+        this.uri = nav.ToAbsoluteUri (nav.Uri);
 
-        if (QueryHelpers.ParseQuery(this.uri.Query).TryGetValue("user", out var aVal))
-        {
-            this.userId = int.Parse(aVal);
+        if (QueryHelpers.ParseQuery (this.uri.Query).TryGetValue ("user", out var aVal)) {
+            this.userId = int.Parse (aVal);
         }
     }
 
-    private void onChangeType(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string> args)
-    {
+    private void onChangeType (Syncfusion.Blazor.DropDowns.ChangeEventArgs<string> args) {
         this.selectedType = args.Value;
-        StateHasChanged();
+        StateHasChanged ();
     }
 
-    private async void updatePassType()
-    {
-        if (busPass.PassTypeId != int.Parse(this.selectedType))
-        {
+    private async void updatePassType () {
+        if (busPass.PassTypeId != int.Parse (this.selectedType)) {
             this.loading = true;
-            try
-            {
-                this.busPass = await busPassRepository.updatePassType(this.busPass.BusPassportId, int.Parse(this.selectedType));
+            try {
+                this.busPass = await busPassRepository.updatePassType (this.busPass.BusPassportId, int.Parse (this.selectedType));
                 this.loading = false;
-                StateHasChanged();
+            } catch (Exception e) {
+                Console.WriteLine (e);
+                this.loading = false;
+
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
+            StateHasChanged ();
         }
+    }
+
+    private async void changeToInvalid () {
+        this.loadingValid = true;
+        try {
+            this.busPass = await busPassRepository.makePassInvalid (this.busPass.BusPassportId);
+            this.loadingValid = false;
+        } catch (Exception e) {
+            Console.WriteLine(e);
+            this.loadingValid = false;
+        }
+        StateHasChanged ();
+    }
+
+    private async void changeToValid () {
+        this.loadingValid = true;
+        try {
+            this.busPass = await busPassRepository.makePassValid (this.busPass.BusPassportId);
+            this.loadingValid = false;
+        } catch (Exception e) {
+            Console.WriteLine(e);
+            this.loadingValid = false;
+        }
+        StateHasChanged ();
     }
 }

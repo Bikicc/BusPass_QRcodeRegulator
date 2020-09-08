@@ -30,6 +30,13 @@ namespace BusPass.Server.Repository {
             return pass;
         }
 
+        public async Task<BusPassport> getBusPassportById (int passId) {
+            var pass = await (from p in _context.BusPassports where p.BusPassportId == passId select p)
+                .SingleOrDefaultAsync ();
+
+            return pass;
+        }
+
         public async Task<BusPassport> changeValidity (BusPassport pass) {
             await _context.SaveChangesAsync ();
             return pass;
