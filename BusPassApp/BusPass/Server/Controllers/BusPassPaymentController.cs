@@ -50,30 +50,12 @@ namespace BusPass.Server.Controllers {
         }
 
         [Authorize (Roles = "Admin")]
-        [HttpGet ("forMonth/{yearId}/{monthId}")]
-        public async Task<IActionResult> getPaymentsForMonth (int yearId, int monthId) {
-            ICollection<Payment> payments = await _service.getPaymentsForMonth (yearId, monthId);
+        [HttpGet ("withFilters/{filters}/{yearId}/{monthId}/{typeId}")]
+        //filter je troznamenkasti broj u obliku stringa gdje je 1.znamenka -> yearId, 2.znamenka -> monthId, 3.znamenka -> typeId, id = 0 znaci iskljucnost filtera
+        public async Task<IActionResult> getPaymentsWithFilters (string filters, int yearId, int monthId, int typeId) {
+            ICollection<Payment> payments = await _service.getPaymentsWithFilters (filters, yearId, monthId, typeId);
             PaymentWithRecap payWr = await _service.getRecap (payments);
-
-            // double totalAmount = await _service.getRecap (payments);
-
-            // var paymentsWithAmount = new { payments = payments, totalAmount = totalAmount };
-            // return Ok (paymentsWithAmount);
             return Ok (payWr);
-        }
-
-        [Authorize (Roles = "Admin")]
-        [HttpGet ("forPassType/{passTypeId}/{yearId}/{monthId}")]
-        public async Task<IActionResult> getPaymentsByPassType (int passTypeId, int yearId, int monthId) {
-            ICollection<Payment> payments = await _service.getPaymentsByPassType (passTypeId, yearId, monthId);
-            PaymentWithRecap payWr = await _service.getRecap (payments);
-
-            // double totalAmount = await _service.getRecap (payments);
-
-            // var paymentsWithAmount = new { payments = payments, totalAmount = totalAmount };
-            // return Ok (paymentsWithAmount);
-            return Ok (payWr);
-
         }
 
         [HttpGet ("check/{busPassId}")]

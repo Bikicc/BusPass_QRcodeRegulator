@@ -21,7 +21,7 @@ namespace BusPass.Server.Services {
         public async Task<BusPassPayment> createPayment (BusPassPayment payment) {
             payment.YearId = await _repo.getCurrentYearId ();
             payment.MonthId = await getCurrMonthId ();
-           
+
             if (await _repo.checkPassportForCurrentMonth (payment.BusPassportId, payment.MonthId, payment.YearId) == null) {
                 int userId = await _busPassRepo.getUserIdFromPassport (payment.BusPassportId);
                 Account acc = await _accRepo.GetAccount (userId);
@@ -42,7 +42,7 @@ namespace BusPass.Server.Services {
         }
 
         public async Task<ICollection<Payment>> getPaymentsForBusPass (int busPassId) {
-            return await _repo.getPaymentsForBusPass(busPassId);
+            return await _repo.getPaymentsForBusPass (busPassId);
         }
 
         public async Task<bool> checkPassportForCurrentMonth (int busPassId) {
@@ -57,12 +57,28 @@ namespace BusPass.Server.Services {
             }
         }
 
-        public async Task<ICollection<Payment>> getPaymentsForMonth (int yearId, int monthId) {
-            return await _repo.getPaymentsForMonth (yearId, monthId);
-        }
+        public async Task<ICollection<Payment>> getPaymentsWithFilters (string filters, int yearId, int monthId, int typeId) {
+            switch (filters) {
+                case "000":
+                    return await _repo.getAllPayments();
+                case "001":
+                    return await _repo.getPaymentsByPassType(typeId);
+                case "010":
+                    return await _repo.getPaymentsForMonth(monthId);
+                case "011":
+                    return await _repo.getPaymentsForMonthAndType(monthId, typeId);
+                case "100":
+                    return await _repo.getPaymentsForYear(yearId);
+                case "101":
+                    return await _repo.getPaymentsForYearAndType(yearId, typeId);
+                case "110":
+                    return await _repo.getPaymentsForYearAndMonth(yearId, monthId);
+                case "111":
+                    return await _repo.getPaymentsForYearAndMonthAndType(yearId, monthId, typeId);
+                default:
+                    return null;
+            }
 
-        public async Task<ICollection<Payment>> getPaymentsByPassType (int passTypeId, int yearId, int monthId) {
-            return await _repo.getPaymentsByPassType (passTypeId, yearId, monthId);
         }
 
         private Task<int> getCurrMonthId () {

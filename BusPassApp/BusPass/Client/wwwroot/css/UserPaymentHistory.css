@@ -11,6 +11,15 @@ h1 {
     font-weight: bold;
 }
 
+h2 {
+    text-transform: uppercase;
+    font-family: fantasy;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
 .recap {
     display: flex;
     justify-content: space-evenly;

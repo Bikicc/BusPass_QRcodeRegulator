@@ -31,5 +31,9 @@ namespace BusPass.Client.Repository {
             var p = await _httpService.Get<PaymentWithRecap> ("/api/BusPassPayment/forBusPass/" + busPassId.ToString ());
             return p;
         }
+
+        public async Task<PaymentWithRecap> getAllPaymentsWithFilters (string filterIndicators, int yearId, int monthId, int typeId) {
+            return await _httpService.Get<PaymentWithRecap> ("api/BusPassPayment/withFilters/" + filterIndicators + "/" + yearId + "/" + monthId + "/" + typeId);
+        }
     }
 }

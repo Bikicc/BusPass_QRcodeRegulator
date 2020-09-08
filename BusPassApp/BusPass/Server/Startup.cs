@@ -52,6 +52,7 @@ namespace BusPass.Server {
             services.AddScoped<IBusPassportRepository, BusPassportRepository> ();
             services.AddScoped<IBusPassPaymentRepository, BusPassPaymentRepository> ();
             services.AddScoped<IYearRepository, YearRepository>();
+            services.AddScoped<IMonthRepository, MonthRepository>();
 
             //Services injection
             services.AddScoped<IUserService, UserService> ();

@@ -8,7 +8,7 @@
   "linkerEnabled": false,
   "resources": {
     "assembly": {
-      "BusPass.Client.dll": "sha256-rk6unaFFt7UKVcepEU4YBAlPn15akdk1s5RtWPfMRV4=",
+      "BusPass.Client.dll": "sha256-IwDZ64FzHMUDRIMpMySHoQ4dnce78mTmk0faHdHPETM=",
       "System.Text.Json.dll": "sha256-HQeN+ZfHAERO+uW0fP0J9J3WV1hQ3vUIOWbqGSYBPp8=",
       "System.Runtime.CompilerServices.Unsafe.dll": "sha256-kL\/omZDwqByAi+lPdMeDmr3XjHcn4RVb+LmZ4mut1Yc=",
       "mscorlib.dll": "sha256-BaZPMj95+YNe3G4ckTGD6szZFwZeA2MOHn91zTGKDeU=",
@@ -83,7 +83,7 @@
       "Microsoft.JSInterop.WebAssembly.dll": "sha256-dwm+rKImjhxtOmHHVpSxOgl2oh2R26xOWihLaZSv7Vs="
     },
     "pdb": {
-      "BusPass.Client.pdb": "sha256-vAYcA+umF\/q2ncMY0OkSAj21j6Vw8P0d+m\/nfpyqU6o=",
+      "BusPass.Client.pdb": "sha256-NYzZj6Q5WOxrbGo5RQCiKIhGdLjJGz7hrHfrHYiMPWw=",
       "Newtonsoft.Json.pdb": "sha256-itUtKKCpo2e5yuxPqn6PXeJEYMNdygaA3vFsiDaQ85Y=",
       "BusPass.Shared.pdb": "sha256-E9ntMIWjwcpn0E3M7N6R8ID8DmvjXo2dXnYOCE0i4gI="
     },

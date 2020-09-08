@@ -9,5 +9,6 @@ namespace BusPass.Client.Repository {
         Task renewBusPass(BusPassPayment payment);
         Task<PaymentWithRecap> getPaymentsForUserByYear(int busPassId, string yearId);
         Task<PaymentWithRecap> getAllPaymentsForUser (int busPassId);
+        Task<PaymentWithRecap> getAllPaymentsWithFilters (string filterIndicators, int yearId, int monthId, int typeId);
     }
 }

@@ -1,0 +1,199 @@
+@page "/paymentsHistory"
+@attribute [Authorize]
+@inject IBusPassPaymentRepository busPassPaymentRepository
+@inject IYearRepository yearRepository
+@inject IAuthenticationService AuthenticationService
+@inject IPassportTypeRepository passportTypeRepository
+@inject IMonthRepository monthRepository
+@using System.Collections.ObjectModel
+
+@if(this.paymentsWithRecap == null) {
+    <p><em>Loading...</em></p>
+
+} else {
+    <html>
+            <head>
+                <link href="css/UserPaymentHistory.css" rel="stylesheet" />
+            </head>
+            
+            <body>
+                <h2 style="display: flex; jus">Bus passport payments</h2>
+                <div class="allUsersView">
+                    <div class="dropDownContainer">
+                        <div class="dropdownItem">
+                            <SfDropDownList TValue="string" TItem="Year" Value="@selectedYear" Placeholder="Select a year" DataSource="@yearsForComboBox">
+                                <DropDownListEvents TValue="string" ValueChange="onChangeYear"></DropDownListEvents>
+                                <DropDownListFieldSettings Value="YearId" Text="Name"></DropDownListFieldSettings>
+                            </SfDropDownList>
+                        </div>
+                        <div class="dropdownItem">
+                            <SfDropDownList TValue="string" TItem="Month" Value="@selectedMonth" Placeholder="Select month" DataSource="@monthsForComboBox">
+                                <DropDownListEvents TValue="string" ValueChange="onChangeMonth"></DropDownListEvents>
+                                <DropDownListFieldSettings Value="MonthId" Text="Name"></DropDownListFieldSettings>
+                            </SfDropDownList>
+                        </div> 
+                    <div class="dropdownItem">
+                            <SfDropDownList TValue="string" TItem="PassType" Value="@selectedType" Placeholder="Select type" DataSource="@typesForComboBox">
+                                <DropDownListEvents TValue="string" ValueChange="onChangeType"></DropDownListEvents>
+                                <DropDownListFieldSettings Value="PassTypeId" Text="Name"></DropDownListFieldSettings>
+                            </SfDropDownList>
+                        </div> 
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Serial number</th>
+                                <th scope="col">Holder</th>
+                                <th scope="col">Month</th>
+                                <th scope="col">Date of payment</th>
+                                <th scope="col">Passport type</th>
+                                <th scope="col">Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var payment in paymentsWithRecap.payments)
+                                {
+                                    <tr>
+                                        <th scope="row">#@payment.paymentId</th>
+                                        <td>@payment.holder</td>
+                                        <td>@payment.month</td>
+                                        <td>@payment.dateOfPayment</td>
+                                        <td>@payment.busPassType</td>
+                                        <td>@payment.price kn</td>
+                                    </tr>
+                                }       
+                        </tbody>
+                    </table> 
+                    <div class="recap">
+                        <div class="recapItems">Number of renewals: @paymentsWithRecap.numberOfPayments</div>
+                        <div class="recapItems">total: @paymentsWithRecap.totalAmountPaid kn</div>
+                    </div>
+                </div>
+            </body>
+    </html>
+}
+
+@code {
+    private PaymentWithRecap paymentsWithRecap;
+    private ICollection<Year> yearsForComboBox;
+    private ICollection<Year> years;
+    private ICollection<PassType> types;
+    private ICollection<PassType> typesForComboBox;
+    private ICollection<Month> months;
+    private ICollection<Month> monthsForComboBox;
+    private string selectedYear;
+    private string selectedMonth;
+    private string selectedType;
+
+    protected override async Task OnInitializedAsync () {
+        if (AuthenticationService.checkIfAdmin ()) {
+            try {
+                this.years = await yearRepository.getYears ();
+                this.months = await monthRepository.GetMonths ();
+                this.types = await passportTypeRepository.getPassTypes ();
+                this.createAllComboBox ();
+                this.paymentsWithRecap = await this.getData ();
+
+            } catch (Exception e) {
+                Console.WriteLine (e);
+            }
+        } else {
+            await AuthenticationService.Logout ();
+        }
+    }
+
+    private void createAllComboBox () {
+        this.createAllYear ();
+        this.createAllMonth ();
+        this.createAllType ();
+    }
+
+    private void createAllYear () {
+        yearsForComboBox = new Collection<Year> ();
+
+        Year allYear = new Year {
+            YearId = 0,
+            Name = "All",
+            BusPassPayments = null
+        };
+
+        this.yearsForComboBox.Add (allYear);
+
+        foreach (var year in this.years) {
+            this.yearsForComboBox.Add (year);
+        }
+        this.selectedYear = this.years.LastOrDefault ().YearId.ToString ();
+    }
+
+    private void createAllMonth () {
+        monthsForComboBox = new Collection<Month> ();
+
+        Month allMonth = new Month {
+            MonthId = 0,
+            Name = "All",
+            BusPassPayments = null
+        };
+
+        this.monthsForComboBox.Add (allMonth);
+
+        foreach (var month in this.months) {
+            this.monthsForComboBox.Add (month);
+        }
+        this.selectedMonth = "0";
+    }
+
+    private void createAllType () {
+        typesForComboBox = new Collection<PassType> ();
+
+        PassType allType = new PassType {
+            PassTypeId = 0,
+            Name = "All",
+        };
+
+        this.typesForComboBox.Add (allType);
+
+        foreach (var type in this.types) {
+            this.typesForComboBox.Add (type);
+        }
+        this.selectedType = "0";
+    }
+
+    private async void onChangeType (Syncfusion.Blazor.DropDowns.ChangeEventArgs<string> args) {
+        this.selectedType = args.Value;
+        try {
+            this.paymentsWithRecap = await getData ();
+        } catch (Exception e) {
+            Console.WriteLine (e);
+        }
+        StateHasChanged ();
+    }
+
+    private async void onChangeMonth (Syncfusion.Blazor.DropDowns.ChangeEventArgs<string> args) {
+        this.selectedMonth = args.Value;
+        try {
+            this.paymentsWithRecap = await getData ();
+        } catch (Exception e) {
+            Console.WriteLine (e);
+        }
+        StateHasChanged ();
+    }
+
+    private async void onChangeYear (Syncfusion.Blazor.DropDowns.ChangeEventArgs<string> args) {
+        this.selectedYear = args.Value;
+        try {
+            this.paymentsWithRecap = await getData ();
+        } catch (Exception e) {
+            Console.WriteLine (e);
+        }
+        StateHasChanged ();
+    }
+
+    private async Task<PaymentWithRecap> getData () {
+        string yearParamIndicator = this.selectedYear == "0" ? "0" : "1";
+        string monthParamIndicator = this.selectedMonth == "0" ? "0" : "1";
+        string typeParamIndicator = this.selectedType == "0" ? "0" : "1";
+
+        string filterIndicators = yearParamIndicator + monthParamIndicator + typeParamIndicator;
+        return await busPassPaymentRepository.getAllPaymentsWithFilters (filterIndicators, int.Parse (this.selectedYear), int.Parse (this.selectedMonth), int.Parse (this.selectedType));
+    }
+}
