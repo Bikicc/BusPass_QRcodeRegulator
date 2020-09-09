@@ -6,7 +6,7 @@
 @using System.Collections.ObjectModel
 @inject NavigationManager NavigationManager
 
-@if(passports == null ||types == null) {
+@if(passportsToShow == null ||types == null) {
     <p><em>Loading...</em></p>
 } else {
     <html>
@@ -28,6 +28,8 @@
                             <DropDownListFieldSettings Value="PassTypeId" Text="Name"></DropDownListFieldSettings>
                         </SfDropDownList>
                     </div> 
+                    <input style="border-radius:.2em; border: 1px solid #8080805e;" value="@filterValue" @oninput="filterPassportsByName" placeholder="Filter by name"/>
+
                 </div>
                 <table class="table">
                     <thead>
@@ -39,7 +41,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var pass in passports)
+                        @foreach (var pass in passportsToShow)
                             {
                                 <tr style="cursor: pointer;" @onclick="@(e => goToUserProfile(pass.userId))">
                                     <th scope="row">#@pass.passportId</th>
@@ -62,107 +64,116 @@
     private LoginUser logedUser;
     private bool selectedValidation;
     private ICollection<UserBusPassport> passports;
+    private ICollection<UserBusPassport> passportsToShow = new Collection<UserBusPassport> ();
     private ICollection<PassType> types;
     private ICollection<PassType> typesForComboBox;
     private string selectedType;
     private int totalNumberOfUsers = 0;
-    List<Validation> validations = new List<Validation>
-    {
-    new Validation() {Name="Valid", valid=true},
-    new Validation() {Name="Invalid", valid=false},
+    private string filterValue;
+    List<Validation> validations = new List<Validation> {
+        new Validation () { Name = "Valid", valid = true },
+        new Validation () { Name = "Invalid", valid = false },
     };
-    protected override async Task OnInitializedAsync()
-    {
-        if (AuthenticationService.checkIfAdmin())
-        {
-            try
-            {
+    protected override async Task OnInitializedAsync () {
+        if (AuthenticationService.checkIfAdmin ()) {
+            try {
                 this.logedUser = AuthenticationService.user;
                 this.selectedValidation = true;
-                this.types = await passportTypeRepository.getPassTypes();
-                this.createAllType();
-                this.passports = await busPassportRepository.getByValidity(this.selectedValidation);
-                this.getTotalNumberOfUsers();
+                this.types = await passportTypeRepository.getPassTypes ();
+                this.createAllType ();
+                this.passports = await busPassportRepository.getByValidity (this.selectedValidation);
+                this.fillPassportsToShow ();
+                this.getTotalNumberOfUsers ();
+            } catch (Exception e) {
+                Console.WriteLine (e);
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
-        }
-        else
-        {
-            await AuthenticationService.Logout();
+        } else {
+            await AuthenticationService.Logout ();
         }
     }
 
-    private async void onChangeValid(Syncfusion.Blazor.DropDowns.ChangeEventArgs<bool> args)
-    {
+    private async void onChangeValid (Syncfusion.Blazor.DropDowns.ChangeEventArgs<bool> args) {
         this.selectedValidation = args.Value;
-        if (this.selectedType == "0")
-        {
-            this.passports = await busPassportRepository.getByValidity(this.selectedValidation);
+        if (this.selectedType == "0") {
+            this.passports = await busPassportRepository.getByValidity (this.selectedValidation);
+            this.fillPassportsToShow ();
+        } else {
+            this.passports = await busPassportRepository.getByType (this.selectedType, this.selectedValidation);
+            this.fillPassportsToShow ();
         }
-        else
-        {
-            this.passports = await busPassportRepository.getByType(this.selectedType, this.selectedValidation);
-        }
-        
-        this.getTotalNumberOfUsers();
-        StateHasChanged();
+
+        this.getTotalNumberOfUsers ();
+        StateHasChanged ();
     }
 
-    private async void onChangeType(Syncfusion.Blazor.DropDowns.ChangeEventArgs<string> args)
-    {
+    private async void onChangeType (Syncfusion.Blazor.DropDowns.ChangeEventArgs<string> args) {
         this.selectedType = args.Value;
-        if (this.selectedType == "0")
-        {
-            this.passports = await busPassportRepository.getByValidity(this.selectedValidation);
+        if (this.selectedType == "0") {
+            this.passports = await busPassportRepository.getByValidity (this.selectedValidation);
+            this.fillPassportsToShow ();
+
+        } else {
+            this.passports = await busPassportRepository.getByType (this.selectedType, this.selectedValidation);
+            this.fillPassportsToShow ();
         }
-        else
-        {
-            this.passports = await busPassportRepository.getByType(this.selectedType, this.selectedValidation);
-        }
-       
-        this.getTotalNumberOfUsers();
-        StateHasChanged();
+
+        this.getTotalNumberOfUsers ();
+        StateHasChanged ();
     }
 
-    private void createAllType()
-    {
-        typesForComboBox = new Collection<PassType>();
+    private void createAllType () {
+        typesForComboBox = new Collection<PassType> ();
 
-        PassType allType = new PassType
-        {
+        PassType allType = new PassType {
             PassTypeId = 0,
             Name = "All",
         };
 
-        this.typesForComboBox.Add(allType);
+        this.typesForComboBox.Add (allType);
 
-        foreach (var type in this.types)
-        {
-            this.typesForComboBox.Add(type);
+        foreach (var type in this.types) {
+            this.typesForComboBox.Add (type);
         }
         this.selectedType = "0";
     }
 
-    private void goToUserProfile(int userId) {
-        NavigationManager.NavigateTo("userHistory?user=" + userId);
+    private void goToUserProfile (int userId) {
+        NavigationManager.NavigateTo ("userHistory?user=" + userId);
     }
 
-    private void getTotalNumberOfUsers()
-    {
+    private void getTotalNumberOfUsers () {
         this.totalNumberOfUsers = 0;
-        foreach (var pass in passports)
-        {
+        foreach (var pass in passports) {
             this.totalNumberOfUsers++;
         }
     }
 
-    public class Validation
-    {
-        public string Name { get; set; }
-        public bool valid { get; set; }
+    private void fillPassportsToShow () {
+        this.passportsToShow.Clear ();
+        foreach (var pass in passports) {
+            this.passportsToShow.Add (pass);
+        }
+
+        if (this.filterValue != "" && this.filterValue != null) {
+            this.filterPassportsByName ();
+        }
+    }
+
+    private void filterPassportsByName (ChangeEventArgs e = null) {
+                
+        if (e == null) {
+            this.passportsToShow = passports.Where (pass => pass.holder.ToUpperInvariant ().Contains (this.filterValue.ToUpperInvariant ())).ToList ();
+        } else {
+            this.fillPassportsToShow ();
+            this.filterValue = e.Value.ToString ();
+            this.passportsToShow = passports.Where (pass => pass.holder.ToUpperInvariant ().Contains (this.filterValue.ToUpperInvariant ())).ToList ();
+            StateHasChanged ();
+        }
+    }
+    public class Validation {
+    public string Name { get; set; }
+    public bool valid { get; set; }
+    
     }
 }
 

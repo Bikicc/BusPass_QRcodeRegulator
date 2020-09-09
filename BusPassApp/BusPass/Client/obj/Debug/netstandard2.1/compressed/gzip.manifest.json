@@ -1,7 +1,7 @@
 {
   "FilesToCompress": [
     {
-      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\jMzQ3TR229Vf9UylbxH2ay2mLjM3vP6CyYsNLkVmuTw=.hash",
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\4khoQN52gVkXxCtpP8va6aCZTf5UkxB42WqA0bAiMoQ=.hash",
       "Source": "X:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\BusPass.Client.dll",
       "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/BusPass.Client.dll.gz"
     },
@@ -366,7 +366,7 @@
       "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.JSInterop.WebAssembly.dll.gz"
     },
     {
-      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\MtYXz69YRSQKFw5zMDpswjU_L6KHq3mzQG7pWEYmW0U=.hash",
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\I9vCYT3gsxMnx0zmxzugH3n6zVkZH8MsWTT3D5RmGP0=.hash",
       "Source": "X:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\BusPass.Client.pdb",
       "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/BusPass.Client.pdb.gz"
     },
@@ -401,7 +401,7 @@
       "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/blazor.webassembly.js.gz"
     },
     {
-      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\FwERtjfJwN4DcKKZHcDZFP5N8YlEJd82gVHHyQ-A384=.hash",
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\IgYlojLBC74N6SOW3yrfe-XMIfOWVrGhqAWgRVPq_aU=.hash",
       "Source": "X:\\Documents\\GitHub\\BusPass_QRcodeRegulator\\BusPassApp\\BusPass\\Client\\obj\\Debug\\netstandard2.1\\blazor\\blazor.boot.json",
       "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/blazor.boot.json.gz"
     }

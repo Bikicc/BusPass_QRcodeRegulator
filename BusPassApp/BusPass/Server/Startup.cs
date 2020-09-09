@@ -93,8 +93,6 @@ namespace BusPass.Server {
                 .AllowAnyHeader ()
             );
 
-            // app.UseMiddleware<JwtMiddleware> ();
-
             app.UseHttpsRedirection ();
             app.UseBlazorFrameworkFiles ();
             app.UseStaticFiles ();
