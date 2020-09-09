@@ -1,3 +1,4 @@
+using System.Net.Sockets;
 using System.Linq;
 using System.Threading.Tasks;
 using BusPass.Shared.Entities;
@@ -38,6 +39,5 @@ namespace BusPass.Server.Repository {
             await _context.SaveChangesAsync ();
             return user;
         }
-
     }
 }

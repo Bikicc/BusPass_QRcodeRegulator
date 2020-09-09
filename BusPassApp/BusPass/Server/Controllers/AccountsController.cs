@@ -21,10 +21,21 @@ namespace BusPass.Server.Controllers {
             }
 
             var acc = await _service.postAccount (account);
-            return Ok(acc);
+            return Ok (acc);
         }
 
-        [Authorize (Roles = "User")]
+        [Authorize (Roles = "Admin")]
+        [HttpPut]
+        public async Task<IActionResult> updateAccount (Account account) {
+            if (!ModelState.IsValid) {
+                return BadRequest (ModelState);
+            }
+
+            var acc = await _service.updateAccount (account);
+            return Ok (acc);
+        }
+
+        [Authorize]
         [HttpGet ("{userId}")]
         public async Task<IActionResult> getAccount (int userId) {
             Account acc = await _service.GetAccount (userId);

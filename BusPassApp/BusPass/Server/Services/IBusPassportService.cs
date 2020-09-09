@@ -10,7 +10,7 @@ namespace BusPass.Server.Services {
         Task<ICollection<UserBusPassport>> getBusPassportByType (int passTypeId, bool valid);
         Task<BusPassport> makeInvalid (int passId);
         Task<BusPassport> makeValid (int passId);
-        void changePasswordValidityIfExpired ();
+        void changePassportValidityIfExpired ();
         Task<BusPassport> updatePassType(int passId, int passTypeId);
     }
 }

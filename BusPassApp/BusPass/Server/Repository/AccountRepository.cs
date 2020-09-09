@@ -28,6 +28,14 @@ namespace BusPass.Server.Repository {
 
         }
 
+        public async Task<Account> updateAccount (Account account) {
+            var acc = await (from a in _context.Accounts where a.AccountId == account.AccountId select a)
+                .SingleOrDefaultAsync ();
+            acc.IBAN = account.IBAN;
+            await _context.SaveChangesAsync ();
+            return acc;
+        }
+
         public async Task<Account> substructFromBalance (int accountId, double valueToSubstract) {
 
             var acc = await _context.Accounts.FindAsync (accountId);

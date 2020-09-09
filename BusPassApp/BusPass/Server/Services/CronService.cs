@@ -36,7 +36,7 @@ namespace BusPass.Server.Services {
             }
         }
         private void Process (IBusPassportService bpService) {
-            bpService.changePasswordValidityIfExpired ();
+            bpService.changePassportValidityIfExpired ();
         }
     }
 }

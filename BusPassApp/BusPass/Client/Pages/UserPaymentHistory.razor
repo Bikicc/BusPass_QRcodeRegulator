@@ -9,6 +9,7 @@
 @using Microsoft.AspNetCore.WebUtilities
 @inject NavigationManager nav
 @inject IPassportTypeRepository passportTypeRepository
+@inject IAccountRepository accountRepository
 
 @if (paymentsWithRecap == null || years == null)
 {
@@ -75,6 +76,25 @@
                                 <span class="dataHeader">OIB:</span>
                                 <span>@user.OIB</span>
                             </div>
+                            <EditForm Model="@account" OnValidSubmit="HandleValidSubmit" style="width: 100%;">
+                                <DataAnnotationsValidator />
+                                <div class="form-group">
+                                    <label class="dataHeader">Account:</label>
+                                    <div class="inputButtonWrapper" style="display: flex;">
+                                        <InputText @bind-Value="account.IBAN" class="form-control" style="margin-right: 5px;" />
+                                        <button class="btn btn-primary" style="width: 60%;">
+                                        @if (loadingAcc) {
+                                            <span class="spinner-border spinner-border-sm mr-1"></span>
+                                        }
+                                        Change 
+                                        </button>
+                                    </div>
+                                 </div>
+                                <ValidationMessage For="@(() => account.IBAN)" />
+                                @if (!string.IsNullOrEmpty(error)) {
+                                    <div class="alert alert-danger mt-3 mb-0">@error</div>
+                                }
+                            </EditForm>
                             <div class="infoItem">
                                 <span class="dataHeader">Passport type:</span>
                                 <div class="updateTypeWrapper">
@@ -122,7 +142,9 @@
 @code {
     private PaymentWithRecap paymentsWithRecap;
     private BusPassport busPass;
+    private Account account;
     int userId;
+    private string error;
     private ICollection<Year> yearsForComboBox;
     private ICollection<Year> years;
     private System.Uri uri;
@@ -133,6 +155,7 @@
     private string selectedYear;
     private bool loading;
     private bool loadingValid;
+    private bool loadingAcc;
     protected override async Task OnInitializedAsync () {
         this.setUserIdFromQuery ();
         this.logedUser = AuthenticationService.user;
@@ -141,6 +164,7 @@
                 this.types = await passportTypeRepository.getPassTypes ();
             }
             this.user = await userRepository.getUserById (this.userId);
+            this.account = await accountRepository.getAccountForUser(this.user.UserId);
             this.busPass = await busPassRepository.getBusPassForUser (this.userId);
             this.selectedType = this.busPass.PassTypeId.ToString ();
             this.years = await yearRepository.getYears ();
@@ -217,7 +241,7 @@
             this.busPass = await busPassRepository.makePassInvalid (this.busPass.BusPassportId);
             this.loadingValid = false;
         } catch (Exception e) {
-            Console.WriteLine(e);
+            Console.WriteLine (e);
             this.loadingValid = false;
         }
         StateHasChanged ();
@@ -229,9 +253,27 @@
             this.busPass = await busPassRepository.makePassValid (this.busPass.BusPassportId);
             this.loadingValid = false;
         } catch (Exception e) {
-            Console.WriteLine(e);
+            Console.WriteLine (e);
             this.loadingValid = false;
         }
         StateHasChanged ();
     }
+
+    private async void HandleValidSubmit()
+    {
+        this.loadingAcc = true;
+        try
+        {
+            this.account = await accountRepository.updateUserAccount(this.account); 
+            this.loadingAcc = false;
+            StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            error = ex.Message;
+            this.loadingAcc = false;
+            StateHasChanged();
+        }
+    }
+
 }

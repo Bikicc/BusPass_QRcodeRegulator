@@ -30,7 +30,7 @@ namespace BusPass.Server.Services {
             return await _repo.getBusPassportByType (passTypeId, valid);
         }
 
-        public async void changePasswordValidityIfExpired () {
+        public async void changePassportValidityIfExpired () {
             ICollection<BusPassport> busPasses = await _repo.getValidBusPassports ();
 
             foreach (BusPassport pass in busPasses) {

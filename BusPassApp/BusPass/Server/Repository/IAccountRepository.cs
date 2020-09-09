@@ -9,5 +9,6 @@ namespace BusPass.Server.Repository
         Task<Account> postAccount (Account acc);
         Task<Account> substructFromBalance (int accountId, double valueToSubstract);
         Task<bool> checkIfEnoughBalance (int accountId, double valueToSubstract);
+        Task<Account> updateAccount (Account account);
     }
 }

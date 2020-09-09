@@ -55,8 +55,12 @@ namespace BusPass.Server.Services {
         }
 
         public async Task<User> updateUser(User user) {
+            if (user.CurrentPassword == null) {
+                return null;
+            }
+            
             User userToUpdate = await _repo.getUserById(user.UserId);
-            if (userToUpdate == null) {
+            if (userToUpdate == null || (userToUpdate.Password != this.Encrypt(user.CurrentPassword))) {
                 return null;
             } else {
                 userToUpdate.Name = user.Name;

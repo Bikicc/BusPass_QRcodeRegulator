@@ -8,7 +8,7 @@
   "linkerEnabled": false,
   "resources": {
     "assembly": {
-      "BusPass.Client.dll": "sha256-4khoQN52gVkXxCtpP8va6aCZTf5UkxB42WqA0bAiMoQ=",
+      "BusPass.Client.dll": "sha256-iD\/dyi+VmMoeT8EKKuu4A89zSG2P9U2KcvMqWJ\/33lc=",
       "System.Net.Http.Json.dll": "sha256-99dseBOagY3mzu5Y8Eqm8gRI+o8QbbCp7R2Ew9bQ+5E=",
       "System.Buffers.dll": "sha256-ZxXy75PYbzJxNfAc\/SAP1nUYm4gt1jSaOpFnBb9m85M=",
       "mscorlib.dll": "sha256-BaZPMj95+YNe3G4ckTGD6szZFwZeA2MOHn91zTGKDeU=",
@@ -68,7 +68,7 @@
       "Syncfusion.PdfExport.Net.dll": "sha256-1Bw3Mui1bi9gxu7AwHD4G0F57gKyGFsfvVrnwz+P0bI=",
       "Syncfusion.ExcelExport.Net.dll": "sha256-3r6m2TKCtMzrQttKwCtcO\/2Y+MIPcdXkOpRQVxJ1y4Y=",
       "Newtonsoft.Json.dll": "sha256-BPeXAMTZKR8pJ7LpQA8+w4soJFGV1TLt2PPpnmpBUeE=",
-      "BusPass.Shared.dll": "sha256-LXhlEOL6fB4axskr0bCRKFjPipeTA9YxVEi5ikzGrok=",
+      "BusPass.Shared.dll": "sha256-3MIqaZxcXiIj9lkxVnqom3W2OvU1gYQukQgxtzDMD8U=",
       "Microsoft.AspNetCore.Authorization.dll": "sha256-4NUQ26HmvXRi8smc0jz9940OUECDLQnoMWQLrMLe0ok=",
       "Microsoft.AspNetCore.Metadata.dll": "sha256-825GQI5nG1C1WqLD1SNKSpjzLCNbH2\/KChgjBL0SSXI=",
       "Microsoft.AspNetCore.Components.WebAssembly.dll": "sha256-sifIvl02zqfSiv67ZRAsSa+NCvhMgTGrIUNuK8LmCNM=",
@@ -83,9 +83,9 @@
       "Microsoft.JSInterop.WebAssembly.dll": "sha256-dwm+rKImjhxtOmHHVpSxOgl2oh2R26xOWihLaZSv7Vs="
     },
     "pdb": {
-      "BusPass.Client.pdb": "sha256-I9vCYT3gsxMnx0zmxzugH3n6zVkZH8MsWTT3D5RmGP0=",
+      "BusPass.Client.pdb": "sha256-+3l0gg6WIKWl0L1MMGVCXqJeLuSF5csdDWIdWHzWjQs=",
       "Newtonsoft.Json.pdb": "sha256-itUtKKCpo2e5yuxPqn6PXeJEYMNdygaA3vFsiDaQ85Y=",
-      "BusPass.Shared.pdb": "sha256-3LzN\/xskAwtin0q1Ur4R0WMVyPluWZ1fLJU3J6+czPg="
+      "BusPass.Shared.pdb": "sha256-rYH1\/4Qe6Bu\/wJQjV8SJcJQCbRme94XPlSynPmLNr\/0="
     },
     "runtime": {
       "dotnet.3.2.0.js": "sha256-mPoqx7XczFHBWk3gRNn0hc9ekG1OvkKY4XiKRY5Mj5U=",

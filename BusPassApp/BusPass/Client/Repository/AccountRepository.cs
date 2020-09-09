@@ -16,5 +16,14 @@ namespace BusPass.Client.Repository
         {
             return await httpService.Post("api/Accounts", account);
         }
+
+        public async Task<Account> getAccountForUser (int userId)
+        {
+            return await httpService.Get<Account>("api/Accounts/" + userId);
+        }
+
+        public async Task<Account> updateUserAccount(Account account) {
+            return await httpService.Put("api/accounts", account);
+        }
     }
 }

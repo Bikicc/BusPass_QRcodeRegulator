@@ -29,10 +29,14 @@ namespace BusPass.Shared.Entities {
         [StringLength (15, ErrorMessage = "Password must be between {2} and {1}", MinimumLength = 4)]
         [NotMapped]
         public string PasswordPlain { get; set; }
+
         public BusPassport BusPassports { get; set; }
         public Account Account { get; set; }
 
-        public User(PassportToAdd pass) {
+        [NotMapped]
+        public string CurrentPassword { get; set; }
+
+        public User (PassportToAdd pass) {
             Name = pass.Name;
             Surname = pass.Surname;
             OIB = pass.OIB;
@@ -41,7 +45,7 @@ namespace BusPass.Shared.Entities {
             Role = "User";
         }
 
-        public User() {}
+        public User () { }
 
     }
 }

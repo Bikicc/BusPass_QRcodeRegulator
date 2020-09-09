@@ -27,5 +27,9 @@ namespace BusPass.Server.Services
                 return null;
             }
         }
+
+        public async Task<Account> updateAccount(Account account) {
+            return await _repo.updateAccount(account);
+        }
     }
 }

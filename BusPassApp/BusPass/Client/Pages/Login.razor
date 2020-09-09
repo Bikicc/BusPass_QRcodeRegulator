@@ -18,12 +18,14 @@
                     <InputText @bind-Value="user.PasswordPlain" type="password" class="form-control" />
                     <ValidationMessage For="@(() => user.PasswordPlain)" />
                 </div>
-                <button class="btn btn-primary">
-                    @if (loading) {
-                        <span class="spinner-border spinner-border-sm mr-1"></span>
-                    }
-                    Login
-                </button>
+                <div style="display: flex; justify-content: center">
+                    <button class="btn btn-primary" style="width: 50%;">
+                        @if (loading) {
+                            <span class="spinner-border spinner-border-sm mr-1"></span>
+                        }
+                        Login
+                    </button>
+                </div>
                 @if (!string.IsNullOrEmpty(error)) {
                     <div class="alert alert-danger mt-3 mb-0">@error</div>
                 }

@@ -5,7 +5,9 @@
 @inject IPassportTypeRepository passTypeRepository
 @inject IBusPassPaymentRepository busPassPaymentRepository
 @inject IUserRepository userRepository
-@if (user == null || busPass == null || passType == null)
+@inject IAccountRepository accountRepository
+
+@if (user == null || busPass == null || passType == null || account == null)
 {
     <p><em>Loading...</em></p>
 } else {
@@ -63,6 +65,10 @@
                         <span class="dataHeader">Price:</span>
                         <span>@passType.Price kn</span>
                     </div>
+                    <div class="infoContainer">
+                        <span class="dataHeader">Account:</span>
+                        <span>@account.IBAN</span>
+                    </div>
                 </div>
             </div>
     </body>
@@ -73,16 +79,18 @@
     private BusPassport busPass;
     private User user;
     private PassType passType;
+    private Account account;
     private bool payedForMonth;
     private bool loading;
     private string error;
     protected override async Task OnInitializedAsync () {
         if (!AuthenticationService.checkIfAdmin ()) {
-            this.user = await userRepository.getUserById(AuthenticationService.user.UserId);
+            this.user = await userRepository.getUserById (AuthenticationService.user.UserId);
             try {
                 this.busPass = await busPassRepository.getBusPassForUser (this.user.UserId);
                 this.payedForMonth = await busPassPaymentRepository.getBusPassForUser (this.busPass.BusPassportId);
                 this.passType = await passTypeRepository.getPassType (this.busPass.PassTypeId);
+                this.account = await accountRepository.getAccountForUser (this.user.UserId);
             } catch (Exception e) {
                 Console.WriteLine (e);
             }

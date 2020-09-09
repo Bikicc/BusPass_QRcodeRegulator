@@ -28,6 +28,11 @@
                         <ValidationMessage For="@(() => user.Email)" />
                     </div>
                     <div class="form-group">
+                        <label>Current Password</label>
+                        <InputText @bind-Value="user.CurrentPassword" type="password" class="form-control" />
+                        <ValidationMessage For="@(() => user.CurrentPassword)" />
+                    </div>
+                    <div class="form-group">
                         <label>Password</label>
                         <InputText @bind-Value="user.PasswordPlain" type="password" class="form-control" />
                         <ValidationMessage For="@(() => user.PasswordPlain)" />
@@ -71,6 +76,7 @@
         {
             this.user = await userRepository.updateUser(this.user);
             this.loading = false;
+            this.error = null;
             StateHasChanged();
         }
         catch (Exception ex)

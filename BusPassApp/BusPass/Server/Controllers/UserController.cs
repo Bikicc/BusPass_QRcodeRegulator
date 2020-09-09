@@ -49,7 +49,7 @@ namespace BusPass.Server.Controllers {
         public async Task<IActionResult> updateUser ([FromBody] User user) {
             User us = await _service.updateUser (user);
             if (us == null) {
-                return BadRequest("Something went wrong!");
+                return BadRequest("Password incorrect!");
             } else {
 
                 return Ok (us);
